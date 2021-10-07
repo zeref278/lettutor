@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor/screens/login_screen/get_started.dart';
 
-import 'screens/login_screen/login.dart';
+import 'screens/login_screen/sign_in.dart';
+import 'screens/login_screen/sign_up.dart';
 
-void main() => runApp(new MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
+    return MaterialApp(
       title: 'Flutter Login Screen 1',
-      theme: new ThemeData(
+      theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(),
@@ -26,9 +30,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Colors.white,
-      body: LoginScreen1(),
+      body: GetStartedScreen(),
     );
   }
 
@@ -38,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Center(
         child: Text(
           text,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 50.0,
             color: Colors.white,
           ),
