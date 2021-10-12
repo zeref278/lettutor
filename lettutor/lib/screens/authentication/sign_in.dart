@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
-import 'package:lettutor/screens/login_screen/sign_up.dart';
-import 'package:lettutor/screens/login_screen/widgets/name_logo.dart';
+import 'package:lettutor/screens/authentication/sign_up.dart';
+import 'package:lettutor/screens/authentication/widgets/name_logo.dart';
 
 import 'package:lettutor/themes/custom_colors.dart';
 import 'package:lettutor/widgets/rounded_button.dart';

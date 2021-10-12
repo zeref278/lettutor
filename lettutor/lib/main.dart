@@ -1,8 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lettutor/screens/login_screen/get_started.dart';
+//import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:lettutor/themes/custom_colors.dart';
+import 'package:lettutor/widgets/bottom_nav_custom.dart';
 
-import 'screens/login_screen/sign_in.dart';
-import 'screens/login_screen/sign_up.dart';
+
+import 'screens/authentication/sign_in.dart';
+import 'screens/authentication/sign_up.dart';
+import 'screens/authentication/forgot_password.dart';
 
 void main() => runApp(const MyApp());
 
@@ -28,25 +33,57 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  var _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Colors.white,
-      body: GetStartedScreen(),
-    );
-  }
-
-  Container buildPage(Color color, String text) {
-    return Container(
-      color: color,
-      child: Center(
-        child: Text(
-          text,
-          style: const TextStyle(
-            fontSize: 50.0,
-            color: Colors.white,
+      body: ForgotPasswordScreen(),
+      bottomNavigationBar:BottomNavigationBarCustom(
+        selectedIndex: _currentIndex,
+        showElevation: true,
+        itemCornerRadius: 24,
+        curve: Curves.easeIn,
+        onItemSelected: (index) => setState(() => _currentIndex = index),
+        items: <BottomNavyBarItem>[
+          BottomNavyBarItem(
+            icon: Icon(CupertinoIcons.app),
+            title: Text('Home'),
+            activeColor: defaultColor,
+            textAlign: TextAlign.center,
           ),
-        ),
+          BottomNavyBarItem(
+            icon: Icon(CupertinoIcons.bubble_left_bubble_right),
+            title: Text('Messages'),
+            activeColor: defaultColor,
+            textAlign: TextAlign.center,
+          ),
+          BottomNavyBarItem(
+            icon: Icon(CupertinoIcons.calendar),
+            title: Text(
+              'Schedule',
+            ),
+            activeColor: defaultColor,
+            textAlign: TextAlign.center,
+          ),
+          BottomNavyBarItem(
+            icon: Icon(CupertinoIcons.memories),
+            title: Text('History'),
+            activeColor: defaultColor,
+            textAlign: TextAlign.center,
+          ),
+
+          BottomNavyBarItem(
+            icon: Icon(CupertinoIcons.gear_alt),
+            title: Text('Setting'),
+            activeColor: defaultColor,
+            textAlign: TextAlign.center,
+            titleColor: Colors.black,
+
+          ),
+
+        ],
       ),
     );
   }
