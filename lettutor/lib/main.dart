@@ -68,15 +68,15 @@ class _MyHomePageState extends State<MyHomePage> {
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
-            icon: Icon(CupertinoIcons.memories),
-            title: Text('History'),
+            icon: Icon(CupertinoIcons.person_2),
+            title: Text('Tutors'),
             activeColor: defaultColor,
             textAlign: TextAlign.center,
           ),
 
           BottomNavyBarItem(
-            icon: Icon(CupertinoIcons.gear_alt),
-            title: Text('Setting'),
+            icon: Icon(CupertinoIcons.bookmark),
+            title: Text('Courses'),
             activeColor: defaultColor,
             textAlign: TextAlign.center,
             titleColor: Colors.black,
