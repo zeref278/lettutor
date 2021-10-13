@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:lettutor/themes/custom_colors.dart';
-import 'package:lettutor/widgets/bottom_nav_custom.dart';
+import 'package:lettutor/ui/custom_widgets/custom_tabbar/bottom_nav_custom.dart';
 
 
-import 'screens/authentication/sign_in.dart';
-import 'screens/authentication/sign_up.dart';
-import 'screens/authentication/forgot_password.dart';
+import 'ui/authentication/sign_in_screen.dart';
+import 'ui/authentication/sign_up_screen.dart';
+import 'ui/authentication/forgot_password_screen.dart';
 
 void main() => runApp(const MyApp());
 
@@ -48,35 +48,35 @@ class _MyHomePageState extends State<MyHomePage> {
         onItemSelected: (index) => setState(() => _currentIndex = index),
         items: <BottomNavyBarItem>[
           BottomNavyBarItem(
-            icon: Icon(CupertinoIcons.app),
-            title: Text('Home'),
+            icon: const Icon(CupertinoIcons.app),
+            title: const Text('Home'),
             activeColor: defaultColor,
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
-            icon: Icon(CupertinoIcons.bubble_left_bubble_right),
-            title: Text('Messages'),
+            icon: const Icon(CupertinoIcons.bubble_left_bubble_right),
+            title: const Text('Messages'),
             activeColor: defaultColor,
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
-            icon: Icon(CupertinoIcons.calendar),
-            title: Text(
+            icon: const Icon(CupertinoIcons.calendar),
+            title: const Text(
               'Schedule',
             ),
             activeColor: defaultColor,
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
-            icon: Icon(CupertinoIcons.person_2),
-            title: Text('Tutors'),
+            icon: const Icon(CupertinoIcons.person_2),
+            title: const Text('Tutors'),
             activeColor: defaultColor,
             textAlign: TextAlign.center,
           ),
 
           BottomNavyBarItem(
-            icon: Icon(CupertinoIcons.bookmark),
-            title: Text('Courses'),
+            icon: const Icon(CupertinoIcons.bookmark),
+            title: const Text('Courses'),
             activeColor: defaultColor,
             textAlign: TextAlign.center,
             titleColor: Colors.black,

@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lettutor/screens/authentication/sign_in.dart';
-import 'package:lettutor/screens/authentication/widgets/name_logo.dart';
+import 'package:lettutor/ui/authentication/sign_in_screen.dart';
+import 'package:lettutor/themes/name_logo.dart';
 
 import 'package:lettutor/themes/custom_colors.dart';
-import 'package:lettutor/widgets/rounded_button.dart';
-import 'package:lettutor/widgets/input_field_custom.dart';
-import 'package:lettutor/widgets/text_button_custom.dart';
-import 'package:lettutor/widgets/password_field_custom.dart';
+import 'package:lettutor/ui/custom_widgets/custom_button/custom_rounded_button.dart';
+import 'package:lettutor/ui/custom_widgets/custom_fields/custom_input_field.dart';
+import 'package:lettutor/ui/custom_widgets/custom_button/custom_text_button.dart';
+import 'package:lettutor/ui/custom_widgets/custom_fields/custom_password_field.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({Key? key}) : super(key: key);

@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
-import 'package:lettutor/screens/authentication/sign_up.dart';
-import 'package:lettutor/screens/authentication/widgets/name_logo.dart';
+import 'package:lettutor/ui/authentication/sign_up_screen.dart';
+import 'package:lettutor/themes/name_logo.dart';
 
 import 'package:lettutor/themes/custom_colors.dart';
-import 'package:lettutor/widgets/rounded_button.dart';
-import 'package:lettutor/widgets/input_field_custom.dart';
-import 'package:lettutor/widgets/text_button_custom.dart';
-import 'package:lettutor/widgets/password_field_custom.dart';
-import './widgets/social_login_options.dart';
-import './widgets/sign_in_button.dart';
+import 'package:lettutor/ui/custom_widgets/custom_button/custom_rounded_button.dart';
+import 'package:lettutor/ui/custom_widgets/custom_fields/custom_input_field.dart';
+import 'package:lettutor/ui/custom_widgets/custom_button/custom_text_button.dart';
+import 'package:lettutor/ui/custom_widgets/custom_fields/custom_password_field.dart';
+import '../custom_widgets/custom_button/social_login_options.dart';
+import '../custom_widgets/custom_button/custom_social_button.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({Key? key}) : super(key: key);

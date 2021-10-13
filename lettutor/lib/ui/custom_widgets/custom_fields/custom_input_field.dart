@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-
 import 'package:lettutor/themes/custom_colors.dart';
-import 'package:lettutor/widgets/text_field_custom.dart';
+import 'package:lettutor/ui/custom_widgets/custom_fields/custom_text_field.dart';
 
-class PasswordFieldCustom extends StatelessWidget {
+class InputFieldCustom extends StatelessWidget {
+  final String hintText;
+  final IconData icon;
   final ValueChanged<String> onChanged;
-  final String hText;
 
-  const PasswordFieldCustom({
-    required this.hText,
+  const InputFieldCustom({
+    required this.hintText,
+    this.icon = Icons.person,
     required this.onChanged,
   });
 
@@ -16,22 +17,18 @@ class PasswordFieldCustom extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFieldCustom(
       child: TextField(
-        obscureText: true,
         onChanged: onChanged,
-        cursorColor: defaultColor,
+        cursorColor: darkYellow,
         decoration: InputDecoration(
-          icon: const Icon(
-            Icons.lock,
+          icon: Icon(
+            icon,
             color: darkYellow,
           ),
-          suffixIcon: const Icon(
-            Icons.visibility,
-            color: darkYellow,
-          ),
-          hintText: hText,
+          hintText: hintText,
           border: InputBorder.none,
         ),
       ),
     );
   }
 }
+
