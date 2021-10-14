@@ -18,58 +18,68 @@ class SignUpScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: bgColor,
       body: SingleChildScrollView(
-          child: Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-                const NameLogo(),
-                SizedBox(height: size.height * 0.03),
-                InputFieldCustom(
-                  hintText: 'Enter your full name',
-                  onChanged: (value) {},
-                ),
-                InputFieldCustom(
-                  icon: Icons.email,
-                  hintText: 'Enter your email',
-                  onChanged: (value) {},
-                ),
-                PasswordFieldCustom(
-                  hText: 'Enter your password',
-                  onChanged: (value) {},
-                ),
-                PasswordFieldCustom(
-                  hText: 'Confirm your password',
-                  onChanged: (value) {},
-                ),
-                SizedBox(height: size.height * 0.03),
-                RoundedButton(
-                  textColor: Colors.black,
-                  text: 'SIGN UP',
-                  press: () {},
-                ),
-                SizedBox(height: size.height * 0.05),
-                TextButtonCustom(
-                  login: false,
-                  press: () {
-                    Navigator.pop(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return SignInScreen();
-                        },
-                      ),
-                    );
-                  },
-                )
-
-              ],
-
-            ),
+        child: Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              const NameLogo(),
+              SizedBox(height: size.height * 0.03),
+              InputFieldCustom(
+                hintText: 'Enter your full name',
+                onChanged: (value) {},
+              ),
+              InputFieldCustom(
+                icon: Icons.email,
+                hintText: 'Enter your email',
+                onChanged: (value) {},
+              ),
+              PasswordFieldCustom(
+                hText: 'Enter your password',
+                onChanged: (value) {},
+              ),
+              PasswordFieldCustom(
+                hText: 'Confirm your password',
+                onChanged: (value) {},
+              ),
+              SizedBox(height: size.height * 0.03),
+              CustomRoundedButton(
+                width: size.width * 0.9,
+                textColor: Colors.black,
+                text: 'SIGN UP',
+                press: () {},
+              ),
+              SizedBox(height: size.height * 0.05),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  const Text(
+                    "Already have an account ? ",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  CustomTextButton(
+                    title: const Text(
+                      'Sign In',
+                      style: TextStyle(
+                          color: darkYellow, fontWeight: FontWeight.bold),
+                    ),
+                    onPressed: () {
+                      Navigator.pop(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return SignInScreen();
+                          },
+                        ),
+                      );
+                    },
+                  )
+                ],
+              ),
+            ],
           ),
         ),
-
+      ),
     );
   }
-
 }

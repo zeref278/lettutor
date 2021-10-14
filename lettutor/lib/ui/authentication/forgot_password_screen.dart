@@ -35,7 +35,8 @@ class ForgotPasswordScreen extends StatelessWidget {
                 onChanged: (value) {},
               ),
               SizedBox(height: size.height * 0.1),
-              RoundedButton(
+              CustomRoundedButton(
+                width: size.width * 0.9,
                 textColor: Colors.black,
                 text: 'SEND',
                 press: () {},

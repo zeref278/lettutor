@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:lettutor/themes/custom_colors.dart';
 
 
-class RoundedButton extends StatelessWidget {
+class CustomRoundedButton extends StatelessWidget {
   final String text;
   final void Function() press;
   final Color color, textColor;
-  const RoundedButton({
+  final double width;
+  const CustomRoundedButton({
     required this.text,
     required this.press,
+    required this.width,
     this.color = defaultColor,
     this.textColor = Colors.white,
   });
@@ -18,7 +20,7 @@ class RoundedButton extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10),
-      width: size.width * 0.9,
+      width: width,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(15),
         child: newElevatedButton(),
