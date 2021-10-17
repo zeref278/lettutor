@@ -42,7 +42,7 @@ class CustomConversation extends StatelessWidget {
         ),
       ),
       subtitle: Text(
-        'See you on Sunday, good night teacher',
+        'You: See you on Sunday, good night teacher',
         overflow: TextOverflow.ellipsis,
         maxLines: 1,
         style: TextStyle(fontSize: 14.5),

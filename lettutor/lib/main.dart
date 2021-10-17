@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:lettutor/themes/custom_colors.dart';
+import 'package:lettutor/ui/account_management/profile_screen.dart';
+import 'package:lettutor/ui/account_management/setting_screen.dart';
 import 'package:lettutor/ui/custom_widgets/custom_tabbar/bottom_nav_custom.dart';
 import 'package:lettutor/ui/custom_widgets/custom_button/custom_icon_button.dart';
 import 'package:lettutor/ui/home.dart';
-import 'package:lettutor/ui/mess/messages_screen.dart';
-
+import 'package:lettutor/ui/messages/messages_screen.dart';
 import 'ui/authentication/sign_in_screen.dart';
-
 import 'ui/authentication/forgot_password_screen.dart';
 
 void main() => runApp(const MyApp());
@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: MessagesScreen(),
+      body: ProfileScreen(),
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(
@@ -58,6 +58,10 @@ class _MyHomePageState extends State<MyHomePage> {
         elevation: 0,
         backgroundColor: Colors.white,
         actions: <Widget>[
+          // IconButton(
+          //   icon: Icon(CupertinoIcons.question_square, color: Colors.black),
+          //   onPressed: () {},
+          // ),
           // IconButton(
           //   icon: Icon(CupertinoIcons.gear_alt, color: Colors.black),
           //   onPressed: () {},
@@ -93,7 +97,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
                 list.add(PopupMenuItem(
                   child: const CustomIconButton(
-                      icon: Icon(CupertinoIcons.power, color: Colors.red),
+                      icon: Icon(CupertinoIcons.square_arrow_left,
+                          color: Colors.red),
                       title: Text('Sign Out',
                           style: TextStyle(color: Colors.red))),
                   onTap: () {},
