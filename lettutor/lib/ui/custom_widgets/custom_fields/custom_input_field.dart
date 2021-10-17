@@ -31,4 +31,3 @@ class InputFieldCustom extends StatelessWidget {
     );
   }
 }
-

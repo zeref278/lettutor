@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor/themes/custom_colors.dart';
 
-
 class CustomRoundedButton extends StatelessWidget {
   final String text;
   final void Function() press;
   final Color color, textColor;
   final double width;
-  const CustomRoundedButton({
+  const CustomRoundedButton({Key? key,
     required this.text,
     required this.press,
     required this.width,
     this.color = defaultColor,
     this.textColor = Colors.white,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10),
       width: width,
@@ -27,7 +26,6 @@ class CustomRoundedButton extends StatelessWidget {
       ),
     );
   }
-
 
   Widget newElevatedButton() {
     return ElevatedButton(

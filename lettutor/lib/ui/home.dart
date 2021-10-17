@@ -6,6 +6,8 @@ import 'custom_widgets/custom_button/custom_text_button.dart';
 import 'custom_widgets/custom_card/custom_card_tutor.dart';
 
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

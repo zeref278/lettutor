@@ -6,24 +6,22 @@ class CustomIconButton extends StatelessWidget {
   final Widget title;
 
   const CustomIconButton(
-      {Key? key,
-      required this.icon,
-      this.onPressed,
-      required this.title})
+      {Key? key, required this.icon, this.onPressed, required this.title})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
-      const SizedBox(
-        width: 10,
-      ),
-      icon,
-      const SizedBox(
-        width: 15,
-      ),
-      title,
-    ],);
+        const SizedBox(
+          width: 10,
+        ),
+        icon,
+        const SizedBox(
+          width: 15,
+        ),
+        title,
+      ],
+    );
   }
 }

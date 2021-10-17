@@ -5,6 +5,7 @@ import 'package:lettutor/themes/custom_colors.dart';
 import 'package:lettutor/ui/custom_widgets/custom_tabbar/bottom_nav_custom.dart';
 import 'package:lettutor/ui/custom_widgets/custom_button/custom_icon_button.dart';
 import 'package:lettutor/ui/home.dart';
+import 'package:lettutor/ui/mess/messages_screen.dart';
 
 import 'ui/authentication/sign_in_screen.dart';
 
@@ -40,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: HomeScreen(),
+      body: MessagesScreen(),
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(
