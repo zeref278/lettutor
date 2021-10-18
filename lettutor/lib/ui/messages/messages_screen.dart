@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor/models/conversation.dart';
+import 'package:lettutor/models/hard_code.dart';
 import 'package:lettutor/models/tutor.dart';
 import 'package:lettutor/themes/custom_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:lettutor/ui/custom_widgets/custom_message/custom_conversation.dart';
+
+import 'chat_page.dart';
 
 class MessagesScreen extends StatelessWidget {
   const MessagesScreen({Key? key}) : super(key: key);
@@ -30,52 +34,23 @@ class MessagesScreen extends StatelessWidget {
             height: 5,
           ),
           CustomConversation(
-            tutor: Tutor(
-              name: 'Duy Truongggg',
-              linkAvatar: 'assets/avatar.jpg',
+            conversation: Conversation(
+              tutor: Tutor(
+                name: 'Duy Truongggg',
+                linkAvatar: 'assets/avatar.jpg',
+              ),
+              lastMessage: messages.last,
             ),
-          ),
-          CustomConversation(
-            tutor: Tutor(
-              name: 'Duy Truongggg',
-              linkAvatar: 'assets/avatar.jpg',
-            ),
-          ),
-          CustomConversation(
-            tutor: Tutor(
-              name: 'Semonar phan tich du lieu',
-              linkAvatar: 'assets/avatar.jpg',
-            ),
-          ),
-          CustomConversation(
-            tutor: Tutor(
-              name: 'Duy Truongggg',
-              linkAvatar: 'assets/avatar.jpg',
-            ),
-          ),
-          CustomConversation(
-            tutor: Tutor(
-              name: 'Duy Truongggg',
-              linkAvatar: 'assets/avatar.jpg',
-            ),
-          ),
-          CustomConversation(
-            tutor: Tutor(
-              name: 'Duy Truongggg',
-              linkAvatar: 'assets/avatar.jpg',
-            ),
-          ),
-          CustomConversation(
-            tutor: Tutor(
-              name: 'Duy Truongggg',
-              linkAvatar: 'assets/avatar.jpg',
-            ),
-          ),
-          CustomConversation(
-            tutor: Tutor(
-              name: 'Duy Truongggg',
-              linkAvatar: 'assets/avatar.jpg',
-            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return ChatPage();
+                  },
+                ),
+              );
+            },
           ),
         ],
       )),

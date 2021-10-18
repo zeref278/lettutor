@@ -100,4 +100,6 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
+  @override
+  bool get wantKeepAlive => true;
 }

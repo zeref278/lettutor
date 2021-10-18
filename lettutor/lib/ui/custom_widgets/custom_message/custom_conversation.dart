@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor/models/conversation.dart';
 import 'package:lettutor/models/tutor.dart';
 
 class CustomConversation extends StatelessWidget {
-  final Tutor tutor;
+  final Conversation conversation;
+  final void Function() onTap;
 
-  const CustomConversation({Key? key, required this.tutor}) : super(key: key);
+  const CustomConversation({Key? key, required this.conversation, required this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onTap: onTap,
       leading: Stack(
         children: <Widget>[
           CircleAvatar(
             radius: 25,
-            backgroundImage: AssetImage(tutor.linkAvatar),
+            backgroundImage: AssetImage(conversation.tutor.linkAvatar),
           ),
           Positioned(
             right: 0,
@@ -32,7 +36,7 @@ class CustomConversation extends StatelessWidget {
         ],
       ),
       title: Text(
-        tutor.name,
+        conversation.tutor.name,
         overflow: TextOverflow.ellipsis,
         maxLines: 1,
         style: TextStyle(
@@ -42,13 +46,15 @@ class CustomConversation extends StatelessWidget {
         ),
       ),
       subtitle: Text(
-        'You: See you on Sunday, good night teacher',
+        conversation.lastMessage.isSender
+            ? 'You: ' + conversation.lastMessage.text
+            : conversation.lastMessage.text,
         overflow: TextOverflow.ellipsis,
         maxLines: 1,
         style: TextStyle(fontSize: 14.5),
       ),
       trailing: Text(
-        '06-11-21 11:16 PM',
+        conversation.lastMessage.time,
         style: TextStyle(
           fontSize: 10,
         ),
