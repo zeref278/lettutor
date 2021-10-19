@@ -3,6 +3,7 @@ import 'package:lettutor/models/hard_code.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor/themes/custom_colors.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:lettutor/ui/courses/courses_screen.dart';
 
 class ChatPage extends StatelessWidget {
   const ChatPage({Key? key}) : super(key: key);
@@ -23,6 +24,7 @@ class ChatPage extends StatelessWidget {
         )),
         chatTextField(context),
       ],
+
     );
   }
 

@@ -35,10 +35,7 @@ class MessagesScreen extends StatelessWidget {
           ),
           CustomConversation(
             conversation: Conversation(
-              tutor: Tutor(
-                name: 'Duy Truongggg',
-                linkAvatar: 'assets/avatar.jpg',
-              ),
+              tutor: myTutor,
               lastMessage: messages.last,
             ),
             onTap: () {

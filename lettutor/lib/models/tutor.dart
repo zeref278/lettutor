@@ -1,18 +1,18 @@
 class Tutor {
   String? id;
   String name;
-  String? description;
+  String description;
   double? rating;
-  String? tag;
+  String specialities;
   String linkAvatar;
   bool? isActive;
 
   Tutor({
     this.id = '',
     required this.name,
-    this.description,
+    required this.description,
     this.rating,
-    this.tag,
+    required this.specialities,
     this.isActive,
     required this.linkAvatar,
   });

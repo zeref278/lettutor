@@ -10,6 +10,7 @@ import 'package:lettutor/ui/custom_widgets/custom_tabbar/tab_navigator.dart';
 import 'package:lettutor/ui/home.dart';
 import 'package:lettutor/ui/messages/chat_page.dart';
 import 'package:lettutor/ui/messages/messages_screen.dart';
+import 'package:lettutor/ui/schedule/schedule_screen.dart';
 import 'ui/authentication/sign_in_screen.dart';
 import 'ui/authentication/forgot_password_screen.dart';
 
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Login Screen 1',
+      title: 'sTutoring',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -68,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
         !await _navigatorKeys[_currentPage]!.currentState!.maybePop();
         if (isFirstRouteInCurrentTab) {
           if (_currentPage != 'Home') {
-            _selectTab('Home', 1);
+            _selectTab('Home', 0);
 
             return false;
           }
@@ -87,9 +88,10 @@ class _MyHomePageState extends State<MyHomePage> {
             _buildOffstageNavigator('Courses'),
           ],
         ),
+        // body: ScheduleScreen(),
         appBar: AppBar(
-          title: const Text(
-            'Appbar',
+          title: Text(
+            _currentPage,
           ),
           titleTextStyle: const TextStyle(
               color: Colors.black, fontSize: 20, fontWeight: FontWeight.w600),
@@ -113,7 +115,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         title: Text(
                           'Profile',
                         )),
-                    onTap: () {},
+                    onTap: () {
+                    },
                   ));
                   list.add(PopupMenuItem(
                     child: const CustomIconButton(
@@ -121,7 +124,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         title: Text(
                           'Setting',
                         )),
-                    onTap: () {},
+                    onTap: () {
+                    },
                   ));
                   list.add(const PopupMenuDivider());
 

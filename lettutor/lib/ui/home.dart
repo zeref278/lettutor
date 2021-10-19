@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor/models/hard_code.dart';
 import 'package:lettutor/themes/custom_colors.dart';
 
+import 'account_management/profile_screen.dart';
+import 'courses/courses_screen.dart';
 import 'custom_widgets/custom_button/custom_rounded_button.dart';
 import 'custom_widgets/custom_button/custom_text_button.dart';
 import 'custom_widgets/custom_card/custom_card_tutor.dart';
+import 'meeting/meeting_screen.dart';
+import 'messages/chat_page.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -46,7 +51,16 @@ class HomeScreen extends StatelessWidget {
                       style: TextStyle(
                           color: Colors.black, fontWeight: FontWeight.w600)),
                   CustomRoundedButton(
-                    press: () {},
+                    press: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return MeetingScreen();
+                          },
+                        ),
+                      );
+                    },
                     text: 'Enter lesson room',
                     color: Colors.white,
                     textColor: Colors.black,
@@ -88,13 +102,21 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 15),
-            CustomCardTutor(),
+            CustomCardTutor(
+              tutor: myTutor,
+            ),
             const SizedBox(height: 15),
-            CustomCardTutor(),
+            CustomCardTutor(
+              tutor: myTutor,
+            ),
             const SizedBox(height: 15),
-            CustomCardTutor(),
+            CustomCardTutor(
+              tutor: myTutor,
+            ),
             const SizedBox(height: 15),
-            CustomCardTutor(),
+            CustomCardTutor(
+              tutor: myTutor,
+            ),
           ],
         ),
       ),
