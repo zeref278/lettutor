@@ -4,9 +4,11 @@ import 'package:lettutor/themes/custom_colors.dart';
 import 'package:lettutor/ui/custom_widgets/custom_button/custom_text_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:lettutor/ui/custom_widgets/custom_tag/custom_tag_tutor.dart';
+import 'package:lettutor/ui/tutors/tutor_detail_screen.dart';
 
 class CustomCardTutor extends StatefulWidget {
   final Tutor tutor;
+
   CustomCardTutor({
     Key? key,
     required this.tutor,
@@ -34,14 +36,6 @@ class _CustomCardTutorState extends State<CustomCardTutor> {
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),
         border: Border.all(color: Colors.grey.withOpacity(0.5)),
-        // boxShadow: [
-        //   BoxShadow(
-        //     color: Colors.grey.withOpacity(0.2),
-        //     spreadRadius: 5,
-        //     blurRadius: 7,
-        //     offset: Offset(0, 1), // changes position of shadow
-        //   ),
-        // ],
       ),
       child: Column(
         children: <Widget>[
@@ -68,7 +62,16 @@ class _CustomCardTutorState extends State<CustomCardTutor> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       CustomTextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return TutorDetailScreen(tutor: widget.tutor,);
+                                },
+                              ),
+                            );
+                          },
                           title: Text(
                             widget.tutor.name,
                             style: TextStyle(
