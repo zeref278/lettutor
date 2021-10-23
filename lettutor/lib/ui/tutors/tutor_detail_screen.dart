@@ -5,6 +5,7 @@ import 'package:lettutor/themes/custom_colors.dart';
 import 'package:lettutor/ui/custom_widgets/custom_button/custom_text_button.dart';
 import 'package:lettutor/ui/custom_widgets/custom_divider/custom_divider_text.dart';
 import 'package:lettutor/ui/custom_widgets/custom_tag/custom_tag_tutor.dart';
+import 'package:lettutor/ui/custom_widgets/custom_text/expandable_text.dart';
 
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
@@ -103,45 +104,65 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
               ),
             ),
             Container(
-              child: Text(widget.tutor.description,
-                  style: TextStyle(color: Colors.black, fontSize: 15),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 5),
+              child: ExpandableText(
+                widget.tutor.description,
+                trimLines: 4,
+              ),
             ),
             SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                IconButton(
-                    onPressed: () {
-                      setState(() {});
-                    },
-                    icon: Icon(CupertinoIcons.bolt_horizontal_circle,
-                        color: Colors.black, size: 30)),
-                IconButton(
-                    onPressed: () {
-                      setState(() {
-                        isFavorite = !isFavorite;
-                      });
-                    },
-                    icon: Icon(
-                        isFavorite
-                            ? CupertinoIcons.heart_fill
-                            : CupertinoIcons.heart,
-                        color: isFavorite ? Colors.red : Colors.black,
-                        size: 30)),
-                IconButton(
-                    onPressed: () {
-                      setState(() {});
-                    },
-                    icon: Icon(CupertinoIcons.info_circle,
-                        color: Colors.black, size: 30)),
-                IconButton(
-                    onPressed: () {
-                      setState(() {});
-                    },
-                    icon: Icon(CupertinoIcons.star,
-                        color: Colors.black, size: 30))
+                Column(
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          setState(() {});
+                        },
+                        icon: Icon(CupertinoIcons.bubble_left,
+                            color: Colors.green[700], size: 30)),
+                    Text('Message', style: TextStyle(fontSize: 16, color: Colors.green[700]))
+                  ],
+                ),
+                Column(
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          setState(() {
+                            isFavorite = !isFavorite;
+                          });
+                        },
+                        icon: Icon(
+                            isFavorite
+                                ? CupertinoIcons.heart_fill
+                                : CupertinoIcons.heart,
+                            color: Colors.red[700],
+                            size: 30)),
+                    Text('Favorite', style: TextStyle(fontSize: 16, color: Colors.red[700]))
+                  ],
+                ),
+                Column(
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          setState(() {});
+                        },
+                        icon: Icon(CupertinoIcons.info_circle,
+                            color: Colors.black, size: 30)),
+                    Text('Report', style: TextStyle(fontSize: 16, color: Colors.black))
+                  ],
+                ),
+                Column(
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          setState(() {});
+                        },
+                        icon: Icon(CupertinoIcons.star,
+                            color: Colors.yellow[700], size: 30)),
+                    Text('Review', style: TextStyle(fontSize: 16, color: Colors.yellow[700]))
+                  ],
+                )
               ],
             ),
             SizedBox(height: 15),
