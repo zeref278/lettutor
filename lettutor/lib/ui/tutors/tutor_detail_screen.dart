@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lettutor/models/tutor.dart';
 import 'package:lettutor/themes/custom_colors.dart';
 import 'package:lettutor/ui/custom_widgets/custom_button/custom_text_button.dart';
+import 'package:lettutor/ui/custom_widgets/custom_divider/custom_divider_text.dart';
 import 'package:lettutor/ui/custom_widgets/custom_tag/custom_tag_tutor.dart';
 
 import 'package:syncfusion_flutter_calendar/calendar.dart';
@@ -144,11 +145,21 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
               ],
             ),
             SizedBox(height: 15),
-            const Text('Language',
-                style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w600)),
+            const CustomDividerText(
+              child: Text('Introduce',
+                  style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600)),
+            ),
+            SizedBox(height: 15),
+            const CustomDividerText(
+              child: Text('Language',
+                  style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600)),
+            ),
             SizedBox(height: 10),
             Wrap(
               spacing: 10,
@@ -159,11 +170,13 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
               ],
             ),
             SizedBox(height: 15),
-            const Text('Specialties',
-                style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w600)),
+            const CustomDividerText(
+              child: Text('Specialties',
+                  style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600)),
+            ),
             SizedBox(height: 10),
             Wrap(
               spacing: 10,
@@ -176,11 +189,13 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
               ],
             ),
             SizedBox(height: 15),
-            const Text('Suggested courses',
-                style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w600)),
+            CustomDividerText(
+              child: const Text('Suggested courses',
+                  style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600)),
+            ),
             SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.only(left: 20),
@@ -225,11 +240,13 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
               ),
             ),
             SizedBox(height: 15),
-            const Text('Booking',
-                style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w600)),
+            const CustomDividerText(
+              child: Text('Booking',
+                  style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600)),
+            ),
             SfCalendar(
               showNavigationArrow: true,
               firstDayOfWeek: 1,

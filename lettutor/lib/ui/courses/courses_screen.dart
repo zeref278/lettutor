@@ -10,10 +10,10 @@ class CoursesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    Widget horizontalList1 = new Container(
+    Widget horizontalList1 = Container(
         margin: EdgeInsets.symmetric(vertical: 20.0),
         height: 395.0,
-        child: new ListView(
+        child: ListView(
           scrollDirection: Axis.horizontal,
           children: <Widget>[
             SizedBox(
@@ -42,10 +42,10 @@ class CoursesScreen extends StatelessWidget {
             ),
           ],
         ));
-    Widget horizontalList2 = new Container(
+    Widget horizontalList2 = Container(
         margin: EdgeInsets.symmetric(vertical: 20.0),
         height: 395.0,
-        child: new ListView(
+        child: ListView(
           scrollDirection: Axis.horizontal,
           children: <Widget>[
             SizedBox(
