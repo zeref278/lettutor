@@ -5,4 +5,4 @@
 - UI/UX:
 - Database:
 - Software Architecture:
-- Documentation:
+- Documentation: https://drive.google.com/drive/folders/1_zg4wdUCMSoeH6D7RBqZ_27oQf3VkEkd?usp=sharing
