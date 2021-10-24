@@ -30,8 +30,7 @@ class _CustomCardTutorState extends State<CustomCardTutor> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      width: size.width * 0.9,
-      height: size.height * 0.25,
+      width: size.width,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),
@@ -136,16 +135,14 @@ class _CustomCardTutorState extends State<CustomCardTutor> {
           const SizedBox(
             height: 5,
           ),
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.only(
-                  left: size.width * 0.04, right: size.width * 0.04),
-              child: Text(
-                widget.tutor.description,
-                style: TextStyle(color: Colors.black, fontSize: 15),
-                overflow: TextOverflow.ellipsis,
-                maxLines: 3,
-              ),
+          Container(
+            padding: EdgeInsets.only(
+                left: size.width * 0.04, right: size.width * 0.04),
+            child: Text(
+              widget.tutor.description,
+              style: TextStyle(color: Colors.black, fontSize: 15),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 3,
             ),
           ),
           SizedBox(

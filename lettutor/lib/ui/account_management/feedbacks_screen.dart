@@ -2,10 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor/models/hard_code.dart';
 import 'package:lettutor/themes/custom_colors.dart';
+import 'package:lettutor/ui/custom_widgets/custom_card/custom_card_feedback.dart';
 import 'package:lettutor/ui/custom_widgets/custom_card/custom_card_tutor.dart';
 
-class TutorsScreen extends StatelessWidget {
-  const TutorsScreen({Key? key}) : super(key: key);
+class FeedbacksScreen extends StatelessWidget {
+  const FeedbacksScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,23 +21,23 @@ class TutorsScreen extends StatelessWidget {
               width: size.width,
               height: 10,
             ),
-            Container(
-              width: size.width * 0.9,
-              child: CupertinoSearchTextField(
-                placeholder: 'Search tutor',
-              ),
+            const SizedBox(height: 15),
+            CustomCardFeedback(
+              tutor: myTutor,
+              countStars: 5,
+              feedbacks: 'Good .................................................aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
             ),
             const SizedBox(height: 15),
-            CustomCardTutor(
+            CustomCardFeedback(
               tutor: myTutor,
+              countStars: 5,
+              feedbacks: 'Good .................................................',
             ),
             const SizedBox(height: 15),
-            CustomCardTutor(
+            CustomCardFeedback(
               tutor: myTutor,
-            ),
-            const SizedBox(height: 15),
-            CustomCardTutor(
-              tutor: myTutor,
+              countStars: 5,
+              feedbacks: 'Good .................................................',
             ),
           ],
         ),
