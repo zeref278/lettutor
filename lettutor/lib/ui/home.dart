@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor/models/hard_code.dart';
-import 'package:lettutor/themes/custom_colors.dart';
+import 'package:lettutor/constants/ui_constants.dart';
 
-import 'account_management/profile_screen.dart';
-import 'courses/courses_screen.dart';
 import 'custom_widgets/custom_button/custom_rounded_button.dart';
 import 'custom_widgets/custom_button/custom_text_button.dart';
 import 'custom_widgets/custom_card/custom_card_tutor.dart';
 import 'meeting/meeting_screen.dart';
-import 'messages/chat_page.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -18,7 +15,7 @@ class HomeScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: bgColor,
+      backgroundColor: defaultBackgroundColor,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -27,7 +24,7 @@ class HomeScreen extends StatelessWidget {
               width: size.width,
               height: size.height * 0.25,
               decoration: const BoxDecoration(
-                color: defaultColor,
+                color: defaultPrimaryColor,
                 //borderRadius: BorderRadius.circular(20)
               ),
               child: Column(
@@ -70,7 +67,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 25,
+              height: largeSpacer,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -89,9 +86,7 @@ class HomeScreen extends StatelessWidget {
                     decorationThickness: 1.5,
                   ),
                 ),
-                const SizedBox(
-                  width: 15,
-                ),
+                mediumHorizontalSpacer,
                 CustomTextButton(
                   onPressed: () {},
                   title: const Text(
@@ -101,27 +96,32 @@ class HomeScreen extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 15),
-            CustomCardTutor(
-              tutor: myTutor,
-            ),
-            const SizedBox(height: 15),
-            CustomCardTutor(
-              tutor: myTutor,
-            ),
-            const SizedBox(height: 15),
-            CustomCardTutor(
-              tutor: myTutor,
-            ),
-            const SizedBox(height: 15),
-            CustomCardTutor(
-              tutor: myTutor,
+            Container(
+              padding: EdgeInsets.only(left: 15, right: 15),
+              child: Column(
+                children: [
+                  const SizedBox(height: mediumSpacer),
+                  CustomCardTutor(
+                    tutor: myTutor,
+                  ),
+                  const SizedBox(height: mediumSpacer),
+                  CustomCardTutor(
+                    tutor: myTutor,
+                  ),
+                  const SizedBox(height: mediumSpacer),
+                  CustomCardTutor(
+                    tutor: myTutor,
+                  ),
+                  const SizedBox(height: mediumSpacer),
+                  CustomCardTutor(
+                    tutor: myTutor,
+                  ),
+                ],
+              ),
             ),
           ],
         ),
       ),
     );
   }
-  @override
-  bool get wantKeepAlive => true;
 }

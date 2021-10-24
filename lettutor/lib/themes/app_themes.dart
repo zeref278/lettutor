@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-
-
 enum AppTheme {
   lightTheme,
   darkTheme

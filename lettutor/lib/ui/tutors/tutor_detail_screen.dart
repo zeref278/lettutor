@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor/models/tutor.dart';
-import 'package:lettutor/themes/custom_colors.dart';
+import 'package:lettutor/constants/ui_constants.dart';
 import 'package:lettutor/ui/custom_widgets/custom_button/custom_text_button.dart';
 import 'package:lettutor/ui/custom_widgets/custom_divider/custom_divider_text.dart';
 import 'package:lettutor/ui/custom_widgets/custom_tag/custom_tag_tutor.dart';
@@ -26,20 +26,15 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-
     return Scaffold(
-      backgroundColor: bgColor,
+      backgroundColor: defaultBackgroundColor,
       body: SingleChildScrollView(
-        padding: EdgeInsets.only(left: 15, right: 15),
+        padding: EdgeInsets.only(
+            left: mediumSpacer, right: mediumSpacer, top: mediumSpacer),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(
-              height: 20,
-            ),
             Container(
-              height: size.height * 0.12,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -48,7 +43,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                     backgroundImage: AssetImage(widget.tutor.linkAvatar),
                   ),
                   SizedBox(
-                    width: size.width * 0.03,
+                    width: mediumSpacer,
                   ),
                   Expanded(
                     child: Column(
@@ -62,39 +57,39 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                               fontWeight: FontWeight.w600),
                         ),
                         SizedBox(
-                          height: 5,
+                          height: smallSpacer,
                         ),
                         Row(
                           children: const <Widget>[
                             Icon(
                               CupertinoIcons.star_fill,
                               size: 16,
-                              color: defaultColor,
+                              color: defaultPrimaryColor,
                             ),
                             Icon(
                               CupertinoIcons.star_fill,
                               size: 16,
-                              color: defaultColor,
+                              color: defaultPrimaryColor,
                             ),
                             Icon(
                               CupertinoIcons.star_fill,
                               size: 16,
-                              color: defaultColor,
+                              color: defaultPrimaryColor,
                             ),
                             Icon(
                               CupertinoIcons.star_fill,
                               size: 16,
-                              color: defaultColor,
+                              color: defaultPrimaryColor,
                             ),
                             Icon(
                               CupertinoIcons.star_fill,
                               size: 16,
-                              color: defaultColor,
+                              color: defaultPrimaryColor,
                             ),
                           ],
                         ),
                         SizedBox(
-                          height: 5,
+                          height: smallSpacer,
                         ),
                         Text('Viet Nam'),
                       ],
@@ -109,7 +104,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                 trimLines: 4,
               ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: mediumSpacer),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
@@ -121,7 +116,9 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                         },
                         icon: Icon(CupertinoIcons.bubble_left,
                             color: Colors.green[700], size: 30)),
-                    Text('Message', style: TextStyle(fontSize: 16, color: Colors.green[700]))
+                    Text('Message',
+                        style:
+                            TextStyle(fontSize: 16, color: Colors.green[700]))
                   ],
                 ),
                 Column(
@@ -138,7 +135,8 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                                 : CupertinoIcons.heart,
                             color: Colors.red[700],
                             size: 30)),
-                    Text('Favorite', style: TextStyle(fontSize: 16, color: Colors.red[700]))
+                    Text('Favorite',
+                        style: TextStyle(fontSize: 16, color: Colors.red[700]))
                   ],
                 ),
                 Column(
@@ -149,7 +147,8 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                         },
                         icon: Icon(CupertinoIcons.info_circle,
                             color: Colors.black, size: 30)),
-                    Text('Report', style: TextStyle(fontSize: 16, color: Colors.black))
+                    Text('Report',
+                        style: TextStyle(fontSize: 16, color: Colors.black))
                   ],
                 ),
                 Column(
@@ -160,12 +159,14 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                         },
                         icon: Icon(CupertinoIcons.star,
                             color: Colors.yellow[700], size: 30)),
-                    Text('Review', style: TextStyle(fontSize: 16, color: Colors.yellow[700]))
+                    Text('Review',
+                        style:
+                            TextStyle(fontSize: 16, color: Colors.yellow[700]))
                   ],
                 )
               ],
             ),
-            SizedBox(height: 15),
+            SizedBox(height: mediumSpacer),
             const CustomDividerText(
               child: Text('Introduce',
                   style: TextStyle(
@@ -173,7 +174,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                       color: Colors.black,
                       fontWeight: FontWeight.w600)),
             ),
-            SizedBox(height: 15),
+            SizedBox(height: mediumSpacer),
             const CustomDividerText(
               child: Text('Language',
                   style: TextStyle(
@@ -181,7 +182,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                       color: Colors.black,
                       fontWeight: FontWeight.w600)),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: mediumSpacer),
             Wrap(
               spacing: 10,
               runSpacing: 10,
@@ -190,7 +191,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                 CustomTagTutor(text: Text('Tagalog')),
               ],
             ),
-            SizedBox(height: 15),
+            SizedBox(height: mediumSpacer),
             const CustomDividerText(
               child: Text('Specialties',
                   style: TextStyle(
@@ -198,7 +199,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                       color: Colors.black,
                       fontWeight: FontWeight.w600)),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: mediumSpacer),
             Wrap(
               spacing: 10,
               runSpacing: 10,
@@ -209,7 +210,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                 CustomTagTutor(text: Text('Tagalog')),
               ],
             ),
-            SizedBox(height: 15),
+            SizedBox(height: mediumSpacer),
             CustomDividerText(
               child: const Text('Suggested courses',
                   style: TextStyle(
@@ -217,7 +218,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                       color: Colors.black,
                       fontWeight: FontWeight.w600)),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: mediumSpacer),
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: Column(
@@ -239,7 +240,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: mediumSpacer),
                   Row(
                     children: [
                       Text('Conversation: ',
@@ -260,7 +261,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                 ],
               ),
             ),
-            SizedBox(height: 15),
+            SizedBox(height: mediumSpacer),
             const CustomDividerText(
               child: Text('Booking',
                   style: TextStyle(

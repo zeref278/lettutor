@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:lettutor/themes/custom_colors.dart';
+import 'package:lettutor/constants/ui_constants.dart';
 import 'package:lettutor/ui/custom_widgets/custom_fields/custom_text_field.dart';
 
 class PasswordFieldCustom extends StatelessWidget {
@@ -18,7 +18,7 @@ class PasswordFieldCustom extends StatelessWidget {
       child: TextField(
         obscureText: true,
         onChanged: onChanged,
-        cursorColor: defaultColor,
+        cursorColor: defaultPrimaryColor,
         decoration: InputDecoration(
           icon: const Icon(
             Icons.lock,

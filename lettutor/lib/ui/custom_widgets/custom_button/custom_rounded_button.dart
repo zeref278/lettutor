@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor/themes/custom_colors.dart';
+import 'package:lettutor/constants/ui_constants.dart';
 
 class CustomRoundedButton extends StatelessWidget {
   final String text;
@@ -11,7 +11,7 @@ class CustomRoundedButton extends StatelessWidget {
     required this.text,
     required this.press,
     required this.width,
-    this.color = defaultColor,
+    this.color = defaultPrimaryColor,
     this.textColor = Colors.white,
   }) : super(key: key);
 

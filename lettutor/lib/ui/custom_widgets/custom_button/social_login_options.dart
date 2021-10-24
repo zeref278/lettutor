@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor/themes/custom_colors.dart';
+import 'package:lettutor/constants/ui_constants.dart';
 
 class SocialLoginOptions extends StatelessWidget {
   const SocialLoginOptions({Key? key}) : super(key: key);

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor/models/hard_code.dart';
-import 'package:lettutor/themes/custom_colors.dart';
+import 'package:lettutor/constants/ui_constants.dart';
 import 'package:lettutor/ui/custom_widgets/custom_card/custom_card_tutor.dart';
 
 class TutorsScreen extends StatelessWidget {
@@ -9,32 +9,28 @@ class TutorsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+
     return Scaffold(
-      backgroundColor: bgColor,
+      backgroundColor: defaultBackgroundColor,
       body: SingleChildScrollView(
-        padding: EdgeInsets.only(left: 15, right: 15),
+        padding: EdgeInsets.only(left: mediumSpacer, right: mediumSpacer),
         child: Column(
           children: <Widget>[
             SizedBox(
-              width: size.width,
-              height: 10,
+              height: mediumSpacer,
             ),
-            Container(
-              width: size.width * 0.9,
-              child: CupertinoSearchTextField(
-                placeholder: 'Search tutor',
-              ),
+            CupertinoSearchTextField(
+              placeholder: 'Search tutor',
             ),
-            const SizedBox(height: 15),
+            const SizedBox(height: mediumSpacer),
             CustomCardTutor(
               tutor: myTutor,
             ),
-            const SizedBox(height: 15),
+            const SizedBox(height: mediumSpacer),
             CustomCardTutor(
               tutor: myTutor,
             ),
-            const SizedBox(height: 15),
+            const SizedBox(height: mediumSpacer),
             CustomCardTutor(
               tutor: myTutor,
             ),

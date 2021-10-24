@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor/models/tutor.dart';
-import 'package:lettutor/themes/custom_colors.dart';
 import 'package:lettutor/ui/custom_widgets/custom_button/custom_text_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:lettutor/ui/custom_widgets/custom_tag/custom_tag_tutor.dart';
@@ -87,7 +86,9 @@ class CustomCardFeedback extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Text('$countStars'),
+                    Text(
+                        '$countStars',
+                    style: TextStyle(color: Colors.redAccent),),
                     Icon(
                       CupertinoIcons.star_fill,
                       color: Colors.yellow,
@@ -106,7 +107,7 @@ class CustomCardFeedback extends StatelessWidget {
               decoration: BoxDecoration(
                   border: Border(
                 left: BorderSide(
-                  color: Colors.grey,
+                  color: Colors.grey.withOpacity(0.5),
                   width: 2,
                 ),
               )),

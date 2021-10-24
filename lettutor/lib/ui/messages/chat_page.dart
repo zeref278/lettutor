@@ -1,9 +1,9 @@
 import 'package:lettutor/models/message.dart';
 import 'package:lettutor/models/hard_code.dart';
 import 'package:flutter/material.dart';
-import 'package:lettutor/themes/custom_colors.dart';
+import 'package:lettutor/constants/ui_constants.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:lettutor/ui/courses/courses_screen.dart';
+
 
 class ChatPage extends StatelessWidget {
   const ChatPage({Key? key}) : super(key: key);
@@ -132,8 +132,8 @@ class Messages extends StatelessWidget {
                   EdgeInsets.symmetric(horizontal: 20 * 0.5, vertical: 20 / 2),
               decoration: BoxDecoration(
                   color: message.isSender
-                      ? defaultColor.withOpacity(0.9)
-                      : defaultColor.withOpacity(0.2),
+                      ? defaultPrimaryColor.withOpacity(0.9)
+                      : defaultPrimaryColor.withOpacity(0.2),
                   borderRadius: BorderRadius.circular(35)),
               child: Text(
                 message.text,
@@ -162,7 +162,7 @@ class MessageTick extends StatelessWidget {
         case MessageState.notView:
           return Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.3);
         case MessageState.viewed:
-          return defaultColor;
+          return defaultPrimaryColor;
         default:
           return Colors.transparent;
       }

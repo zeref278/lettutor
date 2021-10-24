@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:lettutor/themes/custom_colors.dart';
+import 'package:lettutor/constants/ui_constants.dart';
 
 class CountDownTimer extends StatefulWidget {
   const CountDownTimer({
@@ -73,7 +73,7 @@ class _CountDownTimerState extends State<CountDownTimer>
             Container(
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: defaultColor,
+                color: defaultPrimaryColor,
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Text(
@@ -89,7 +89,7 @@ class _CountDownTimerState extends State<CountDownTimer>
             Container(
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: defaultColor,
+                color: defaultPrimaryColor,
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Text(
@@ -105,7 +105,7 @@ class _CountDownTimerState extends State<CountDownTimer>
             Container(
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: defaultColor,
+                color: defaultPrimaryColor,
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Text(

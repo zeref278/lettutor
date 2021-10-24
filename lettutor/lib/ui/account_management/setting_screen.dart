@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:lettutor/themes/custom_colors.dart';
+import 'package:lettutor/constants/ui_constants.dart';
 import 'package:lettutor/ui/custom_widgets/custom_button/custom_rounded_button.dart';
 import 'package:lettutor/ui/custom_widgets/custom_button/custom_setting_button.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -13,7 +13,7 @@ class SettingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: bgColor,
+      backgroundColor: defaultBackgroundColor,
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[

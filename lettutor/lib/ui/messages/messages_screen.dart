@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lettutor/models/conversation.dart';
 import 'package:lettutor/models/hard_code.dart';
 import 'package:lettutor/models/tutor.dart';
-import 'package:lettutor/themes/custom_colors.dart';
+import 'package:lettutor/constants/ui_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:lettutor/ui/custom_widgets/custom_message/custom_conversation.dart';
 
@@ -15,7 +15,7 @@ class MessagesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: bgColor,
+      backgroundColor: defaultBackgroundColor,
       body: SingleChildScrollView(
           child: Column(
         children: <Widget>[

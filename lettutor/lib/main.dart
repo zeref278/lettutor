@@ -1,18 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:lettutor/themes/custom_colors.dart';
-import 'package:lettutor/ui/account_management/profile_screen.dart';
-import 'package:lettutor/ui/account_management/setting_screen.dart';
+import 'package:lettutor/constants/ui_constants.dart';
+
 import 'package:lettutor/ui/custom_widgets/custom_tabbar/bottom_nav_custom.dart';
 import 'package:lettutor/ui/custom_widgets/custom_button/custom_icon_button.dart';
 import 'package:lettutor/ui/custom_widgets/custom_tabbar/tab_navigator.dart';
-import 'package:lettutor/ui/home.dart';
-import 'package:lettutor/ui/messages/chat_page.dart';
-import 'package:lettutor/ui/messages/messages_screen.dart';
-import 'package:lettutor/ui/schedule/schedule_screen.dart';
-import 'ui/authentication/sign_in_screen.dart';
-import 'ui/authentication/forgot_password_screen.dart';
+
 
 void main() => runApp(const MyApp());
 
@@ -40,7 +34,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String _currentPage = 'Home';
   List<String> pageKeys = ['Home', 'Messages', 'Schedule', 'Tutors', 'Courses' ];
-  Map<String, GlobalKey<NavigatorState>> _navigatorKeys = {
+  final Map<String, GlobalKey<NavigatorState>> _navigatorKeys = {
     'Home': GlobalKey<NavigatorState>(),
     'Messages': GlobalKey<NavigatorState>(),
     'Schedule': GlobalKey<NavigatorState>(),
@@ -157,31 +151,31 @@ class _MyHomePageState extends State<MyHomePage> {
             BottomNavyBarItem(
               icon: const Icon(CupertinoIcons.app, size: 30),
               title: const Text('Home', style: TextStyle(fontSize: 16)),
-              activeColor: defaultColor,
+              activeColor: defaultPrimaryColor,
               textAlign: TextAlign.center,
             ),
             BottomNavyBarItem(
               icon: const Icon(CupertinoIcons.bubble_left_bubble_right, size: 30),
               title: const Text('Messages', style: TextStyle(fontSize: 16)),
-              activeColor: defaultColor,
+              activeColor: defaultPrimaryColor,
               textAlign: TextAlign.center,
             ),
             BottomNavyBarItem(
               icon: const Icon(CupertinoIcons.calendar, size: 30),
               title: const Text('Schedule', style: TextStyle(fontSize: 16)),
-              activeColor: defaultColor,
+              activeColor: defaultPrimaryColor,
               textAlign: TextAlign.center,
             ),
             BottomNavyBarItem(
               icon: const Icon(CupertinoIcons.person_2, size: 30),
               title: const Text('Tutors', style: TextStyle(fontSize: 16)),
-              activeColor: defaultColor,
+              activeColor: defaultPrimaryColor,
               textAlign: TextAlign.center,
             ),
             BottomNavyBarItem(
               icon: const Icon(CupertinoIcons.bookmark, size: 30),
               title: const Text('Courses', style: TextStyle(fontSize: 16)),
-              activeColor: defaultColor,
+              activeColor: defaultPrimaryColor,
               textAlign: TextAlign.center,
               titleColor: Colors.black,
             ),

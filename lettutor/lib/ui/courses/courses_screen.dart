@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor/models/hard_code.dart';
-import 'package:lettutor/themes/custom_colors.dart';
+import 'package:lettutor/constants/ui_constants.dart';
 import 'package:lettutor/ui/custom_widgets/custom_card/custom_card_course.dart';
 
 class CoursesScreen extends StatelessWidget {
@@ -68,7 +68,7 @@ class CoursesScreen extends StatelessWidget {
           ],
         ));
     return Scaffold(
-        backgroundColor: bgColor,
+        backgroundColor: defaultBackgroundColor,
         body: Container(
           //width: size.width * 0.9,
           child: ListView(

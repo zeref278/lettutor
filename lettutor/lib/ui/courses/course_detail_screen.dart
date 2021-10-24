@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor/models/course.dart';
-import 'package:lettutor/themes/custom_colors.dart';
+import 'package:lettutor/constants/ui_constants.dart';
 import 'package:lettutor/ui/custom_widgets/custom_button/custom_text_button.dart';
 import 'package:lettutor/ui/custom_widgets/custom_divider/custom_divider_text.dart';
 
@@ -14,7 +14,7 @@ class CourseDetailScreen extends StatelessWidget {
     String level = course.level;
     int courseLength = course.courseLength;
     return Scaffold(
-      backgroundColor: bgColor,
+      backgroundColor: defaultBackgroundColor,
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(left: 15, right: 15),
         child: Column(
@@ -195,7 +195,7 @@ class CourseDetailScreen extends StatelessWidget {
               children: <Widget>[
                 Icon(
                   CupertinoIcons.person_crop_circle_badge_checkmark,
-                  color: defaultColor,
+                  color: defaultPrimaryColor,
                 ),
                 SizedBox(
                   width: 10,

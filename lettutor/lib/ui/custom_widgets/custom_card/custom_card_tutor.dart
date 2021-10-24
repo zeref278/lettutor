@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor/models/tutor.dart';
-import 'package:lettutor/themes/custom_colors.dart';
+import 'package:lettutor/constants/ui_constants.dart';
 import 'package:lettutor/ui/custom_widgets/custom_button/custom_text_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:lettutor/ui/custom_widgets/custom_tag/custom_tag_tutor.dart';
@@ -86,27 +86,27 @@ class _CustomCardTutorState extends State<CustomCardTutor> {
                           Icon(
                             CupertinoIcons.star_fill,
                             size: 16,
-                            color: defaultColor,
+                            color: defaultPrimaryColor,
                           ),
                           Icon(
                             CupertinoIcons.star_fill,
                             size: 16,
-                            color: defaultColor,
+                            color: defaultPrimaryColor,
                           ),
                           Icon(
                             CupertinoIcons.star_fill,
                             size: 16,
-                            color: defaultColor,
+                            color: defaultPrimaryColor,
                           ),
                           Icon(
                             CupertinoIcons.star_fill,
                             size: 16,
-                            color: defaultColor,
+                            color: defaultPrimaryColor,
                           ),
                           Icon(
                             CupertinoIcons.star_fill,
                             size: 16,
-                            color: defaultColor,
+                            color: defaultPrimaryColor,
                           ),
                         ],
                       ),
