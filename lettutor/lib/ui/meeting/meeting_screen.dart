@@ -8,7 +8,7 @@ class MeetingScreen extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: CountDownTimer(
-          timeStart: "2021-10-19 18:00:00",
+          timeStart: "2021-10-30 18:00:00",
         ),
       ),
     );

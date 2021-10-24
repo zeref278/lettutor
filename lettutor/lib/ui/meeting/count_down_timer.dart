@@ -59,52 +59,62 @@ class _CountDownTimerState extends State<CountDownTimer>
     final minutes = twoDigits(duration.inMinutes.remainder(60));
     final seconds = twoDigits(duration.inSeconds.remainder(60));
 
-    return Row(
+    return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Container(
-          padding: EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: defaultColor,
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: Text(
-            '$hours',
-            style: TextStyle(
-                fontSize: 50, color: Colors.black, fontWeight: FontWeight.bold),
-          ),
+      children: [
+        Text(
+          'Lesson will be started after',
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
         ),
-        Text(':',
-            style: TextStyle(
-              fontSize: 50,
-            )),
-        Container(
-          padding: EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: defaultColor,
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: Text(
-            '$minutes',
-            style: TextStyle(
-                fontSize: 50, color: Colors.black, fontWeight: FontWeight.bold),
-          ),
-        ),
-        Text(':',
-            style: TextStyle(
-              fontSize: 50,
-            )),
-        Container(
-          padding: EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: defaultColor,
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: Text(
-            '$seconds',
-            style: TextStyle(
-                fontSize: 50, color: Colors.black, fontWeight: FontWeight.bold),
-          ),
+        SizedBox(height: 20),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: defaultColor,
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Text(
+                '$hours',
+                style: TextStyle(
+                    fontSize: 50, color: Colors.black, fontWeight: FontWeight.bold),
+              ),
+            ),
+            Text(':',
+                style: TextStyle(
+                  fontSize: 50,
+                )),
+            Container(
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: defaultColor,
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Text(
+                '$minutes',
+                style: TextStyle(
+                    fontSize: 50, color: Colors.black, fontWeight: FontWeight.bold),
+              ),
+            ),
+            Text(':',
+                style: TextStyle(
+                  fontSize: 50,
+                )),
+            Container(
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: defaultColor,
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Text(
+                '$seconds',
+                style: TextStyle(
+                    fontSize: 50, color: Colors.black, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
         ),
       ],
     );
