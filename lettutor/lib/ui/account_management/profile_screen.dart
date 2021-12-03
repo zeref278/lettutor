@@ -10,6 +10,19 @@ class ProfileScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         backgroundColor: defaultBackgroundColor,
+        appBar: AppBar(
+          title: Text('Profile'),
+          titleTextStyle: const TextStyle(
+              color: Colors.black, fontSize: 20, fontWeight: FontWeight.w600),
+          backgroundColor: defaultPrimaryColor,
+          elevation: 0,
+          leading: IconButton(
+            icon: Icon(CupertinoIcons.chevron_back, color: Colors.black),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,

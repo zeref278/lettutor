@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor/models/hard_code.dart';
 import 'package:lettutor/constants/ui_constants.dart';
+import 'package:lettutor/ui/account_management/profile_screen.dart';
 
+import 'account_management/setting_screen.dart';
 import 'custom_widgets/custom_button/custom_rounded_button.dart';
 import 'custom_widgets/custom_button/custom_text_button.dart';
 import 'custom_widgets/custom_card/custom_card_tutor.dart';

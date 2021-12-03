@@ -39,8 +39,7 @@ class MessagesScreen extends StatelessWidget {
               lastMessage: messages.last,
             ),
             onTap: () {
-              Navigator.push(
-                context,
+              Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
                     return ChatPage();

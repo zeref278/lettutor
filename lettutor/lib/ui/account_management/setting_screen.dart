@@ -1,10 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:lettutor/constants/ui_constants.dart';
 import 'package:lettutor/ui/custom_widgets/custom_button/custom_rounded_button.dart';
 import 'package:lettutor/ui/custom_widgets/custom_button/custom_setting_button.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:country_icons/country_icons.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({Key? key}) : super(key: key);
@@ -14,6 +14,19 @@ class SettingScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: defaultBackgroundColor,
+      appBar: AppBar(
+        title: Text('Setting'),
+        titleTextStyle: const TextStyle(
+            color: Colors.black, fontSize: 20, fontWeight: FontWeight.w600),
+        backgroundColor: defaultPrimaryColor,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(CupertinoIcons.chevron_back, color: Colors.black),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -40,14 +53,109 @@ class SettingScreen extends StatelessWidget {
               text: 'Language',
               width: size.width * 0.9,
               iconData: FontAwesomeIcons.language,
-              onPressed: () {},
+              onPressed: () {
+                showDialog(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                        elevation: 10,
+                        title: Text('Select language'),
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Row(
+                              children: [
+                                Image.asset('assets/flags/vn.png',
+                                    width: 50.0, height: 30.0),
+                                TextButton(
+                                    onPressed: () {},
+                                    child: Text(
+                                      'Tiếng Việt',
+                                      style: TextStyle(fontSize: 18),
+                                    )),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Image.asset('assets/flags/gb.png',
+                                    width: 50.0, height: 30.0),
+                                TextButton(
+                                    onPressed: () {},
+                                    child: Text('English',
+                                        style: TextStyle(fontSize: 18))),
+                              ],
+                            ),
+                          ],
+                        ),
+                        actions: [
+                          MaterialButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              color: Colors.red,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: Text(
+                                "CANCEL",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white),
+                              )),
+                        ],
+                      );
+                    });
+              },
             ),
             SizedBox(height: 12),
             CustomSettingButton(
               text: 'Dark Mode',
               width: size.width * 0.9,
               iconData: CupertinoIcons.moon,
-              onPressed: () {},
+              onPressed: () {
+                var _switchValue = false;
+                showDialog(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                        elevation: 10,
+                        title: Text('Dark Mode'),
+                        content: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text('Off '),
+                            CupertinoSwitch(
+                              value: _switchValue,
+                              onChanged: (value) {},
+                            ),
+                            Text('On '),
+                          ],
+                        ),
+                        actions: [
+                          MaterialButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              color: Colors.green,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: Text(
+                                "OK",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white),
+                              )),
+                        ],
+                      );
+                    });
+              },
             ),
             SizedBox(height: 12),
             CustomSettingButton(
@@ -63,7 +171,6 @@ class SettingScreen extends StatelessWidget {
               iconData: FontAwesomeIcons.bug,
               onPressed: () {},
             ),
-
             SizedBox(height: 30),
             CustomSettingButton(
               text: 'Help',
@@ -89,7 +196,6 @@ class SettingScreen extends StatelessWidget {
             Text(
               'Version: 1.0.0',
             ),
-
             CustomRoundedButton(
               width: size.width * 0.9,
               textColor: Colors.black,
