@@ -8,12 +8,7 @@ import 'package:lettutor/ui/authentication/sign_up_screen.dart';
 import 'package:lettutor/themes/name_logo.dart';
 
 import 'package:lettutor/constants/ui_constants.dart';
-import 'package:lettutor/ui/custom_widgets/custom_button/custom_rounded_button.dart';
-import 'package:lettutor/ui/custom_widgets/custom_fields/custom_input_field.dart';
-import 'package:lettutor/ui/custom_widgets/custom_button/custom_text_button.dart';
-import 'package:lettutor/ui/custom_widgets/custom_fields/custom_password_field.dart';
-import '../custom_widgets/custom_button/social_login_options.dart';
-import '../custom_widgets/custom_button/custom_social_button.dart';
+import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -30,14 +25,12 @@ class SignInScreen extends StatelessWidget {
             children: <Widget>[
               const NameLogo(),
               SizedBox(height: size.height * 0.05),
-              InputFieldCustom(
+              CustomInputField(
                 hintText: 'Enter your email',
                 icon: Icons.email,
-                onChanged: (value) {},
               ),
-              PasswordFieldCustom(
+              CustomPasswordField(
                 hText: 'Enter your password',
-                onChanged: (value) {},
               ),
               Container(
                 alignment: Alignment.centerRight,
@@ -58,12 +51,11 @@ class SignInScreen extends StatelessWidget {
                 width: size.width * 0.9,
                 textColor: Colors.black,
                 text: 'SIGN IN',
-                press: () async {
+                onPressed: () async {
                   AuthServices authservice = AuthServices();
-                  bool result = await authservice.SignInService("studen@lettutor.com", "123456");
+                  bool result = await authservice.SignInService("student@lettutor.com", "123456");
                   if( result){
-                    Navigator.pop(context);
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                         builder: (context) {
@@ -126,6 +118,7 @@ class SignInScreen extends StatelessWidget {
       ),
     );
   }
+
 
 
 }

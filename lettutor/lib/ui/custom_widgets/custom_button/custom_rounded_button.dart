@@ -3,13 +3,13 @@ import 'package:lettutor/constants/ui_constants.dart';
 
 class CustomRoundedButton extends StatelessWidget {
   final String text;
-  final void Function() press;
+  final void Function() onPressed;
   final Color color, textColor;
   final double width;
   const CustomRoundedButton({
     Key? key,
     required this.text,
-    required this.press,
+    required this.onPressed,
     required this.width,
     this.color = defaultPrimaryColor,
     this.textColor = Colors.white,
@@ -25,7 +25,7 @@ class CustomRoundedButton extends StatelessWidget {
           text,
           style: TextStyle(color: textColor, fontWeight: FontWeight.bold),
         ),
-        onPressed: press,
+        onPressed: onPressed,
         style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(color),
             padding: MaterialStateProperty.all<EdgeInsetsGeometry>(

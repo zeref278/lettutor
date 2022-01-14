@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lettutor/themes/name_logo.dart';
 
 import 'package:lettutor/constants/ui_constants.dart';
-import 'package:lettutor/ui/custom_widgets/custom_button/custom_rounded_button.dart';
-import 'package:lettutor/ui/custom_widgets/custom_fields/custom_input_field.dart';
+import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({Key? key}) : super(key: key);
@@ -28,17 +27,16 @@ class ForgotPasswordScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: size.height * 0.05),
-              InputFieldCustom(
+              CustomInputField(
                 hintText: 'Enter your email',
                 icon: Icons.email,
-                onChanged: (value) {},
               ),
               SizedBox(height: size.height * 0.1),
               CustomRoundedButton(
                 width: size.width * 0.9,
                 textColor: Colors.black,
                 text: 'SEND',
-                press: () {},
+                onPressed: () {},
               ),
             ],
           ),

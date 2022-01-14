@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:lettutor/constants/ui_constants.dart';
-import 'package:lettutor/ui/custom_widgets/custom_button/custom_rounded_button.dart';
-import 'package:lettutor/ui/custom_widgets/custom_button/custom_setting_button.dart';
+import 'package:lettutor/ui/account_management/change_password_screen.dart';
+import 'package:lettutor/ui/account_management/edit_profile_screen.dart';
+import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
@@ -72,7 +73,34 @@ class ProfileScreen extends StatelessWidget {
                 text: 'Your information',
                 width: size.width * 0.9,
                 iconData: CupertinoIcons.info_circle,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return EditProfileScreen();
+                      },
+                    ),
+                  );
+                },
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              CustomSettingButton(
+                text: 'Change password',
+                width: size.width * 0.9,
+                iconData: CupertinoIcons.padlock_solid,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return ChangePasswordScreen();
+                      },
+                    ),
+                  );
+                },
               ),
               SizedBox(
                 height: 15,
@@ -117,7 +145,7 @@ class ProfileScreen extends StatelessWidget {
                 width: size.width * 0.9,
                 textColor: Colors.black,
                 text: 'SIGN OUT',
-                press: () {},
+                onPressed: () {},
               ),
             ],
           ),

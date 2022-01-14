@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor/models/hard_code.dart';
 import 'package:lettutor/constants/ui_constants.dart';
-import 'package:lettutor/ui/custom_widgets/custom_card/custom_card_feedback.dart';
-import 'package:lettutor/ui/custom_widgets/custom_card/custom_card_tutor.dart';
+import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
+
 
 class FeedbacksScreen extends StatelessWidget {
   const FeedbacksScreen({Key? key}) : super(key: key);

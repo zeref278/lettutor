@@ -1,12 +1,12 @@
 import 'package:lettutor/data/network/apis/api.dart';
 import 'package:lettutor/services/locator_service.dart';
 
-class SigninApi {
-  SigninApi._privateConstructor();
+class AuthApi {
+  AuthApi._privateConstructor();
 
-  static final SigninApi _instance = SigninApi._privateConstructor();
+  static final AuthApi _instance = AuthApi._privateConstructor();
 
-  static SigninApi get instance => _instance;
+  static AuthApi get instance => _instance;
 
   final DioClient _dioClient = getIt.get<DioClient>();
 

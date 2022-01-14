@@ -2,22 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:lettutor/constants/ui_constants.dart';
 import 'package:lettutor/ui/custom_widgets/custom_fields/custom_text_field.dart';
 
-class InputFieldCustom extends StatelessWidget {
+class CustomInputField extends StatelessWidget {
+  final TextEditingController? textEditingController;
+  final bool? isReadOnly;
   final String hintText;
   final IconData icon;
-  final ValueChanged<String> onChanged;
 
-  const InputFieldCustom({
+
+   CustomInputField({
     required this.hintText,
     this.icon = Icons.person,
-    required this.onChanged,
+    this.textEditingController,
+    this.isReadOnly
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFieldCustom(
       child: TextField(
-        onChanged: onChanged,
+        readOnly: isReadOnly ?? false,
+        controller: textEditingController,
         cursorColor: darkYellow,
         decoration: InputDecoration(
           icon: Icon(

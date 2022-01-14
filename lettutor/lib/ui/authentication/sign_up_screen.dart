@@ -4,10 +4,7 @@ import 'package:lettutor/ui/authentication/sign_in_screen.dart';
 import 'package:lettutor/themes/name_logo.dart';
 
 import 'package:lettutor/constants/ui_constants.dart';
-import 'package:lettutor/ui/custom_widgets/custom_button/custom_rounded_button.dart';
-import 'package:lettutor/ui/custom_widgets/custom_fields/custom_input_field.dart';
-import 'package:lettutor/ui/custom_widgets/custom_button/custom_text_button.dart';
-import 'package:lettutor/ui/custom_widgets/custom_fields/custom_password_field.dart';
+import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -25,29 +22,25 @@ class SignUpScreen extends StatelessWidget {
             children: <Widget>[
               const NameLogo(),
               SizedBox(height: size.height * 0.03),
-              InputFieldCustom(
+              CustomInputField(
                 hintText: 'Enter your full name',
-                onChanged: (value) {},
               ),
-              InputFieldCustom(
+              CustomInputField(
                 icon: Icons.email,
                 hintText: 'Enter your email',
-                onChanged: (value) {},
               ),
-              PasswordFieldCustom(
+              CustomPasswordField(
                 hText: 'Enter your password',
-                onChanged: (value) {},
               ),
-              PasswordFieldCustom(
+              CustomPasswordField(
                 hText: 'Confirm your password',
-                onChanged: (value) {},
               ),
               SizedBox(height: size.height * 0.03),
               CustomRoundedButton(
                 width: size.width * 0.9,
                 textColor: Colors.black,
                 text: 'SIGN UP',
-                press: () {},
+                onPressed: () {},
               ),
               SizedBox(height: size.height * 0.05),
               Row(

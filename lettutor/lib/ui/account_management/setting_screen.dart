@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:lettutor/constants/ui_constants.dart';
-import 'package:lettutor/ui/custom_widgets/custom_button/custom_rounded_button.dart';
-import 'package:lettutor/ui/custom_widgets/custom_button/custom_setting_button.dart';
+import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:country_icons/country_icons.dart';
 
@@ -200,7 +199,7 @@ class SettingScreen extends StatelessWidget {
               width: size.width * 0.9,
               textColor: Colors.black,
               text: 'SIGN OUT',
-              press: () {},
+              onPressed: () {},
             ),
           ],
         ),

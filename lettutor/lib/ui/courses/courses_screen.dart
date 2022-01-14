@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor/models/hard_code.dart';
 import 'package:lettutor/constants/ui_constants.dart';
-import 'package:lettutor/ui/custom_widgets/custom_card/custom_card_course.dart';
+import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
 
 class CoursesScreen extends StatelessWidget {
   const CoursesScreen({Key? key}) : super(key: key);

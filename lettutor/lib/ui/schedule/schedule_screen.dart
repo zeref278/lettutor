@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor/ui/custom_widgets/custom_card/custom_card_meeting.dart';
+import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
 import 'package:lettutor/models/hard_code.dart';
 
 class ScheduleScreen extends StatefulWidget {

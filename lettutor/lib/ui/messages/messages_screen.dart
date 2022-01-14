@@ -4,7 +4,7 @@ import 'package:lettutor/models/hard_code.dart';
 import 'package:lettutor/models/tutor.dart';
 import 'package:lettutor/constants/ui_constants.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:lettutor/ui/custom_widgets/custom_message/custom_conversation.dart';
+import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
 
 import 'chat_page.dart';
 

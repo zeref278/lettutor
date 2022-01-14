@@ -2,8 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor/models/course.dart';
 import 'package:lettutor/constants/ui_constants.dart';
-import 'package:lettutor/ui/custom_widgets/custom_button/custom_text_button.dart';
-import 'package:lettutor/ui/custom_widgets/custom_divider/custom_divider_text.dart';
+import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
 
 class CourseDetailScreen extends StatelessWidget {
   const CourseDetailScreen({Key? key, required this.course}) : super(key: key);

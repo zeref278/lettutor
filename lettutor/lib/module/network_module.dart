@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:lettutor/data/network/cons/end_point.dart';
+import 'package:lettutor/data/network/network_constants/end_point.dart';
+
 import 'package:lettutor/data/sharedpref/shared_preference_helper.dart';
 
 
@@ -36,7 +37,7 @@ abstract class NetworkModule {
             var privateKey = await sharedPrefHelper.authenticationKey;
             var authen = await sharedPrefHelper.authToken;
 
-            var token = "$privateKey $authen";
+            var token = "Bearer $authen";
 
             if (authen != null) {
               options.headers.putIfAbsent('Authorization', () => token);
