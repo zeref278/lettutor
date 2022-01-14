@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lettutor/main.dart';
+import 'package:lettutor/services/auth_services.dart';
 
 import 'package:lettutor/ui/authentication/sign_up_screen.dart';
 import 'package:lettutor/themes/name_logo.dart';
@@ -56,7 +58,21 @@ class SignInScreen extends StatelessWidget {
                 width: size.width * 0.9,
                 textColor: Colors.black,
                 text: 'SIGN IN',
-                press: () {},
+                press: () async {
+                  AuthServices authservice = AuthServices();
+                  bool result = await authservice.SignInService("studen@lettutor.com", "123456");
+                  if( result){
+                    Navigator.pop(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return MyHomePage();
+                        },
+                      ),
+                    );
+                  }
+                },
               ),
               const SocialLoginOptions(),
               Row(
@@ -110,4 +126,6 @@ class SignInScreen extends StatelessWidget {
       ),
     );
   }
+
+
 }
