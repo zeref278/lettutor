@@ -21,6 +21,7 @@ class TutorDetailScreen extends StatefulWidget {
 class _TutorDetailScreenState extends State<TutorDetailScreen> {
   bool isFavorite = false;
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +38,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                 children: <Widget>[
                   CircleAvatar(
                     radius: 35,
-                    backgroundImage: AssetImage(widget.tutor.linkAvatar),
+                    backgroundImage: AssetImage('assets/avatar.jpg'),
                   ),
                   SizedBox(
                     width: mediumSpacer,
@@ -56,35 +57,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                         SizedBox(
                           height: smallSpacer,
                         ),
-                        Row(
-                          children: const <Widget>[
-                            Icon(
-                              CupertinoIcons.star_fill,
-                              size: 16,
-                              color: defaultPrimaryColor,
-                            ),
-                            Icon(
-                              CupertinoIcons.star_fill,
-                              size: 16,
-                              color: defaultPrimaryColor,
-                            ),
-                            Icon(
-                              CupertinoIcons.star_fill,
-                              size: 16,
-                              color: defaultPrimaryColor,
-                            ),
-                            Icon(
-                              CupertinoIcons.star_fill,
-                              size: 16,
-                              color: defaultPrimaryColor,
-                            ),
-                            Icon(
-                              CupertinoIcons.star_fill,
-                              size: 16,
-                              color: defaultPrimaryColor,
-                            ),
-                          ],
-                        ),
+                        CustomRatingBar(rating: widget.tutor.rating, onRatingUpdate: (double i){}),
                         SizedBox(
                           height: smallSpacer,
                         ),
@@ -97,7 +70,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
             ),
             Container(
               child: ExpandableText(
-                widget.tutor.description,
+                widget.tutor.bio,
                 trimLines: 4,
               ),
             ),
@@ -163,14 +136,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                 )
               ],
             ),
-            SizedBox(height: mediumSpacer),
-            const CustomDividerText(
-              child: Text('Introduce',
-                  style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600)),
-            ),
+
             SizedBox(height: mediumSpacer),
             const CustomDividerText(
               child: Text('Language',
@@ -196,6 +162,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                       color: Colors.black,
                       fontWeight: FontWeight.w600)),
             ),
+
             SizedBox(height: mediumSpacer),
             Wrap(
               spacing: 10,
@@ -206,6 +173,32 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                 CustomTagTutor(text: Text('Tagalog')),
                 CustomTagTutor(text: Text('Tagalog')),
               ],
+            ),
+            SizedBox(height: mediumSpacer),
+            const CustomDividerText(
+              child: Text('Teaching experience',
+                  style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600)),
+            ),
+            Container(
+              child: Text(
+                widget.tutor.experience ?? "",
+              ),
+            ),
+            SizedBox(height: mediumSpacer),
+            const CustomDividerText(
+              child: Text('Interests',
+                  style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600)),
+            ),
+            Container(
+              child: Text(
+                widget.tutor.interests ?? "",
+              ),
             ),
             SizedBox(height: mediumSpacer),
             CustomDividerText(
@@ -258,9 +251,11 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                 ],
               ),
             ),
+
             SizedBox(height: mediumSpacer),
             const CustomDividerText(
-              child: Text('Booking',
+              child: Text(
+                  'Booking',
                   style: TextStyle(
                       fontSize: 18,
                       color: Colors.black,

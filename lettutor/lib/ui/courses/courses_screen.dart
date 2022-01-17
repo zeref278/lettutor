@@ -21,21 +21,21 @@ class CoursesScreen extends StatelessWidget {
             ),
             CustomCardCourse(
               course: myCourse,
-              width: size.width * 0.9,
+              width: size.width * 0.6,
             ),
             SizedBox(
               width: size.width * 0.04,
             ),
             CustomCardCourse(
               course: myCourse,
-              width: size.width * 0.9,
+              width: size.width * 0.6,
             ),
             SizedBox(
               width: size.width * 0.04,
             ),
             CustomCardCourse(
               course: myCourse,
-              width: size.width * 0.9,
+              width: size.width * 0.6,
             ),
             SizedBox(
               width: size.width * 0.04,

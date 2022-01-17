@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:lettutor/main.dart';
 import 'package:lettutor/services/auth_services.dart';
 
 import 'package:lettutor/ui/authentication/sign_up_screen.dart';
@@ -9,6 +8,7 @@ import 'package:lettutor/themes/name_logo.dart';
 
 import 'package:lettutor/constants/ui_constants.dart';
 import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
+import 'package:lettutor/ui/home_screen/home_nav.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -52,7 +52,7 @@ class SignInScreen extends StatelessWidget {
                 textColor: Colors.black,
                 text: 'SIGN IN',
                 onPressed: () async {
-                  AuthServices authservice = AuthServices();
+                  AuthServices authservice = AuthServices.instance;
                   bool result = await authservice.SignInService("student@lettutor.com", "123456");
                   if( result){
                     Navigator.pushReplacement(

@@ -25,7 +25,7 @@ class DioClient {
         cancelToken: cancelToken,
         onReceiveProgress: onReceiveProgress,
       );
-      return response.data;
+      return response;
     } on DioError catch (dioError) {
       throw NetworkException(
         message: dioError.response?.data['error_message'],
@@ -85,7 +85,7 @@ class DioClient {
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress,
       );
-      return response.data;
+      return response;
     } on DioError catch (dioError) {
       throw NetworkException(
         message: dioError.response?.data,
@@ -115,7 +115,7 @@ class DioClient {
         options: options,
         cancelToken: cancelToken,
       );
-      return response.data;
+      return response;
     } on DioError catch (dioError) {
       throw NetworkException(
         message: dioError.response?.data,

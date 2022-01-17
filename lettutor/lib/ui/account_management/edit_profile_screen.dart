@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:lettutor/constants/ui_constants.dart';
+import 'package:lettutor/providers/user_provider.dart';
 import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
+import 'package:provider/provider.dart';
 
 class EditProfileScreen extends StatefulWidget {
   @override
@@ -13,7 +15,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   late TextEditingController controllerName;
   late TextEditingController controllerPhone;
   late TextEditingController controllerDate;
-  late TextEditingController controllerAddress;
 
   @override
   initState(){
@@ -21,6 +22,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
     controllerName = TextEditingController();
     controllerPhone = TextEditingController();
+    controllerDate = TextEditingController();
   }
 
   @override
@@ -28,6 +30,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
     controllerName.dispose();
     controllerPhone.dispose();
+    controllerDate.dispose();
     super.dispose();
   }
 
@@ -67,42 +70,26 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 width: size.width,
                 height: 30,
               ),
-              Stack(
-                children: <Widget>[
-                  CircleAvatar(
-                    radius: 50,
-                    backgroundImage: AssetImage('assets/avatar.jpg'),
-                  ),
-                  Positioned(
-                    right: 0,
-                    bottom: 0,
-                    child: Container(
-                      width: 30,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        color: defaultPrimaryColor,
-                        shape: BoxShape.circle,
+              Consumer<UserProvider>(
+                builder: (context, userData, _) {
+                  return Column(
+                    children: [
+                      HeaderAccount(),
+
+                      SizedBox(
+                        height: 30,
                       ),
-                      child: Icon(CupertinoIcons.camera_on_rectangle),
-                    ),
-                  )
-                ],
-              ),
-              Text(
-                'Duy Truong',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-              ),
-              Text(
-                'tnduy.dev@gmail.com',
-                style: TextStyle(color: Colors.black, fontSize: 16),
+                      CustomInputField(hintText: userData.user.name),
+                      CustomInputField(hintText: userData.user.phone, icon: CupertinoIcons.phone,),
+                      CustomInputField(hintText: userData.user.birthday, icon: CupertinoIcons.calendar,),
+
+                    ],
+                  );
+                },
               ),
 
-              SizedBox(
-                height: 30,
-              ),
-              CustomInputField(hintText: "Duy Truong"),
-              CustomInputField(hintText: "0123456", icon: CupertinoIcons.phone,),
-              CustomInputField(hintText: "0123456", icon: CupertinoIcons.phone,),
+
+
 
 
             ],

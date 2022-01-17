@@ -14,7 +14,7 @@ class CustomTagTutor extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           border: Border.all(color: defaultPrimaryColor),
-          color: defaultPrimaryColor.withOpacity(0.2)),
+          color: Colors.lightGreen.withOpacity(0.5)),
     );
   }
 }

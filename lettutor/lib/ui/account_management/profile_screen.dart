@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:lettutor/constants/ui_constants.dart';
+import 'package:lettutor/providers/user_provider.dart';
 import 'package:lettutor/ui/account_management/change_password_screen.dart';
 import 'package:lettutor/ui/account_management/edit_profile_screen.dart';
 import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
+import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
@@ -32,40 +34,23 @@ class ProfileScreen extends StatelessWidget {
                 width: size.width,
                 height: 30,
               ),
-              Stack(
-                children: <Widget>[
-                  CircleAvatar(
-                    radius: 50,
-                    backgroundImage: AssetImage('assets/avatar.jpg'),
-                  ),
-                  Positioned(
-                    right: 0,
-                    bottom: 0,
-                    child: Container(
-                      width: 30,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        color: defaultPrimaryColor,
-                        shape: BoxShape.circle,
+
+              Consumer<UserProvider>(
+                builder: (context, userData, _) {
+                  return Column(
+                    children: [
+                      HeaderAccount(),
+                      SizedBox(height: 10),
+                      SelectableText(
+                        'ID: ${userData.user.id}',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.grey),
                       ),
-                      child: Icon(CupertinoIcons.camera_on_rectangle),
-                    ),
-                  )
-                ],
+                    ],
+                  );
+                },
               ),
-              Text(
-                'Duy Truong',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-              ),
-              Text(
-                'tnduy.dev@gmail.com',
-                style: TextStyle(color: Colors.black, fontSize: 16),
-              ),
-              SizedBox(height: 10),
-              SelectableText(
-                'ID: 7ea4ab66-d029-4e7b-8898-8534a1a80d7a',
-                style: TextStyle(color: Colors.grey),
-              ),
+
               SizedBox(
                 height: 30,
               ),

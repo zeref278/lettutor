@@ -24,3 +24,9 @@ export 'package:lettutor/ui/custom_widgets/custom_tabbar/tab_navigator.dart';
 export 'package:lettutor/ui/custom_widgets/custom_tag/custom_tag_tutor.dart';
 
 export 'package:lettutor/ui/custom_widgets/custom_text/expandable_text.dart';
+
+export 'package:lettutor/ui/custom_widgets/header_account/header_account.dart';
+
+export 'package:lettutor/ui/custom_widgets/header_account/header_account_setting.dart';
+
+export 'package:lettutor/ui/custom_widgets/custom_rating_bar/custom_rating_bar.dart';

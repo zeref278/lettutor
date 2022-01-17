@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor/models/hard_code.dart';
 import 'package:lettutor/constants/ui_constants.dart';
+import 'package:lettutor/providers/tutor_provider.dart';
 import 'package:lettutor/ui/account_management/profile_screen.dart';
+import 'package:provider/provider.dart';
 
 import 'account_management/setting_screen.dart';
 import 'custom_widgets/custom_button/custom_rounded_button.dart';
@@ -23,8 +25,8 @@ class HomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Container(
+              padding: EdgeInsets.all(5),
               width: size.width,
-              height: size.height * 0.25,
               decoration: const BoxDecoration(
                 color: defaultPrimaryColor,
                 //borderRadius: BorderRadius.circular(20)
@@ -35,6 +37,7 @@ class HomeScreen extends StatelessWidget {
                 children: <Widget>[
                   const Text(
                     'Total lesson time is 100 hours and 30 minutes',
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 16,
@@ -63,7 +66,7 @@ class HomeScreen extends StatelessWidget {
                     text: 'Enter lesson room',
                     color: Colors.white,
                     textColor: Colors.black,
-                    width: size.width * 0.5,
+                    width: size.width * 0.7,
                   ),
                 ],
               ),
@@ -103,9 +106,14 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 children: [
                   const SizedBox(height: mediumSpacer),
-                  CustomCardTutor(
-                    tutor: myTutor,
+                  Consumer<TutorProvider>(
+                    builder: (context, tutorData, _){
+                      return CustomCardTutor(
+                        tutor: tutorData.tutor,
+                      );
+                    },
                   ),
+
                   const SizedBox(height: mediumSpacer),
                   CustomCardTutor(
                     tutor: myTutor,

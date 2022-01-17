@@ -42,7 +42,6 @@ class _CustomCardTutorState extends State<CustomCardTutor> {
             height: size.height * 0.025,
           ),
           Container(
-            height: size.height * 0.12,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -51,7 +50,7 @@ class _CustomCardTutorState extends State<CustomCardTutor> {
                 ),
                 CircleAvatar(
                   radius: 35,
-                  backgroundImage: AssetImage(widget.tutor.linkAvatar),
+                  backgroundImage: AssetImage('assets/avatar.jpg'),
                 ),
                 SizedBox(
                   width: size.width * 0.03,
@@ -139,7 +138,7 @@ class _CustomCardTutorState extends State<CustomCardTutor> {
             padding: EdgeInsets.only(
                 left: size.width * 0.04, right: size.width * 0.04),
             child: Text(
-              widget.tutor.description,
+              widget.tutor.bio,
               style: TextStyle(color: Colors.black, fontSize: 15),
               overflow: TextOverflow.ellipsis,
               maxLines: 3,

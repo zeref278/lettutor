@@ -52,19 +52,19 @@ class CustomCardCourse extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     course.name,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     maxLines: 2,
                   ),
                   SizedBox(height: 10,),
                   Text(
                     course.shortDescription,
-                    maxLines: 2,
-                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                    maxLines: 3,
+                    style: TextStyle(fontSize: 14, color: Colors.grey),
                   ),
                   SizedBox(height: 15,),
                   Text(
                     '$level • $courseLength Lessons',
-                    style: TextStyle(fontSize: 18, color: Colors.black),
+                    style: TextStyle(fontSize: 14, color: Colors.black),
                   ),
                 ],
               ),

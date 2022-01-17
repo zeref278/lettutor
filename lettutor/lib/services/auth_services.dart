@@ -6,16 +6,25 @@ import 'package:lettutor/data/sharedpref/shared_preference_helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthServices {
+
+  AuthServices._privateConstructor();
+
+  static final AuthServices _instance = AuthServices._privateConstructor();
+
+  static AuthServices get instance => _instance;
+
+  final _authApi = AuthApi.instance;
+
   Future<bool> SignInService(String email, String password) async {
     try{
       SharedPreferences sharedPreferences =
           await SharedPreferences.getInstance();
       SharedPreferenceHelper sharedPreferenceHelper =
       SharedPreferenceHelper(sharedPreferences);
-      var signApi = AuthApi.instance;
+
       if (email != '' && password != '') {
         var res =
-            await signApi.login(email, password);
+            await _authApi.login(email, password);
         if (res.statusCode != null && res.statusCode == 200) {
           var jsonRes = jsonDecode(res.toString());
           final String accessToken = jsonRes['tokens']['access']['token'];
@@ -29,14 +38,12 @@ class AuthServices {
           return true;
         }
       } else {
-        // _showMyDialog(
-        //     'Error', "Please fill all fields", BasicDialogStatus.error);
+
         return false;
       }
     }
     catch(e) {
-      // _showMyDialog(
-      //     'Error', "Email or password incorrect", BasicDialogStatus.error);
+
 
     }
 

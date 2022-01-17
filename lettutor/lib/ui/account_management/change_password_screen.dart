@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:lettutor/constants/ui_constants.dart';
-import 'package:lettutor/services/user_service.dart';
+import 'package:lettutor/providers/user_provider.dart';
 import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
+import 'package:provider/provider.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
   @override
@@ -57,35 +58,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 width: size.width,
                 height: 30,
               ),
-              Stack(
-                children: <Widget>[
-                  CircleAvatar(
-                    radius: 50,
-                    backgroundImage: AssetImage('assets/avatar.jpg'),
-                  ),
-                  Positioned(
-                    right: 0,
-                    bottom: 0,
-                    child: Container(
-                      width: 30,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        color: defaultPrimaryColor,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Icon(CupertinoIcons.camera_on_rectangle),
-                    ),
-                  )
-                ],
-              ),
-              Text(
-                'Duy Truong',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-              ),
-              Text(
-                'tnduy.dev@gmail.com',
-                style: TextStyle(color: Colors.black, fontSize: 16),
-              ),
+              HeaderAccount(),
               SizedBox(
                 height: 30,
               ),
@@ -101,16 +74,19 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 textEditingController: controllerConfirmPassword,
                 hText: "Confirm new password",
               ),
-              CustomRoundedButton(
-                text: "SAVE",
-                onPressed: () {
-                  UserService userService = UserService.instance;
-
-                  userService.changePassword(controllerOldPassword.text, controllerOldPassword.text);
+              Consumer<UserProvider>(
+                builder: (context, userData, _) {
+                  return CustomRoundedButton(
+                    text: "SAVE",
+                    onPressed: () {
+                      userData.changePassword(controllerOldPassword.text, controllerOldPassword.text);
+                    },
+                    width: size.width * 0.5,
+                    textColor: Colors.black,
+                  );
                 },
-                width: size.width * 0.5,
-                textColor: Colors.black,
-              )
+              ),
+
             ],
           ),
         ));

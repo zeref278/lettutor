@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:lettutor/constants/ui_constants.dart';
 import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:country_icons/country_icons.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({Key? key}) : super(key: key);
@@ -33,18 +32,7 @@ class SettingScreen extends StatelessWidget {
               height: 10,
               width: size.width,
             ),
-            CircleAvatar(
-              radius: 32,
-              backgroundImage: AssetImage('assets/avatar.jpg'),
-            ),
-            Text(
-              'Duy Truong',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-            ),
-            Text(
-              'tnduy.dev@gmail.com',
-              style: TextStyle(color: Colors.grey),
-            ),
+            HeaderAccountSetting(),
             SizedBox(
               height: 30,
             ),
