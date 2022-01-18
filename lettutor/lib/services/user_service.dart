@@ -46,4 +46,24 @@ class UserService {
     return false;
   }
 
+  Future<bool> updateUserInfo(String name, String country, String date) async {
+    try {
+
+      if (name != '' || country != '' || date != "") {
+        var res = await _userApi.updateUserInfo(name, country, date);
+        if (res.statusCode != null && res.statusCode == 200) {
+
+          return true;
+        }
+      } else {
+        return false;
+      }
+    } catch (e) {
+      rethrow;
+    }
+
+    return false;
+  }
+
+
 }

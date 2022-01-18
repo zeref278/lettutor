@@ -32,7 +32,6 @@ class HomeScreen extends StatelessWidget {
                 //borderRadius: BorderRadius.circular(20)
               ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   const Text(
@@ -44,14 +43,17 @@ class HomeScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+                  SizedBox(height: 10,),
                   const Text(
                     'Up comming Lesson',
                     style: TextStyle(
                         color: Colors.black, fontWeight: FontWeight.bold),
                   ),
+                  SizedBox(height: 10,),
                   const Text('Fri, 15 Oct 21 6:30 - 7:30',
                       style: TextStyle(
                           color: Colors.black, fontWeight: FontWeight.w600)),
+                  SizedBox(height: 15,),
                   CustomRoundedButton(
                     onPressed: () {
                       Navigator.push(

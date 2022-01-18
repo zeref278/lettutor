@@ -13,28 +13,25 @@ class EditProfileScreen extends StatefulWidget {
 class _EditProfileScreenState extends State<EditProfileScreen> {
 
   late TextEditingController controllerName;
-  late TextEditingController controllerPhone;
+  late TextEditingController controllerCountry;
   late TextEditingController controllerDate;
 
   @override
-  initState(){
+  initState() {
     super.initState();
 
     controllerName = TextEditingController();
-    controllerPhone = TextEditingController();
+    controllerCountry = TextEditingController();
     controllerDate = TextEditingController();
   }
 
   @override
   void dispose() {
-
     controllerName.dispose();
-    controllerPhone.dispose();
+    controllerCountry.dispose();
     controllerDate.dispose();
     super.dispose();
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -54,14 +51,22 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             },
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: _SaveButtonPressed(),
-          elevation: 5,
-          child: Icon(CupertinoIcons.checkmark_alt),
-          backgroundColor: Colors.green,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-
-        ),
+        floatingActionButton:
+            Consumer<UserProvider>(builder: (context, userData, _) {
+          return FloatingActionButton(
+            onPressed: () {
+              userData.changeInformation(
+                  name: controllerName.text,
+                  country: controllerCountry.text,
+                  dateOfBirth: controllerDate.text);
+            },
+            elevation: 5,
+            child: Icon(CupertinoIcons.checkmark_alt),
+            backgroundColor: Colors.green,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          );
+        }),
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -75,29 +80,28 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   return Column(
                     children: [
                       HeaderAccount(),
-
                       SizedBox(
                         height: 30,
                       ),
-                      CustomInputField(hintText: userData.user.name),
-                      CustomInputField(hintText: userData.user.phone, icon: CupertinoIcons.phone,),
-                      CustomInputField(hintText: userData.user.birthday, icon: CupertinoIcons.calendar,),
-
+                      CustomInputField(
+                          textEditingController: controllerName,
+                          hintText: userData.user.name),
+                      CustomInputField(
+                        textEditingController: controllerCountry,
+                        hintText: userData.user.country ?? "",
+                        icon: CupertinoIcons.location,
+                      ),
+                      CustomInputField(
+                        textEditingController: controllerDate,
+                        hintText: userData.user.birthday,
+                        icon: CupertinoIcons.calendar,
+                      ),
                     ],
                   );
                 },
               ),
-
-
-
-
-
             ],
           ),
         ));
-  }
-
-  _SaveButtonPressed() {
-
   }
 }

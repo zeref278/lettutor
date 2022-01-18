@@ -35,11 +35,11 @@ class UserApi {
     }
   }
 
-  Future<dynamic> updateUserInfo(name, phone, date) async {
+  Future<dynamic> updateUserInfo(name, country, date) async {
     try {
       final res = await _dioClient.put(
-        "/auth/change-password",
-        data: {'name': name, 'phone': phone, 'birthday': date},
+        "/user/info",
+        data: {'name': name, 'country': country, 'birthday': date},
 
       );
       return res;

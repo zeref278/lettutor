@@ -16,20 +16,18 @@ class AuthServices {
   final _authApi = AuthApi.instance;
 
   Future<bool> SignInService(String email, String password) async {
-    try{
+    try {
       SharedPreferences sharedPreferences =
           await SharedPreferences.getInstance();
       SharedPreferenceHelper sharedPreferenceHelper =
-      SharedPreferenceHelper(sharedPreferences);
+          SharedPreferenceHelper(sharedPreferences);
 
       if (email != '' && password != '') {
-        var res =
-            await _authApi.login(email, password);
+        var res = await _authApi.login(email, password);
         if (res.statusCode != null && res.statusCode == 200) {
           var jsonRes = jsonDecode(res.toString());
           final String accessToken = jsonRes['tokens']['access']['token'];
-          final String refreshToken =
-          jsonRes['tokens']['refresh']['token'];
+          final String refreshToken = jsonRes['tokens']['refresh']['token'];
 
           //Save tokens
           await sharedPreferenceHelper.saveAuthToken(accessToken);
@@ -38,14 +36,9 @@ class AuthServices {
           return true;
         }
       } else {
-
         return false;
       }
-    }
-    catch(e) {
-
-
-    }
+    } catch (e) {}
 
     return false;
   }
@@ -80,4 +73,22 @@ class AuthServices {
   //   }
   //   return false;
   // }
+
+  Future<bool> signOut() async {
+    try {
+      SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+      SharedPreferenceHelper sharedPreferenceHelper =
+          SharedPreferenceHelper(sharedPreferences);
+
+      //Save tokens
+      await sharedPreferenceHelper.removeAuthToken();
+      await sharedPreferenceHelper.removeRefreshAuthToken();
+
+      return true;
+    } catch (e) {
+      rethrow;
+    }
+
+  }
 }

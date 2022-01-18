@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:lettutor/constants/ui_constants.dart';
 import 'package:lettutor/providers/user_provider.dart';
+import 'package:lettutor/services/auth_services.dart';
 import 'package:lettutor/ui/account_management/change_password_screen.dart';
 import 'package:lettutor/ui/account_management/edit_profile_screen.dart';
+import 'package:lettutor/ui/authentication/sign_in_screen.dart';
+import 'package:lettutor/ui/custom_widgets/custom_button/custom_signout_button.dart';
 import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
 import 'package:provider/provider.dart';
 
@@ -130,7 +133,17 @@ class ProfileScreen extends StatelessWidget {
                 width: size.width * 0.9,
                 textColor: Colors.black,
                 text: 'SIGN OUT',
-                onPressed: () {},
+                onPressed: () {
+                  AuthServices authService = AuthServices.instance;
+                  authService.signOut();
+                  Navigator.of(context)
+                      .pushAndRemoveUntil(
+                    MaterialPageRoute(
+                        builder: (context) => SignInScreen()
+                    ),
+                        (_) => false,
+                  );
+                },
               ),
             ],
           ),

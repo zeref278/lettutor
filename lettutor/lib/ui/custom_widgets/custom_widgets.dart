@@ -30,3 +30,5 @@ export 'package:lettutor/ui/custom_widgets/header_account/header_account.dart';
 export 'package:lettutor/ui/custom_widgets/header_account/header_account_setting.dart';
 
 export 'package:lettutor/ui/custom_widgets/custom_rating_bar/custom_rating_bar.dart';
+
+export 'package:lettutor/ui/custom_widgets/custom_stack_avatar/custom_avatar_active.dart';

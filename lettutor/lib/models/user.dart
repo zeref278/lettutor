@@ -7,6 +7,7 @@ class User {
   String linkAvatar;
   String phone;
   String birthday;
+  String? country;
 
   User(
       {required this.id,
@@ -14,18 +15,18 @@ class User {
       required this.name,
       required this.linkAvatar,
       required this.phone,
-      required this.birthday});
+      required this.birthday,
+      this.country});
 
-  factory  User.fromJson(Map<String, dynamic> json) {
+  factory User.fromJson(Map<String, dynamic> json) {
     return User(
-        id : json['id'],
-        email : json['email'],
-        name : json['name'],
-        linkAvatar : json['avatar'],
-        phone : json['phone'],
-        birthday : json['birthday']);
-
-
+        id: json['id'],
+        email: json['email'],
+        name: json['name'],
+        linkAvatar: json['avatar'],
+        phone: json['phone'],
+        birthday: json['birthday'],
+        country: json['country']);
   }
 
 }

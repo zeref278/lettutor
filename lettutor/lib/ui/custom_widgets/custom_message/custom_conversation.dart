@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor/models/conversation.dart';
 import 'package:lettutor/models/tutor.dart';
+import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
 
 class CustomConversation extends StatelessWidget {
   final Conversation conversation;
@@ -13,28 +14,7 @@ class CustomConversation extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: onTap,
-      leading: Stack(
-        children: <Widget>[
-          CircleAvatar(
-            radius: 25,
-            backgroundImage: AssetImage(conversation.tutor.linkAvatar),
-          ),
-          Positioned(
-            right: 0,
-            bottom: 0,
-            child: Container(
-              width: 16,
-              height: 16,
-              decoration: BoxDecoration(
-                  color: Colors.green,
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                      color: Theme.of(context).scaffoldBackgroundColor,
-                      width: 2)),
-            ),
-          )
-        ],
-      ),
+      leading: CustomAvatarActive(isActive: true, avatar: AssetImage('assets/avatar.jpg'),),
       title: Text(
         conversation.tutor.name,
         overflow: TextOverflow.ellipsis,

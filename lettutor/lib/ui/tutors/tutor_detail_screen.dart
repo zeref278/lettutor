@@ -21,11 +21,29 @@ class TutorDetailScreen extends StatefulWidget {
 class _TutorDetailScreenState extends State<TutorDetailScreen> {
   bool isFavorite = false;
 
+  @override
+  void initState() {
+    isFavorite = widget.tutor.isFavorite;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: defaultBackgroundColor,
+      appBar: AppBar(
+        title: Text('Tutor Detail'),
+        titleTextStyle: const TextStyle(
+            color: Colors.black, fontSize: 20, fontWeight: FontWeight.w600),
+        backgroundColor: defaultPrimaryColor,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(CupertinoIcons.chevron_back, color: Colors.black),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       body: SingleChildScrollView(
         padding: EdgeInsets.only(
             left: mediumSpacer, right: mediumSpacer, top: mediumSpacer),
@@ -36,9 +54,10 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  CircleAvatar(
-                    radius: 35,
-                    backgroundImage: AssetImage('assets/avatar.jpg'),
+                  CustomAvatarActive(
+                    avatar: Image.network(widget.tutor.linkAvatar).image,
+                    isActive: widget.tutor.isActivated,
+                    avatarSize: 35,
                   ),
                   SizedBox(
                     width: mediumSpacer,
@@ -57,7 +76,9 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                         SizedBox(
                           height: smallSpacer,
                         ),
-                        CustomRatingBar(rating: widget.tutor.rating, onRatingUpdate: (double i){}),
+                        CustomRatingBar(
+                            rating: widget.tutor.rating,
+                            onRatingUpdate: (double i) {}),
                         SizedBox(
                           height: smallSpacer,
                         ),
@@ -136,7 +157,6 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                 )
               ],
             ),
-
             SizedBox(height: mediumSpacer),
             const CustomDividerText(
               child: Text('Language',
@@ -162,7 +182,6 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                       color: Colors.black,
                       fontWeight: FontWeight.w600)),
             ),
-
             SizedBox(height: mediumSpacer),
             Wrap(
               spacing: 10,
@@ -251,11 +270,9 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                 ],
               ),
             ),
-
             SizedBox(height: mediumSpacer),
             const CustomDividerText(
-              child: Text(
-                  'Booking',
+              child: Text('Booking',
                   style: TextStyle(
                       fontSize: 18,
                       color: Colors.black,

@@ -3,6 +3,7 @@ import 'package:lettutor/models/tutor.dart';
 import 'package:lettutor/constants/ui_constants.dart';
 import 'package:lettutor/ui/custom_widgets/custom_button/custom_text_button.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:lettutor/ui/custom_widgets/custom_stack_avatar/custom_avatar_active.dart';
 import 'package:lettutor/ui/custom_widgets/custom_tag/custom_tag_tutor.dart';
 import 'package:lettutor/ui/tutors/tutor_detail_screen.dart';
 
@@ -13,7 +14,6 @@ class CustomCardTutor extends StatefulWidget {
     Key? key,
     required this.tutor,
   }) : super(key: key);
-
 
   @override
   State<StatefulWidget> createState() => _CustomCardTutorState();
@@ -48,9 +48,10 @@ class _CustomCardTutorState extends State<CustomCardTutor> {
                 SizedBox(
                   width: size.width * 0.03,
                 ),
-                CircleAvatar(
-                  radius: 35,
-                  backgroundImage: AssetImage('assets/avatar.jpg'),
+                CustomAvatarActive(
+                  avatar: Image.network(widget.tutor.linkAvatar).image,
+                  isActive: widget.tutor.isActivated,
+                  avatarSize: 35,
                 ),
                 SizedBox(
                   width: size.width * 0.03,
@@ -61,11 +62,12 @@ class _CustomCardTutorState extends State<CustomCardTutor> {
                     children: <Widget>[
                       CustomTextButton(
                           onPressed: () {
-                            Navigator.push(
-                              context,
+                            Navigator.of(context, rootNavigator: true).push(
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return TutorDetailScreen(tutor: widget.tutor,);
+                                  return TutorDetailScreen(
+                                    tutor: widget.tutor,
+                                  );
                                 },
                               ),
                             );
@@ -122,10 +124,15 @@ class _CustomCardTutorState extends State<CustomCardTutor> {
                   ),
                 ),
                 IconButton(
-                    onPressed: () {setState(() {
-                      isFavorite = !isFavorite;
-                    });},
-                    icon: Icon(isFavorite ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
+                    onPressed: () {
+                      setState(() {
+                        isFavorite = !isFavorite;
+                      });
+                    },
+                    icon: Icon(
+                        isFavorite
+                            ? CupertinoIcons.heart_fill
+                            : CupertinoIcons.heart,
                         color: isFavorite ? Colors.red : Colors.black,
                         size: 30))
               ],
