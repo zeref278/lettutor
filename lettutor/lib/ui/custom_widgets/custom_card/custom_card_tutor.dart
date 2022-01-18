@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor/models/tutor.dart';
 import 'package:lettutor/constants/ui_constants.dart';
+import 'package:lettutor/providers/tutor_provider.dart';
 import 'package:lettutor/ui/custom_widgets/custom_button/custom_text_button.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:lettutor/ui/custom_widgets/custom_rating_bar/custom_rating_bar.dart';
 import 'package:lettutor/ui/custom_widgets/custom_stack_avatar/custom_avatar_active.dart';
 import 'package:lettutor/ui/custom_widgets/custom_tag/custom_tag_tutor.dart';
 import 'package:lettutor/ui/tutors/tutor_detail_screen.dart';
+import 'package:provider/provider.dart';
 
 class CustomCardTutor extends StatefulWidget {
   final Tutor tutor;
@@ -20,7 +23,6 @@ class CustomCardTutor extends StatefulWidget {
 }
 
 class _CustomCardTutorState extends State<CustomCardTutor> {
-  bool isFavorite = false;
 
   void initState() {
     super.initState();
@@ -82,59 +84,34 @@ class _CustomCardTutorState extends State<CustomCardTutor> {
                       SizedBox(
                         height: 5,
                       ),
-                      Row(
-                        children: const <Widget>[
-                          Icon(
-                            CupertinoIcons.star_fill,
-                            size: 16,
-                            color: defaultPrimaryColor,
-                          ),
-                          Icon(
-                            CupertinoIcons.star_fill,
-                            size: 16,
-                            color: defaultPrimaryColor,
-                          ),
-                          Icon(
-                            CupertinoIcons.star_fill,
-                            size: 16,
-                            color: defaultPrimaryColor,
-                          ),
-                          Icon(
-                            CupertinoIcons.star_fill,
-                            size: 16,
-                            color: defaultPrimaryColor,
-                          ),
-                          Icon(
-                            CupertinoIcons.star_fill,
-                            size: 16,
-                            color: defaultPrimaryColor,
-                          ),
-                        ],
-                      ),
+                      CustomRatingBar(rating: widget.tutor.rating, onRatingUpdate: (double){}),
                       SizedBox(
                         height: 5,
                       ),
                       CustomTagTutor(
                         text: Text(
-                          widget.tutor.specialities,
+                          widget.tutor.specialities[0],
                           style: TextStyle(color: Colors.black),
                         ),
                       ),
                     ],
                   ),
                 ),
-                IconButton(
-                    onPressed: () {
-                      setState(() {
-                        isFavorite = !isFavorite;
-                      });
-                    },
-                    icon: Icon(
-                        isFavorite
-                            ? CupertinoIcons.heart_fill
-                            : CupertinoIcons.heart,
-                        color: isFavorite ? Colors.red : Colors.black,
-                        size: 30))
+                Consumer<TutorProvider>(
+                  builder: (context, tutorData, _) {
+                    return IconButton(
+                        onPressed: () async {
+                          await tutorData.addTutorToFavorite();
+                        },
+                        icon: Icon(
+                            tutorData.tutor.isFavorite
+                                ? CupertinoIcons.heart_fill
+                                : CupertinoIcons.heart,
+                            color: widget.tutor.isFavorite ? Colors.red : Colors.black,
+                            size: 30));
+                  },
+                ),
+
               ],
             ),
           ),

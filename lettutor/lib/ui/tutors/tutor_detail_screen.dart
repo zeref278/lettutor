@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor/models/tutor.dart';
 import 'package:lettutor/constants/ui_constants.dart';
+import 'package:lettutor/providers/tutor_provider.dart';
 import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
+import 'package:provider/provider.dart';
 
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
@@ -69,7 +71,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                         Text(
                           widget.tutor.name,
                           style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 24,
                               color: Colors.black,
                               fontWeight: FontWeight.w600),
                         ),
@@ -82,7 +84,6 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                         SizedBox(
                           height: smallSpacer,
                         ),
-                        Text('Viet Nam'),
                       ],
                     ),
                   ),
@@ -114,18 +115,20 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                 ),
                 Column(
                   children: [
-                    IconButton(
-                        onPressed: () {
-                          setState(() {
-                            isFavorite = !isFavorite;
-                          });
-                        },
-                        icon: Icon(
-                            isFavorite
-                                ? CupertinoIcons.heart_fill
-                                : CupertinoIcons.heart,
-                            color: Colors.red[700],
-                            size: 30)),
+                    Consumer<TutorProvider>(
+                      builder: (context, tutorData, _) {
+                        return IconButton(
+                            onPressed: () async {
+                              await tutorData.addTutorToFavorite();
+                            },
+                            icon: Icon(
+                                tutorData.tutor.isFavorite
+                                    ? CupertinoIcons.heart_fill
+                                    : CupertinoIcons.heart,
+                                color: widget.tutor.isFavorite ? Colors.red : Colors.black,
+                                size: 30));
+                      },
+                    ),
                     Text('Favorite',
                         style: TextStyle(fontSize: 16, color: Colors.red[700]))
                   ],
@@ -169,10 +172,9 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
             Wrap(
               spacing: 10,
               runSpacing: 10,
-              children: <Widget>[
-                CustomTagTutor(text: Text('English')),
-                CustomTagTutor(text: Text('Tagalog')),
-              ],
+              children:
+                widget.tutor.languages.map((e) => CustomTagTutor(text: Text(e))).toList()
+              ,
             ),
             SizedBox(height: mediumSpacer),
             const CustomDividerText(
@@ -186,12 +188,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
             Wrap(
               spacing: 10,
               runSpacing: 10,
-              children: <Widget>[
-                CustomTagTutor(text: Text('English for Business')),
-                CustomTagTutor(text: Text('Conversational')),
-                CustomTagTutor(text: Text('Tagalog')),
-                CustomTagTutor(text: Text('Tagalog')),
-              ],
+              children: widget.tutor.specialities.map((e) => CustomTagTutor(text: Text(e))).toList(),
             ),
             SizedBox(height: mediumSpacer),
             const CustomDividerText(

@@ -21,6 +21,18 @@ class TutorApi {
     }
   }
 
+  Future<dynamic> addTutorToFavorite(tutorId) async {
+    try {
+      final res = await _dioClient.post(
+        "/user/manageFavoriteTutor",
+        data: {'tutorId': tutorId}
+      );
+      return res;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
 
 
 

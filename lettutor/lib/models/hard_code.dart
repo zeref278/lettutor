@@ -68,24 +68,24 @@ List messages = [
 Tutor myTutor = Tutor(
   name: 'Duy Truong',
   linkAvatar: 'assets/avatar.jpg',
-  specialities: 'English for kid',
+  specialities: ['English for kid'],
   bio:
       "Hello there! I am an Industrial Engineer in the profession but chose to do online teaching because I love to meet different learners. I am an outgoing person and I have this passion for dealing with different people and seeing them progress with my help as their teacher. In fact, making friends is one of my best skills. I am very good at adapting to new environments and new situations. I am very friendly and can easily get along well with everyone. I have obtained a 120-Hour TEFL Certificate. I get a variety of teaching techniques. I know that there are fast and not so fast learners. So don't worry, I will be with you every step of the way going at your own pace. Let's practice what you already know and add something new each day. With my skills and experiences, I can assure you that I can provide adequate English learning effectively and efficiently. Together, let's make English learning fun.",
   id: '0',
   isActivated: false,
   isFavorite: false,
-  rating: 0,
+  rating: 0, languages: ['en'],
 );
 Course myCourse = Course(
   name: 'Basic Conversation Topics',
-  shortDescription: 'Gain confidence speaking about familiar topics',
+  description: 'Gain confidence speaking about familiar topics',
   level: 'Beginner',
   courseLength: 10,
-  firstOverview:
+  reason:
       "It can be intimidating to speak with a foreigner, no matter how much grammar and vocabulary you've mastered. If you have basic knowledge of English but have not spent much time speaking, this course will help you ease into your first English conversations.",
-  secondOverview:
+  purpose:
       "This course covers vocabulary at the CEFR A2 level. You will build confidence while learning to speak about a variety of common, everyday topics. In addition, you will build implicit grammar knowledge as your tutor models correct answers and corrects your mistakes.",
-  linkImageCover: 'assets/course.png',
+  linkImageCover: 'assets/course.png', id: '',
 );
 
 List listSpecialities = ['English for kid', 'TOEIC', 'IELTS', 'VNU-EPT'];

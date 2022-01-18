@@ -13,10 +13,10 @@ class TutorService {
 
   final _tutorApi = TutorApi.instance;
 
-  Future<Tutor?> getTutorById() async {
+  Future<Tutor?> getTutorById(String tutorId) async {
 
     try {
-      var res = await _tutorApi.getTutorById("4d54d3d7-d2a9-42e5-97a2-5ed38af5789a");
+      var res = await _tutorApi.getTutorById(tutorId);
 
       if (res.statusCode != null && res.statusCode == 200) {
         var jsonRes = jsonDecode(res.toString());
@@ -26,6 +26,19 @@ class TutorService {
     } catch (e) {
       rethrow;
     }
+  }
+
+  Future<bool> addTutorToFavorite(String tutorId) async {
+    try {
+      var res = await _tutorApi.addTutorToFavorite(tutorId);
+      if (res.statusCode != null && res.statusCode == 200) {
+        return true;
+      }
+    } catch(e) {
+      rethrow;
+    }
+
+    return false;
   }
   
 }

@@ -57,7 +57,7 @@ class CustomCardCourse extends StatelessWidget {
                   ),
                   SizedBox(height: 10,),
                   Text(
-                    course.shortDescription,
+                    course.description,
                     maxLines: 3,
                     style: TextStyle(fontSize: 14, color: Colors.grey),
                   ),

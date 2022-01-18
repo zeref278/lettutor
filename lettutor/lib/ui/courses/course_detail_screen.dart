@@ -57,7 +57,7 @@ class CourseDetailScreen extends StatelessWidget {
               height: 5,
             ),
             Text(
-              course.firstOverview,
+              course.reason,
             ),
             SizedBox(
               height: 10,
@@ -81,7 +81,7 @@ class CourseDetailScreen extends StatelessWidget {
               height: 5,
             ),
             Text(
-              course.secondOverview,
+              course.purpose,
             ),
             CustomDividerText(
               child: Text('Experience Level',

@@ -1,3 +1,5 @@
+import 'package:lettutor/services/parser_service.dart';
+
 class Tutor {
   String id;
   String name;
@@ -7,10 +9,11 @@ class Tutor {
   double rating;
   String? experience;
   String? interests;
-  String? languages;
-  String specialities;
+  List<String> languages;
+  List<String> specialities;
   bool isActivated;
   bool isFavorite;
+
 
   Tutor({
     required this.id,
@@ -21,7 +24,7 @@ class Tutor {
     required this.rating,
     this.experience,
     this.interests,
-    this.languages,
+    required this.languages,
     required this.specialities,
     required this.isActivated,
     required this.isFavorite
@@ -32,13 +35,13 @@ class Tutor {
       id: json['userId'],
       name: json['User']['name'],
       linkAvatar: json['User']['avatar'],
-      specialities: json['specialties'],
+      specialities: ParserService.parseString(json['specialties'], ","),
       bio: json['bio'],
       isActivated: json['isActivated'] as bool,
       rating: json['avgRating'] as double,
       isFavorite: json['isFavorite'] as bool,
       experience: json['experience'],
-      languages: json['languages'],
+      languages: ParserService.parseString(json['languages'], ","),
       interests: json['interests'],
       videoLink: json['video']
     );
