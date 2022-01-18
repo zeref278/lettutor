@@ -23,17 +23,7 @@ class TutorsScreen extends StatelessWidget {
               placeholder: 'Search tutor',
             ),
             const SizedBox(height: mediumSpacer),
-            CustomCardTutor(
-              tutor: myTutor,
-            ),
-            const SizedBox(height: mediumSpacer),
-            CustomCardTutor(
-              tutor: myTutor,
-            ),
-            const SizedBox(height: mediumSpacer),
-            CustomCardTutor(
-              tutor: myTutor,
-            ),
+
           ],
         ),
       ),

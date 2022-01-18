@@ -4,6 +4,7 @@ import 'package:lettutor/services/tutor_service.dart';
 
 
 class TutorProvider with ChangeNotifier {
+  List<Tutor> get tutors => _tutors;
   Tutor get tutor => _tutor;
 
   Tutor _tutor = Tutor(
@@ -11,20 +12,39 @@ class TutorProvider with ChangeNotifier {
 
   final TutorService _tutorService = TutorService.instance;
 
-  Future<bool> fetchTutorInfo() async {
+  List<Tutor> _tutors = [];
+
+  Future<bool> fetchListTutor(String perPage, String page) async {
+    _tutors.clear();
     try {
-      _tutor =  (await _tutorService.getTutorById("4d54d3d7-d2a9-42e5-97a2-5ed38af5789a"))!;
+      List<String> listId = await  _tutorService.getListTutor(perPage, page);
+      for(int pos = 0; pos < listId.length; pos++) {
+        await fetchTutorInfo(listId[pos]);
+        _tutors.add(_tutor);
+      }
       notifyListeners();
+
       return true;
+    } catch(e) {
+      rethrow;
+    }
+  }
+  
+
+  Future<Tutor> fetchTutorInfo(String tutorId) async {
+    try {
+      _tutor =  (await _tutorService.getTutorById(tutorId))!;
+      notifyListeners();
+      return _tutor;
     } catch (err) {
       rethrow;
     }
   }
 
-  Future<bool> addTutorToFavorite() async {
+  Future<bool> addTutorToFavorite(String tutorId) async {
     try {
-      bool result =  (await _tutorService.addTutorToFavorite("4d54d3d7-d2a9-42e5-97a2-5ed38af5789a"));
-      await fetchTutorInfo();
+      bool result =  (await _tutorService.addTutorToFavorite(tutorId));
+      await fetchTutorInfo(tutorId);
       return result;
     } catch (err) {
       rethrow;

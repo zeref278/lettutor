@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:lettutor/data/network/apis/api.dart';
 import 'package:lettutor/models/tutor.dart';
+import 'package:lettutor/services/parser_service.dart';
 
 
 class TutorService {
@@ -24,6 +25,19 @@ class TutorService {
       }
       return null;
     } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<List<String>> getListTutor(String perPage, String page) async {
+    List<String> result;
+
+    try {
+      var res = await _tutorApi.getListTutor(perPage, page);
+      result = ParserService.parseListTutor(res.toString());
+      print(result);
+      return result;
+    } catch(e) {
       rethrow;
     }
   }

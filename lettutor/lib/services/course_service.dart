@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:lettutor/data/network/apis/api.dart';
+import 'package:lettutor/models/course.dart';
+import 'package:lettutor/services/parser_service.dart';
 
 class CourseService {
 
@@ -10,46 +12,36 @@ class CourseService {
 
   static CourseService get instance => _instance;
 
-  Future<bool> getListCourse() async {
-    try{
+  final _courseApi = CourseApi.instance;
 
-      var userApi = UserApi.instance;
-      var res = await userApi.getUserInfo();
-      var jsonRes = jsonDecode(res.toString());
+  Future<List<Course>> getListCourse(String page, String size) async {
+    try{
+      var res = await _courseApi.getListCourse(page, size);
+      return ParserService.parseListCourse(res.toString());
     }
     catch(e) {
-      // _showMyDialog(
-      //     'Error', "Email or password incorrect", BasicDialogStatus.error);
+      rethrow;
 
     }
-
-    return false;
+    
   }
 
-  Future<bool> getCourseByCourseId(String id) async {
+  Future<Course?> getCourseByCourseId(String courseId) async {
     try{
 
-      var courseApi = CourseApi.instance;
-      if (id != '') {
         var res =
-        await courseApi.getCourseByCourseId(id);
+        await _courseApi.getCourseByCourseId(courseId);
         if (res.statusCode != null && res.statusCode == 200) {
-          var jsonRes = jsonDecode(res.toString());
-
-          return true;
+          return ParserService.parseCourse(res.toString());
+          
         }
-      } else {
-        // _showMyDialog(
-        //     'Error', "Please fill all fields", BasicDialogStatus.error);
-        return false;
-      }
+        return null;
+
     }
     catch(e) {
-      // _showMyDialog(
-      //     'Error', "Email or password incorrect", BasicDialogStatus.error);
+      rethrow;
 
     }
 
-    return false;
   }
 }

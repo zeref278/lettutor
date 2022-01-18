@@ -46,4 +46,24 @@ class Tutor {
       videoLink: json['video']
     );
   }
+
+  factory Tutor.fromJsonVer2(Map<String, dynamic> json) {
+    return Tutor(
+        id: json['userId'],
+        name: json['name'],
+        linkAvatar: json['avatar'],
+        specialities: ParserService.parseString(json['specialties'], ","),
+        bio: json['bio'],
+        isActivated: json['isActivated'] as bool,
+        rating: 0,
+        isFavorite: false,
+        experience: json['experience'],
+        languages: ParserService.parseString(json['languages'], ","),
+        interests: json['interests'],
+        videoLink: json['video']
+    );
+  }
+
+
+
 }

@@ -18,11 +18,10 @@ class CustomCardCourse extends StatelessWidget {
     int courseLength = course.courseLength;
     return GestureDetector(
       onTap: (){
-        Navigator.push(
-          context,
+        Navigator.of(context, rootNavigator: true).push(
           MaterialPageRoute(
             builder: (context) {
-              return CourseDetailScreen(course: course,);
+              return CourseDetailScreen(courseId: course.id,);
             },
           ),
         );
@@ -41,7 +40,7 @@ class CustomCardCourse extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image(
-                image: AssetImage(course.linkImageCover),
+                image: Image.network(course.linkImageCover).image,
               ),
             ),
             SizedBox(height: 20),

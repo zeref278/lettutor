@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:lettutor/providers/tutor_provider.dart';
 import 'package:lettutor/providers/user_provider.dart';
+import 'package:lettutor/services/tutor_service.dart';
 import 'package:lettutor/ui/custom_widgets/custom_tabbar/bottom_nav_custom.dart';
 import 'package:lettutor/ui/custom_widgets/custom_tabbar/tab_navigator.dart';
 import 'package:lettutor/ui/account_management/profile_screen.dart';
@@ -30,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
       });
     });
     Provider.of<TutorProvider>(context, listen: false)
-        .fetchTutorInfo()
+        .fetchListTutor("2", "1")
         .then((_) {
       setState(() {
         _isLoading2 = false;
@@ -128,6 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
                     ),
                     onTap: () {
+
                       Navigator.of(context, rootNavigator: true).push(
                         MaterialPageRoute(
                           builder: (context) {

@@ -43,17 +43,23 @@ class HomeScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(
+                    height: 10,
+                  ),
                   const Text(
                     'Up comming Lesson',
                     style: TextStyle(
                         color: Colors.black, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(
+                    height: 10,
+                  ),
                   const Text('Fri, 15 Oct 21 6:30 - 7:30',
                       style: TextStyle(
                           color: Colors.black, fontWeight: FontWeight.w600)),
-                  SizedBox(height: 15,),
+                  SizedBox(
+                    height: 15,
+                  ),
                   CustomRoundedButton(
                     onPressed: () {
                       Navigator.push(
@@ -104,31 +110,26 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
             Container(
-              padding: EdgeInsets.only(left: 15, right: 15),
-              child: Column(
-                children: [
-                  const SizedBox(height: mediumSpacer),
-                  Consumer<TutorProvider>(
-                    builder: (context, tutorData, _){
-                      return CustomCardTutor(
-                        tutor: tutorData.tutor,
-                      );
-                    },
-                  ),
+              padding: EdgeInsets.only(left: 15, right: 15, top: 15),
+              child: Consumer<TutorProvider>(
+                builder: (context, tutorData, _) {
+                  return ListView.builder(
+                      shrinkWrap: true,
+                      physics: ClampingScrollPhysics(),
+                      itemCount: tutorData.tutors.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Column(
+                          children: [
 
-                  const SizedBox(height: mediumSpacer),
-                  CustomCardTutor(
-                    tutor: myTutor,
-                  ),
-                  const SizedBox(height: mediumSpacer),
-                  CustomCardTutor(
-                    tutor: myTutor,
-                  ),
-                  const SizedBox(height: mediumSpacer),
-                  CustomCardTutor(
-                    tutor: myTutor,
-                  ),
-                ],
+                            CustomCardTutor(
+                              tutorId: tutorData.tutors[index].id,),
+                            SizedBox(height: 15,),
+                          ],
+                        );
+                      });
+
+
+                },
               ),
             ),
           ],

@@ -13,7 +13,7 @@ class CourseApi {
   Future<dynamic> getListCourse(page, size) async {
     try {
       final res = await _dioClient.get(
-        "course",
+        "/course?page=$page&size=$size",
       );
       return res;
     } catch (e) {

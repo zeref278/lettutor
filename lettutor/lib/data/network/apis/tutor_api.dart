@@ -21,6 +21,17 @@ class TutorApi {
     }
   }
 
+  Future<dynamic> getListTutor(perPage, page) async {
+    try {
+      final res = await _dioClient.get(
+        "/tutor/more?perPage=$perPage&page=$page",
+      );
+      return res;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<dynamic> addTutorToFavorite(tutorId) async {
     try {
       final res = await _dioClient.post(

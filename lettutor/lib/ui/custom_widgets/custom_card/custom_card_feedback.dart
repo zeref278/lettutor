@@ -59,7 +59,7 @@ class CustomCardFeedback extends StatelessWidget {
                               MaterialPageRoute(
                                 builder: (context) {
                                   return TutorDetailScreen(
-                                    tutor: tutor,
+                                    tutorId: tutor.id,
                                   );
                                 },
                               ),
