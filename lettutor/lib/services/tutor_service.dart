@@ -42,13 +42,28 @@ class TutorService {
     }
   }
 
+  Future<bool> reviewTutor(String bookingId, String tutorId, String rating, String content) async {
+
+    try {
+      var res = await _tutorApi.reviewTutor(bookingId, tutorId, rating, content);
+      if (res.statusCode != null && res.statusCode == 200) {
+        return true;
+      }
+
+      return false;
+
+    } catch(e) {
+      rethrow;
+    }
+  }
+
   Future<List<String>> getListTutor(String perPage, String page) async {
     List<String> result;
 
     try {
       var res = await _tutorApi.getListTutor(perPage, page);
       result = ParserService.parseListTutor(res.toString());
-      print(result);
+
       return result;
     } catch(e) {
       rethrow;

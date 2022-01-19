@@ -37,7 +37,7 @@ class _CourseHorizontalState extends State<CourseHorizontal> {
         CircularProgressIndicator():
       Container(
         margin: EdgeInsets.symmetric(vertical: 20.0),
-        height: 360,
+        height: 375,
         child: ListView(
           padding: EdgeInsets.only(left: 10, right: 10),
           scrollDirection: Axis.horizontal,

@@ -4,6 +4,7 @@ import 'package:lettutor/models/course.dart';
 import 'package:lettutor/constants/ui_constants.dart';
 import 'package:lettutor/providers/course_provider.dart';
 import 'package:lettutor/providers/tutor_provider.dart';
+import 'package:lettutor/services/parser_service.dart';
 import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
 import 'package:lettutor/ui/tutors/tutor_detail_screen.dart';
 import 'package:provider/provider.dart';
@@ -153,7 +154,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                             width: 10,
                           ),
                           Text(
-                            courseData.course.level,
+                            ParserService.parseLevel(courseData.course.level),
                             style: TextStyle(
                                 fontSize: 17, fontWeight: FontWeight.w500),
                           )

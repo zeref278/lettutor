@@ -5,7 +5,6 @@ import 'package:lettutor/models/hard_code.dart';
 import 'package:lettutor/constants/ui_constants.dart';
 import 'package:lettutor/providers/course_provider.dart';
 import 'package:lettutor/ui/courses/courses_horizontal.dart';
-import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
 import 'package:provider/provider.dart';
 
 class CoursesScreen extends StatefulWidget {

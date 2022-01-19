@@ -91,4 +91,17 @@ class TutorProvider with ChangeNotifier {
       rethrow;
     }
   }
+
+  Future<bool> reviewTutor(String bookingId, String tutorId, String rating, String content) async {
+    try {
+      bool result = (await _tutorService.reviewTutor(bookingId, tutorId, rating, content));
+      if(result) {
+        await fetchTutorInfo(tutorId);
+      }
+
+      return result;
+    } catch(e) {
+      rethrow;
+    }
+  }
 }

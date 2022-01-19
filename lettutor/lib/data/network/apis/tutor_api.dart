@@ -34,10 +34,22 @@ class TutorApi {
 
   Future<dynamic> addTutorToFavorite(tutorId) async {
     try {
-      final res = await _dioClient.post(
-        "/user/manageFavoriteTutor",
-        data: {'tutorId': tutorId}
-      );
+      final res = await _dioClient
+          .post("/user/manageFavoriteTutor", data: {'tutorId': tutorId});
+      return res;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<dynamic> reviewTutor(bookingId, tutorId, rating, content) async {
+    try {
+      final res = await _dioClient.post("/user/feedbackTutor", data: {
+        'bookingId': bookingId,
+        'userId': tutorId,
+        'rating': rating,
+        'content': content
+      });
       return res;
     } catch (e) {
       rethrow;
@@ -46,18 +58,11 @@ class TutorApi {
 
   Future<dynamic> searchTutor(keyWord) async {
     try {
-      final res = await _dioClient.post(
-          "/tutor/search",
-          data: {'search': keyWord}
-      );
+      final res =
+          await _dioClient.post("/tutor/search", data: {'search': keyWord});
       return res;
     } catch (e) {
       rethrow;
     }
   }
-
-
-
-
 }
-

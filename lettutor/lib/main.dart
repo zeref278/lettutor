@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor/providers/course_provider.dart';
+import 'package:lettutor/providers/schedule_provider.dart';
 import 'package:lettutor/providers/tutor_provider.dart';
 
 import 'package:lettutor/providers/user_provider.dart';
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(create: (ctx) => TutorProvider()),
         ChangeNotifierProvider(create: (ctx) => CourseProvider()),
+        ChangeNotifierProvider(create: (ctx) => ScheduleProvider()),
       ],
       child: MaterialApp(
         title: 'sTutoring',

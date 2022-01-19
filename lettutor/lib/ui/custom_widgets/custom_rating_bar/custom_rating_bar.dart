@@ -5,6 +5,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 class CustomRatingBar extends StatelessWidget {
   final double rating;
   final bool isReadonly;
+  final bool isAllowHalfStar;
   final void Function(double) onRatingUpdate;
   final double? sizeOfStar;
 
@@ -12,6 +13,7 @@ class CustomRatingBar extends StatelessWidget {
       {Key? key,
       required this.rating,
       this.isReadonly = true,
+      this.isAllowHalfStar = true,
       required this.onRatingUpdate,
       this.sizeOfStar})
       : super(key: key);
@@ -20,7 +22,7 @@ class CustomRatingBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return RatingBar(
       ignoreGestures: isReadonly,
-      allowHalfRating: true,
+      allowHalfRating: isAllowHalfStar,
       initialRating: rating,
       itemSize: sizeOfStar ?? 18,
       onRatingUpdate: onRatingUpdate,
