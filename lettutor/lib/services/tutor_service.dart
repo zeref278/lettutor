@@ -29,6 +29,19 @@ class TutorService {
     }
   }
 
+  Future<List<String>> searchTutor(String keyWord) async {
+    List<String> result;
+
+    try {
+      var res = await _tutorApi.searchTutor(keyWord);
+      result = ParserService.parseSearchResult(res.toString());
+
+      return result;
+    } catch(e) {
+      rethrow;
+    }
+  }
+
   Future<List<String>> getListTutor(String perPage, String page) async {
     List<String> result;
 

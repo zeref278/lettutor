@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor/models/course.dart';
+import 'package:lettutor/services/parser_service.dart';
 import 'package:lettutor/ui/courses/course_detail_screen.dart';
 
 class CustomCardCourse extends StatelessWidget {
@@ -62,7 +63,7 @@ class CustomCardCourse extends StatelessWidget {
                   ),
                   SizedBox(height: 15,),
                   Text(
-                    '$level • $courseLength Lessons',
+                    '${ParserService.parseLevel(course.level)} • $courseLength Lessons',
                     style: TextStyle(fontSize: 14, color: Colors.black),
                   ),
                 ],

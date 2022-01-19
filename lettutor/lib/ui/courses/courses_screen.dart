@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lettutor/models/course.dart';
 import 'package:lettutor/models/hard_code.dart';
 import 'package:lettutor/constants/ui_constants.dart';
 import 'package:lettutor/providers/course_provider.dart';
+import 'package:lettutor/ui/courses/courses_horizontal.dart';
 import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
 import 'package:provider/provider.dart';
 
@@ -59,13 +61,8 @@ class _CoursesScreenState extends State<CoursesScreen> {
               SizedBox(
                 height: 20,
               ),
-              Container(
-                padding: EdgeInsets.only(left: 20),
-                child: Text(
-                  'English For Beginners',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-                ),
-              ),
+
+          //CourseHorizontal(category: "English for Beginners"),
           Consumer<CourseProvider>(
             builder: (context, courseData, _) {
               return Container(
@@ -73,11 +70,20 @@ class _CoursesScreenState extends State<CoursesScreen> {
                   child: ListView.builder(
                       shrinkWrap: true,
                       physics: ClampingScrollPhysics(),
-                      itemCount: courseData.courses.length,
+                      itemCount: Course.allCategory.length,
                       itemBuilder: (context, int index) {
-                        return CustomCardCourse(
-                          width: size.width * 0.6,
-                          course: courseData.courses[index],
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.only(left: 20),
+                              child: Text(
+                                Course.allCategory[index],
+                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                              ),
+                            ),
+                            CourseHorizontal(category: Course.allCategory[index]),
+                          ],
                         );
                       }));
             },

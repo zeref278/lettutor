@@ -10,8 +10,22 @@ import 'package:lettutor/constants/ui_constants.dart';
 import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
 import 'package:lettutor/ui/home_screen/home_nav.dart';
 
-class SignInScreen extends StatelessWidget {
+class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
+
+
+  @override
+  State<SignInScreen> createState() => _SignInScreenState();
+}
+
+class _SignInScreenState extends State<SignInScreen> {
+
+
+  @override
+  void initState() {
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +67,7 @@ class SignInScreen extends StatelessWidget {
                 text: 'SIGN IN',
                 onPressed: () async {
                   AuthServices authservice = AuthServices.instance;
-                  bool result = await authservice.SignInService("student@lettutor.com", "123456");
+                  bool result = await authservice.signInService("student@lettutor.com", "123456");
                   if( result){
                     Navigator.pushReplacement(
                       context,

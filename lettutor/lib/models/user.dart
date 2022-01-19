@@ -5,7 +5,7 @@ class User {
   String email;
   String name;
   String linkAvatar;
-  String phone;
+  String? phone;
   String birthday;
   String? country;
 
@@ -14,7 +14,7 @@ class User {
       required this.email,
       required this.name,
       required this.linkAvatar,
-      required this.phone,
+      this.phone,
       required this.birthday,
       this.country});
 
@@ -24,7 +24,7 @@ class User {
         email: json['email'],
         name: json['name'],
         linkAvatar: json['avatar'],
-        phone: json['phone'],
+        //phone: json['phone'],
         birthday: json['birthday'],
         country: json['country']);
   }

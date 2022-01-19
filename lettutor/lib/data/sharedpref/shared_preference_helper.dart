@@ -22,12 +22,28 @@ class SharedPreferenceHelper {
     return _sharedPreference.setString(Preferences.refresh_auth_token, refreshAuthToken);
   }
 
+  Future<bool> saveAuthTokenExpire(String authTokenExpire) async {
+    return _sharedPreference.setString(Preferences.auth_token_expire, authTokenExpire);
+  }
+
+  Future<bool> saveRefreshAuthTokenExpire(String refreshAuthTokenExpire) async {
+    return _sharedPreference.setString(
+        Preferences.refresh_auth_token_expire, refreshAuthTokenExpire);
+  }
   Future<bool> removeAuthToken() async {
     return _sharedPreference.remove(Preferences.auth_token);
   }
 
   Future<bool> removeRefreshAuthToken() async {
     return _sharedPreference.remove(Preferences.refresh_auth_token);
+  }
+
+  Future<bool> removeAuthTokenExpire() async {
+    return _sharedPreference.remove(Preferences.auth_token_expire);
+  }
+
+  Future<bool> removeRefreshAuthTokenExpire() async {
+    return _sharedPreference.remove(Preferences.refresh_auth_token_expire);
   }
 
   Future<String?> get authenticationKey async {

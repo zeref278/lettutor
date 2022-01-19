@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor/models/tutor.dart';
+import 'package:intl/intl.dart';
+import 'package:lettutor/models/feedback.dart';
 import 'package:lettutor/ui/custom_widgets/custom_button/custom_text_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:lettutor/ui/custom_widgets/custom_tag/custom_tag_tutor.dart';
-import 'package:lettutor/ui/tutors/tutor_detail_screen.dart';
 
 class CustomCardFeedback extends StatelessWidget {
-  final Tutor tutor;
-  final double countStars;
-  final String feedbacks;
+  final MyFeedback feedback;
 
-  CustomCardFeedback(
-      {Key? key,
-      required this.tutor,
-      required this.countStars,
-      required this.feedbacks})
-      : super(key: key);
+  const CustomCardFeedback({Key? key, required this.feedback}) : super(key: key);
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +38,7 @@ class CustomCardFeedback extends StatelessWidget {
                 ),
                 CircleAvatar(
                   radius: 25,
-                  backgroundImage: AssetImage(tutor.linkAvatar),
+                  backgroundImage: Image.network(feedback.linkAvatar).image,
                 ),
                 SizedBox(
                   width: size.width * 0.03,
@@ -54,19 +49,9 @@ class CustomCardFeedback extends StatelessWidget {
                     children: <Widget>[
                       CustomTextButton(
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return TutorDetailScreen(
-                                    tutorId: tutor.id,
-                                  );
-                                },
-                              ),
-                            );
                           },
                           title: Text(
-                            tutor.name,
+                            feedback.name,
                             style: TextStyle(
                                 fontSize: 18,
                                 color: Colors.black,
@@ -77,7 +62,7 @@ class CustomCardFeedback extends StatelessWidget {
                       ),
                       CustomTagTutor(
                         text: Text(
-                          '2021-10-24 21:46:00',
+                          DateFormat('yyyy-MM-dd kk:mm:ss').format(DateTime.parse(feedback.date)),
                           style: TextStyle(color: Colors.black),
                         ),
                       ),
@@ -87,14 +72,16 @@ class CustomCardFeedback extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                        '$countStars',
-                    style: TextStyle(color: Colors.redAccent),),
+                        '${feedback.rating}',
+                    style: TextStyle( fontSize: 18, color: Colors.redAccent, fontWeight: FontWeight.bold),),
                     Icon(
                       CupertinoIcons.star_fill,
-                      color: Colors.yellow,
+                      size: 26,
+                      color: Colors.amber,
                     )
                   ],
-                )
+                ),
+                SizedBox(width: 5,)
               ],
             ),
           ),
@@ -113,8 +100,8 @@ class CustomCardFeedback extends StatelessWidget {
               )),
               padding: EdgeInsets.only(left: 10, right: 10),
               child: Text(
-                feedbacks,
-                style: TextStyle(color: Colors.black, fontSize: 15),
+                feedback.content,
+                style: TextStyle(color: Colors.black, fontSize: 16),
               ),
             ),
           ),

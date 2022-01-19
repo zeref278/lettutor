@@ -20,6 +20,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   initState() {
     super.initState();
 
+    Provider.of<UserProvider>(context, listen: false)
+        .fetchUserInfo()
+        .then((_) {
+      setState(() {
+
+      });
+    });
     controllerName = TextEditingController();
     controllerCountry = TextEditingController();
     controllerDate = TextEditingController();

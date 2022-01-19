@@ -44,6 +44,18 @@ class TutorApi {
     }
   }
 
+  Future<dynamic> searchTutor(keyWord) async {
+    try {
+      final res = await _dioClient.post(
+          "/tutor/search",
+          data: {'search': keyWord}
+      );
+      return res;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
 
 
 

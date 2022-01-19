@@ -8,6 +8,8 @@ import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
 import 'package:lettutor/ui/tutors/tutor_detail_screen.dart';
 import 'package:provider/provider.dart';
 
+import 'ebook_view_screen.dart';
+
 class CourseDetailScreen extends StatefulWidget {
   const CourseDetailScreen({Key? key, required this.courseId})
       : super(key: key);
@@ -195,12 +197,21 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                             return Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  '${index + 1}. ${courseData.course.listTopic![index].name}',
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                  ),
-                                ),
+                                CustomTextButton(
+                                    onPressed: () {
+                                      Navigator.of(context, rootNavigator: true).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  EbookViewScreen(pdfUrl: courseData.course.listTopic![index].linkFile,
+                                                      )));
+                                    },
+                                    title: Text(
+                                      '${index + 1}. ${courseData.course.listTopic![index].name}',
+                                      style: TextStyle(
+                                        fontSize: 17,
+                                      ),
+                                    ),),
+
                                 SizedBox(height: 8),
                               ],
                             );

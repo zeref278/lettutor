@@ -12,10 +12,11 @@ import 'package:provider/provider.dart';
 
 class CustomCardTutor extends StatefulWidget {
   final String tutorId;
+  final String? keyWord;
 
   CustomCardTutor({
     Key? key,
-    required this.tutorId,
+    required this.tutorId, this.keyWord,
   }) : super(key: key);
 
   @override
@@ -30,26 +31,23 @@ class _CustomCardTutorState extends State<CustomCardTutor> {
 
   @override
   void initState() {
-    Provider.of<TutorProvider>(context, listen: false)
-        .fetchTutorInfo(widget.tutorId)
-        .then((_) {
-      setState(() {
-        _isLoading = false;
-      });
-    });
+    // Provider.of<TutorProvider>(context, listen: false)
+    //     .fetchTutorInfo(widget.tutorId)
+    //     .then((_) {
+    //   setState(() {
+    //     _isLoading = false;
+    //   });
+    // });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return _isLoading
-        ? Center(
-      child: CircularProgressIndicator(),
-    )
-        :
+    return
       Consumer<TutorProvider>(
         builder: (context, tutorData, _) {
+          Tutor tutor = tutorData.tutors[tutorData.getTutorById(widget.tutorId)];
           return Container(
             width: size.width,
             decoration: BoxDecoration(
@@ -58,6 +56,7 @@ class _CustomCardTutorState extends State<CustomCardTutor> {
               border: Border.all(color: Colors.grey.withOpacity(0.5)),
             ),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 SizedBox(
                   height: size.height * 0.025,
@@ -70,7 +69,7 @@ class _CustomCardTutorState extends State<CustomCardTutor> {
                         width: size.width * 0.03,
                       ),
                       CustomAvatarActive(
-                        avatar: Image.network(tutorData.tutor.linkAvatar).image,
+                        avatar: Image.network(tutor.linkAvatar).image,
                         isActive: tutorData.tutor.isActivated,
                         avatarSize: 35,
                       ),
@@ -87,14 +86,14 @@ class _CustomCardTutorState extends State<CustomCardTutor> {
                                     MaterialPageRoute(
                                       builder: (context) {
                                         return TutorDetailScreen(
-                                          tutorId: tutorData.tutor.id,
+                                          tutorId: tutor.id,
                                         );
                                       },
                                     ),
                                   );
                                 },
                                 title: Text(
-                                  tutorData.tutor.name,
+                                  tutor.name,
                                   style: TextStyle(
                                       fontSize: 18,
                                       color: Colors.black,
@@ -103,13 +102,13 @@ class _CustomCardTutorState extends State<CustomCardTutor> {
                             SizedBox(
                               height: 5,
                             ),
-                            CustomRatingBar(rating: tutorData.tutor.rating, onRatingUpdate: (double){}),
+                            CustomRatingBar(rating: tutor.rating, onRatingUpdate: (double){}),
                             SizedBox(
                               height: 5,
                             ),
                             CustomTagTutor(
                               text: Text(
-                                tutorData.tutor.specialities[0],
+                                tutor.specialities[0],
                                 style: TextStyle(color: Colors.black),
                               ),
                             ),
@@ -120,13 +119,13 @@ class _CustomCardTutorState extends State<CustomCardTutor> {
                         builder: (context, tutorData, _) {
                           return IconButton(
                               onPressed: () async {
-                                await tutorData.addTutorToFavorite(tutorData.tutor.id);
+                                await tutorData.addTutorToFavorite( tutorId:tutor.id);
                               },
                               icon: Icon(
-                                  tutorData.tutor.isFavorite
+                                  tutor.isFavorite
                                       ? CupertinoIcons.heart_fill
                                       : CupertinoIcons.heart,
-                                  color: tutorData.tutor.isFavorite ? Colors.red : Colors.black,
+                                  color: tutor.isFavorite ? Colors.red : Colors.black,
                                   size: 30));
                         },
                       ),
@@ -141,7 +140,8 @@ class _CustomCardTutorState extends State<CustomCardTutor> {
                   padding: EdgeInsets.only(
                       left: size.width * 0.04, right: size.width * 0.04),
                   child: Text(
-                    tutorData.tutor.bio,
+                    tutor.bio,
+                    textAlign: TextAlign.left,
                     style: TextStyle(color: Colors.black, fontSize: 15),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 3,

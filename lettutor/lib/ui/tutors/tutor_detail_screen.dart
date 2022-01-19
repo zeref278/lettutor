@@ -5,8 +5,11 @@ import 'package:lettutor/models/tutor.dart';
 import 'package:lettutor/constants/ui_constants.dart';
 import 'package:lettutor/providers/tutor_provider.dart';
 import 'package:lettutor/providers/user_provider.dart';
+import 'package:lettutor/services/parser_service.dart';
+import 'package:lettutor/ui/courses/course_detail_screen.dart';
 import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
 import 'package:lettutor/ui/processing/processing_screen.dart';
+import 'package:lettutor/ui/tutors/feedbacks_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'package:syncfusion_flutter_calendar/calendar.dart';
@@ -37,9 +40,9 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
         _controller = VideoPlayerController.network(tutor.videoLink!)
           ..initialize().then((_) {
             setState(() {});
-
+            _controller.play();
           });
-        // _isLoading = false;
+        _isLoading = false;
       });
     });
 
@@ -54,32 +57,26 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return _isLoading
-        ? ProcessingScreen(
-      onTimeout: () {
-        setState(() {
-          _isLoading = false;
-          _controller.play();
-        });
-      },)
-        : Scaffold(
-            backgroundColor: defaultBackgroundColor,
-            appBar: AppBar(
-              title: Text('Tutor Detail'),
-              titleTextStyle: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600),
-              backgroundColor: defaultPrimaryColor,
-              elevation: 0,
-              leading: IconButton(
-                icon: Icon(CupertinoIcons.chevron_back, color: Colors.black),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ),
-            body: SingleChildScrollView(
+    return Scaffold(
+      backgroundColor: defaultBackgroundColor,
+      appBar: AppBar(
+        title: Text('Tutor Detail'),
+        titleTextStyle: const TextStyle(
+            color: Colors.black, fontSize: 20, fontWeight: FontWeight.w600),
+        backgroundColor: defaultPrimaryColor,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(CupertinoIcons.chevron_back, color: Colors.black),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: _isLoading
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : SingleChildScrollView(
               padding: EdgeInsets.only(
                   left: mediumSpacer, right: mediumSpacer, top: mediumSpacer),
               child: Consumer<TutorProvider>(
@@ -158,7 +155,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                                   return IconButton(
                                       onPressed: () async {
                                         await tutorData.addTutorToFavorite(
-                                            tutorData.tutor.id);
+                                            tutorId: tutorData.tutor.id);
                                       },
                                       icon: Icon(
                                           tutorData.tutor.isFavorite
@@ -190,7 +187,12 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                             children: [
                               IconButton(
                                   onPressed: () {
-                                    setState(() {});
+                                    setState(() {
+                                      _controller.pause();
+                                      Navigator.of(context, rootNavigator: true).push(
+                                        MaterialPageRoute(builder: (context) => FeedbacksScreen(tutorId: widget.tutorId))
+                                      );
+                                    });
                                   },
                                   icon: Icon(CupertinoIcons.star,
                                       color: Colors.yellow[700], size: 30)),
@@ -249,14 +251,14 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                                           borderRadius:
                                               BorderRadius.circular(100)))),
                               onPressed: () {
-                                if (_controller.value.position.inSeconds - 10 > 0) {
+                                if (_controller.value.position.inSeconds - 10 >
+                                    0) {
                                   _controller.seekTo(Duration(
                                       seconds:
-                                          _controller.value.position.inSeconds - 10));
+                                          _controller.value.position.inSeconds -
+                                              10));
                                 } else {
-                                  _controller.seekTo(Duration(
-                                      seconds:
-                                      0));
+                                  _controller.seekTo(Duration(seconds: 0));
                                 }
                               },
                               child: Icon(CupertinoIcons.backward_fill)),
@@ -383,48 +385,46 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                                 fontWeight: FontWeight.w600)),
                       ),
                       SizedBox(height: mediumSpacer),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: Column(
-                          children: <Widget>[
-                            Row(
-                              children: [
-                                Text('Business English: ',
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w500)),
-                                CustomTextButton(
-                                  onPressed: () {},
-                                  title: Text(
-                                    'link',
-                                    style: TextStyle(
-                                        fontSize: 17, color: Colors.blueAccent),
-                                  ),
-                                ),
-                              ],
+                      (tutorData.tutor.courseIdAndName == null)
+                          ? Container()
+                          : Padding(
+                              padding: const EdgeInsets.only(left: 20),
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: tutorData.tutor.courseIdAndName!
+                                      .map(
+                                        (e) => Column(
+                                          children: [
+                                            CustomTextButton(
+                                              onPressed: () {
+                                                Navigator.of(context,
+                                                        rootNavigator: true)
+                                                    .push(MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            CourseDetailScreen(
+                                                                courseId: ParserService
+                                                                    .parseString(
+                                                                        e,
+                                                                        ',')[0])));
+                                              },
+                                              title: Text(
+                                                  ParserService.parseString(
+                                                      e, ',')[1],
+                                                  textAlign: TextAlign.left,
+                                                  style: TextStyle(
+                                                      fontSize: 17,
+                                                      color: Colors.blueAccent,
+                                                      fontWeight:
+                                                          FontWeight.w500)),
+                                            ),
+                                            SizedBox(
+                                              height: 10,
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                      .toList()),
                             ),
-                            SizedBox(height: mediumSpacer),
-                            Row(
-                              children: [
-                                Text('Conversation: ',
-                                    style: TextStyle(
-                                        fontSize: 17,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w500)),
-                                CustomTextButton(
-                                  onPressed: () {},
-                                  title: Text(
-                                    'link',
-                                    style: TextStyle(
-                                        fontSize: 17, color: Colors.blueAccent),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
                       SizedBox(height: mediumSpacer),
                       const CustomDividerText(
                         child: Text('Booking',
@@ -443,6 +443,6 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                 },
               ),
             ),
-          );
+    );
   }
 }

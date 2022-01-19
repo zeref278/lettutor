@@ -10,7 +10,25 @@ import 'package:lettutor/ui/custom_widgets/custom_button/custom_signout_button.d
 import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
 import 'package:provider/provider.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+
+  @override
+  void initState() {
+    Provider.of<UserProvider>(context, listen: false)
+        .fetchUserInfo()
+        .then((_) {
+      setState(() {
+
+      });
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
