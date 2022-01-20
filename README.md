@@ -6,3 +6,4 @@
 - Database:
 - Software Architecture:
 - Documentation: https://drive.google.com/drive/folders/1_zg4wdUCMSoeH6D7RBqZ_27oQf3VkEkd?usp=sharing
+- Link video demo: https://youtu.be/pzSU8zmOc_c
