@@ -12,17 +12,36 @@ class CourseProvider with ChangeNotifier {
   Course _course = myCourse;
   final CourseService _courseService = CourseService.instance;
 
-  List<Course> _courses = [];
+  final List<Course> _courses = [];
 
   Future<bool> fetchListCourse(String page, String size) async {
-    _courses.clear();
     try {
-      _courses = await _courseService.getListCourse(page, size);
-      print(_courses.length);
+      List<Course> result = await _courseService.getListCourse(page, size);
+      _courses.clear();
+      _courses.addAll(result);
       notifyListeners();
 
       return true;
     } catch(e) {
+      rethrow;
+    }
+  }
+
+  Future<List<Course>> searchCourse(String keyWord) async {
+
+    List<Course> result = [];
+
+    try {
+
+      for (var element in _courses) {
+        if(element.name.toUpperCase().contains(keyWord.toUpperCase())) {
+          result.add(element);
+        }
+      }
+
+      notifyListeners();
+      return result;
+    } catch (e) {
       rethrow;
     }
   }

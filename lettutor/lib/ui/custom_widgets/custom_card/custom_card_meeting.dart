@@ -6,11 +6,10 @@ import 'package:provider/provider.dart';
 
 class CustomCardMeeting extends StatefulWidget {
   final double width;
-  final void Function() onPressedFirstButton;
-  final void Function() onPressedSecondButton;
+  final void Function() onPressedCancelButton;
+  final void Function() onPressedJoinButton;
   final String tutorName;
   final String avatarLink;
-  final bool isBegin;
   final String date;
   final String startTime;
   final String endTime;
@@ -18,9 +17,8 @@ class CustomCardMeeting extends StatefulWidget {
   const CustomCardMeeting(
       {Key? key,
       required this.width,
-      required this.onPressedFirstButton,
-      required this.onPressedSecondButton,
-      required this.isBegin,
+      required this.onPressedCancelButton,
+      required this.onPressedJoinButton,
       required this.startTime,
       required this.endTime,
       required this.date,
@@ -136,15 +134,15 @@ class _CustomCardMeetingState extends State<CustomCardMeeting> {
                   children: <Widget>[
                     Expanded(
                       child: ElevatedButton(
-                        onPressed: widget.onPressedFirstButton,
+                        onPressed: widget.onPressedCancelButton,
                         child: Text(
-                          widget.isBegin ? 'Cancel' : 'Record',
+                          'Cancel',
                           style: TextStyle(
-                              color: widget.isBegin ? Colors.white : Colors.black, fontWeight: FontWeight.w600),
+                              color: Colors.white, fontWeight: FontWeight.w600),
                         ),
                         style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(
-                                widget.isBegin ? Colors.redAccent : Colors.green),
+                                Colors.redAccent),
                             // padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
                             //     EdgeInsets.symmetric(horizontal: 20, vertical: 10)),
                             shape: MaterialStateProperty.all<
@@ -157,15 +155,15 @@ class _CustomCardMeetingState extends State<CustomCardMeeting> {
                     ),
                     Expanded(
                       child: ElevatedButton(
-                        onPressed: widget.onPressedSecondButton,
+                        onPressed: widget.onPressedJoinButton,
                         child: Text(
-                          widget.isBegin ? 'Join' : 'Review',
+                          'Join',
                           style: TextStyle(
-                              color: widget.isBegin ? Colors.white :Colors.black, fontWeight: FontWeight.w600),
+                              color: Colors.white, fontWeight: FontWeight.w600),
                         ),
                         style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(
-                                widget.isBegin ? Colors.green : defaultPrimaryColor),
+                                Colors.green),
                             shape: MaterialStateProperty.all<
                                 RoundedRectangleBorder>(RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(

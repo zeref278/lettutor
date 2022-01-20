@@ -102,7 +102,12 @@ class _CustomCardTutorState extends State<CustomCardTutor> {
                             SizedBox(
                               height: 5,
                             ),
-                            CustomRatingBar(rating: tutor.rating, onRatingUpdate: (double){}),
+                            Row(
+                              children: [
+                                CustomRatingBar(rating: tutor.rating, onRatingUpdate: (double){}),
+                                Text('(${tutor.feedbacks!.length})', style: TextStyle(fontSize: 12),)
+                              ],
+                            ),
                             SizedBox(
                               height: 5,
                             ),

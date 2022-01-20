@@ -2,7 +2,7 @@
 import 'dart:convert';
 
 import 'package:lettutor/models/course.dart';
-import 'package:lettutor/models/shedule.dart';
+import 'package:lettutor/models/schedule.dart';
 import 'package:lettutor/models/topic.dart';
 import 'package:lettutor/models/tutor.dart';
 
@@ -54,6 +54,16 @@ class ParserService {
 
     return parsed.map<Schedule>((json) => Schedule.fromJson(json)).toList();
   }
+
+  static Map<String, dynamic> listStringToJson( String key ,String src) {
+    List<String> list = [];
+    list.add(src);
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data[key] = list;
+   return data ;
+  }
+
+
 
   static String parseLevel(String level) {
 

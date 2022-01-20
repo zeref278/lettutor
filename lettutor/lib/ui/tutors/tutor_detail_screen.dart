@@ -111,9 +111,14 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                                   SizedBox(
                                     height: smallSpacer,
                                   ),
-                                  CustomRatingBar(
-                                      rating: tutorData.tutor.rating,
-                                      onRatingUpdate: (double i) {}),
+                                  Row(
+                                    children: [
+                                      CustomRatingBar(
+                                          rating: tutorData.tutor.rating,
+                                          onRatingUpdate: (double i) {}),
+                                      Text('(${tutorData.tutor.feedbacks!.length})', style: TextStyle(fontSize: 12),)
+                                    ],
+                                  ),
                                   SizedBox(
                                     height: smallSpacer,
                                   ),

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor/models/shedule.dart';
-import 'package:lettutor/models/tutor.dart';
+import 'package:lettutor/models/schedule.dart';
 import 'package:lettutor/services/schedule_service.dart';
-import 'package:lettutor/services/tutor_service.dart';
 
 class ScheduleProvider with ChangeNotifier {
   List<Schedule> get schedules => _schedules;
@@ -15,10 +13,13 @@ class ScheduleProvider with ChangeNotifier {
 
   Future<bool> fetchStudiedClassed(
       {required String page, required String perPage}) async {
-    _historySchedules.clear();
-    try {
-      _historySchedules.addAll((await _scheduleService.getStudiedClasses(page, perPage))!);
 
+    try {
+      List<Schedule> result = [];
+      result.addAll((await _scheduleService.getStudiedClasses(page, perPage))!);
+
+      _historySchedules.clear();
+      _historySchedules.addAll(result);
       notifyListeners();
       return true;
     } catch (e) {
@@ -26,15 +27,23 @@ class ScheduleProvider with ChangeNotifier {
     }
   }
 
+  int getTotalTimeStudied() {
+    return 25 * _historySchedules.length;
+  }
+
   Future<bool> fetchUpComingClassed(
       {required String page, required String perPage}) async {
-    _schedules.clear();
     try {
-      _schedules.addAll((await _scheduleService.getUpcomingClasses(page, perPage))!);
-      await fetchStudiedClassed(page: page, perPage: perPage);
+      List<Schedule> result = [];
+      result
+          .addAll((await _scheduleService.getUpcomingClasses(page, perPage))!);
 
-      _schedules.removeWhere((element) => _historySchedules.where((h) => element.scheduleDetailId==h.scheduleDetailId).isNotEmpty
-      );
+      await fetchStudiedClassed(page: page, perPage: perPage);
+      result.removeWhere((element) => _historySchedules
+          .where((h) => element.scheduleDetailId == h.scheduleDetailId)
+          .isNotEmpty);
+      _schedules.clear();
+      _schedules.addAll(result);
 
       notifyListeners();
       return true;
@@ -44,7 +53,22 @@ class ScheduleProvider with ChangeNotifier {
   }
 
   String getScheduleIdByTutorId(String tutorId) {
-    String result = _historySchedules[_historySchedules.indexWhere((element) => element.tutorId==tutorId)].bookingId;
+    String result = _historySchedules[_historySchedules
+            .indexWhere((element) => element.tutorId == tutorId)]
+        .bookingId;
     return result;
+  }
+
+  Future<bool> cancelBookedClasses(String id) async {
+    try {
+      bool result = await _scheduleService.cancelBookedClassed(id);
+      if (result) {
+        await fetchUpComingClassed(page: "1", perPage: "1000");
+      }
+
+      return result;
+    } catch (e) {
+      rethrow;
+    }
   }
 }

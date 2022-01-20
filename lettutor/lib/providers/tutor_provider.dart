@@ -24,14 +24,18 @@ class TutorProvider with ChangeNotifier {
   final List<Tutor> _searchResults = [];
 
   Future<bool> fetchListTutor(String perPage, String page) async {
-    _tutors.clear();
+
     try {
+      List<Tutor> result = [];
       List<String> listId = await _tutorService.getListTutor(perPage, page);
       for (int pos = 0; pos < listId.length; pos++) {
         Tutor? tutor = await _tutorService.getTutorById(listId[pos]);
-        _tutors.add(tutor!);
+        result.add(tutor!);
       }
-      _sort(_tutors);
+      _sort(result);
+
+      _tutors.clear();
+      _tutors.addAll(result);
       notifyListeners();
       return true;
     } catch (e) {
@@ -41,14 +45,17 @@ class TutorProvider with ChangeNotifier {
 
   Future<bool> searchTutor(String keyWord) async {
     List<Tutor> result = [];
-    _searchResults.clear();
+
     try {
       List<String> listId = await _tutorService.searchTutor(keyWord);
       for (int pos = 0; pos < listId.length; pos++) {
         Tutor? tutor = await _tutorService.getTutorById(listId[pos]);
-        _searchResults.add(tutor!);
+        result.add(tutor!);
       }
-      _sort(_searchResults);
+      _sort(result);
+
+      _searchResults.clear();
+      _searchResults.addAll(result);
       notifyListeners();
       return true;
     } catch (e) {

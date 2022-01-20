@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor/models/hard_code.dart';
+import 'package:intl/intl.dart';
 import 'package:lettutor/constants/ui_constants.dart';
+import 'package:lettutor/providers/schedule_provider.dart';
 import 'package:lettutor/providers/tutor_provider.dart';
+import 'package:lettutor/services/schedule_service.dart';
 import 'package:provider/provider.dart';
 
 import 'custom_widgets/custom_button/custom_rounded_button.dart';
@@ -29,52 +31,68 @@ class HomeScreen extends StatelessWidget {
                 color: defaultPrimaryColor,
                 //borderRadius: BorderRadius.circular(20)
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  const Text(
-                    'Total lesson time is 100 hours and 30 minutes',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  const Text(
-                    'Up comming Lesson',
-                    style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  const Text('Fri, 15 Oct 21 6:30 - 7:30',
-                      style: TextStyle(
-                          color: Colors.black, fontWeight: FontWeight.w600)),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  CustomRoundedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return MeetingScreen();
-                          },
+              child: Consumer<ScheduleProvider>(
+                builder: (context, scheduleData, _) {
+                  bool flag = scheduleData.schedules.isNotEmpty;
+                  bool flag2 = scheduleData.historySchedules.isNotEmpty;
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        flag2
+                            ? 'Total lesson time is ${(scheduleData.getTotalTimeStudied()/60).floor()} hours and ${scheduleData.getTotalTimeStudied()%60} minutes'
+                            : "You haven't studied lesson yet",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
                         ),
-                      );
-                    },
-                    text: 'Enter lesson room',
-                    color: Colors.white,
-                    textColor: Colors.black,
-                    width: size.width * 0.7,
-                  ),
-                ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        flag ? 'Up coming Lesson' : 'You have no upcoming lesson',
+                        style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                          flag
+                              ? '${DateFormat('EEE, dd MMM yy').format(DateTime.parse(scheduleData.schedules[0].date))}, ${scheduleData.schedules[0].startTime} - ${scheduleData.schedules[0].endTime}'
+                              : 'Click below to book',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600)),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      CustomRoundedButton(
+                        onPressed: flag ?
+                            () async {
+                          ScheduleService.instance.joinMeeting(scheduleData.schedules[0].meetingLink);
+
+                        } : () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return MeetingScreen();
+                              },
+                            ),
+                          );
+                        },
+                        text: flag ? 'Enter lesson room' : 'Book a lesson',
+                        color: Colors.white,
+                        textColor: Colors.black,
+                        width: size.width * 0.7,
+                      ),
+                    ],
+                  );
+                },
               ),
             ),
             const SizedBox(
@@ -118,15 +136,15 @@ class HomeScreen extends StatelessWidget {
                       itemBuilder: (BuildContext context, int index) {
                         return Column(
                           children: [
-
                             CustomCardTutor(
-                              tutorId: tutorData.tutors[index].id,),
-                            SizedBox(height: 15,),
+                              tutorId: tutorData.tutors[index].id,
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
                           ],
                         );
                       });
-
-
                 },
               ),
             ),

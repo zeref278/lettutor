@@ -182,7 +182,8 @@ class _FeedbacksScreenState extends State<FeedbacksScreen> {
           );
         },
       ),
-      body: SingleChildScrollView(
+      body: _isLoading ? Center(child: CircularProgressIndicator()) :
+      SingleChildScrollView(
         padding: EdgeInsets.only(left: 15, right: 15),
         child: Consumer<TutorProvider>(
           builder: (context, tutorData, _) {
@@ -203,13 +204,6 @@ class _FeedbacksScreenState extends State<FeedbacksScreen> {
                             color: Colors.black,
                             fontSize: 20),
                       ),
-                      // Text(
-                      //   tutorData.tutor.name,
-                      //   style: TextStyle(
-                      //       fontWeight: FontWeight.w600,
-                      //       color: Colors.red,
-                      //       fontSize: 20),
-                      // )
                     ],
                   )
                 : ListView.builder(
@@ -219,6 +213,17 @@ class _FeedbacksScreenState extends State<FeedbacksScreen> {
                     itemBuilder: (context, int index) {
                       return Column(
                         children: [
+                          index == 0
+                              ? Padding(
+                                  padding: const EdgeInsets.all(10),
+                                  child: Text(
+                                    '${tutorData.tutor.feedbacks!.length} reviews',
+                                    style: TextStyle(
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                )
+                              : Container(),
                           CustomCardFeedback(
                               feedback: tutorData.tutor.feedbacks![index]),
                           SizedBox(

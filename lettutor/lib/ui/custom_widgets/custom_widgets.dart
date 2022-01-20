@@ -8,6 +8,7 @@ export 'package:lettutor/ui/custom_widgets/custom_button/social_login_options.da
 export 'package:lettutor/ui/custom_widgets/custom_card/custom_card_course.dart';
 export 'package:lettutor/ui/custom_widgets/custom_card/custom_card_feedback.dart';
 export 'package:lettutor/ui/custom_widgets/custom_card/custom_card_meeting.dart';
+export 'package:lettutor/ui/custom_widgets/custom_card/custom_card_meeting_history.dart';
 export 'package:lettutor/ui/custom_widgets/custom_card/custom_card_tutor.dart';
 
 export 'package:lettutor/ui/custom_widgets/custom_divider/custom_divider_text.dart';

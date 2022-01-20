@@ -23,6 +23,19 @@ class AuthApi {
     }
   }
 
+  Future<dynamic> forgotPassword(email) async {
+    try {
+      final res = await _dioClient.post(
+        "/user/forgotPassword",
+        data: {'email': email},
+
+      );
+      return res;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   // Future<dynamic> checkValidToken(token) async {
   //   try {
   //     final res = await _dioClient.post(

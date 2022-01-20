@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lettutor/models/course.dart';
+
 import 'package:lettutor/constants/ui_constants.dart';
 import 'package:lettutor/providers/course_provider.dart';
-import 'package:lettutor/providers/tutor_provider.dart';
 import 'package:lettutor/services/parser_service.dart';
 import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
 import 'package:lettutor/ui/tutors/tutor_detail_screen.dart';
@@ -38,11 +37,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return _isLoading
-        ? Center(
-            child: CircularProgressIndicator(),
-          )
-        : Scaffold(
+    return Scaffold(
             backgroundColor: defaultBackgroundColor,
             appBar: AppBar(
               title: Text('Course Detail'),
@@ -59,7 +54,12 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                 },
               ),
             ),
-            body: SingleChildScrollView(
+            body: _isLoading
+                ? Center(
+              child: CircularProgressIndicator(),
+            )
+                :
+            SingleChildScrollView(
               padding: const EdgeInsets.only(left: 15, right: 15),
               child: Consumer<CourseProvider>(
                 builder: (context, courseData, _) {

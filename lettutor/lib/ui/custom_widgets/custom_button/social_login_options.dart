@@ -16,7 +16,7 @@ class SocialLoginOptions extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: Text(
-              "Or continue with",
+              "Or",
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w600,

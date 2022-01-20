@@ -1,6 +1,7 @@
 import 'package:lettutor/data/network/apis/api.dart';
 import 'package:lettutor/services/locator_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:lettutor/services/parser_service.dart';
 
 class ScheduleApi {
   ScheduleApi._privateConstructor();
@@ -13,7 +14,9 @@ class ScheduleApi {
 
   Future<dynamic> getStudiedClasses(page, perPage) async {
     try {
-      int myTimeStamp = Timestamp.fromDate(DateTime.now().toUtc().subtract(Duration(minutes: 35))).millisecondsSinceEpoch;
+      int myTimeStamp = Timestamp.fromDate(
+              DateTime.now().toUtc().subtract(Duration(minutes: 35)))
+          .millisecondsSinceEpoch;
       print(myTimeStamp);
       final res = await _dioClient.get(
         "/booking/list/student?page=$page&perPage=$perPage&dateTimeLte=$myTimeStamp&orderBy=meeting&sortBy=desc",
@@ -26,10 +29,11 @@ class ScheduleApi {
 
   Future<dynamic> getUpcomingClasses(page, perPage) async {
     try {
-      int myTimeStamp = Timestamp.fromDate(DateTime.now().toUtc().add(const Duration(hours: 12))).millisecondsSinceEpoch;
-      print(myTimeStamp);
+      int myTimeStamp = Timestamp.fromDate(
+              DateTime.now().toUtc().add(const Duration(days: 100)))
+          .millisecondsSinceEpoch;
       final res = await _dioClient.get(
-        "/booking/list/student?page=$page&perPage=$perPage&dateTimeLte=$myTimeStamp&orderBy=meeting&sortBy=desc",
+        "/booking/list/student?page=$page&perPage=$perPage&dateTimeLte=$myTimeStamp&orderBy=meeting&sortBy=asc",
       );
       return res;
     } catch (e) {
@@ -37,7 +41,13 @@ class ScheduleApi {
     }
   }
 
-
-
+  Future<dynamic> cancelBookedClasses(scheduleDetailId) async {
+    try {
+      final res = await _dioClient
+          .delete("/booking", data: ParserService.listStringToJson('scheduleDetailIds', scheduleDetailId));
+      return res;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
-

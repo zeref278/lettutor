@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor/models/course.dart';
-import 'package:lettutor/models/hard_code.dart';
 import 'package:lettutor/constants/ui_constants.dart';
 import 'package:lettutor/providers/course_provider.dart';
+import 'package:lettutor/ui/courses/course_search_result_screen.dart';
 import 'package:lettutor/ui/courses/courses_horizontal.dart';
 import 'package:provider/provider.dart';
 
@@ -16,10 +16,14 @@ class CoursesScreen extends StatefulWidget {
 
 class _CoursesScreenState extends State<CoursesScreen> {
   bool _isLoading = true;
+
+  late TextEditingController _searchController;
+
   @override
   void initState() {
+    _searchController = TextEditingController();
     Provider.of<CourseProvider>(context, listen: false)
-        .fetchListCourse("1", "2")
+        .fetchListCourse("1", "1000")
         .then((_) {
       setState(() {
         _isLoading = false;
@@ -29,11 +33,18 @@ class _CoursesScreenState extends State<CoursesScreen> {
   }
 
   @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         backgroundColor: defaultBackgroundColor,
-        body: SingleChildScrollView(
+        body: _isLoading ? const CircularProgressIndicator() :
+        SingleChildScrollView(
           child: Column(
             children: <Widget>[
               SizedBox(
@@ -48,7 +59,14 @@ class _CoursesScreenState extends State<CoursesScreen> {
                   Expanded(
                     child: SizedBox(
                       child: CupertinoSearchTextField(
+                        controller: _searchController,
                         placeholder: 'Search course',
+                        onSubmitted: (keyWord) {
+                          if(keyWord != '') {
+                            _searchController.clear();
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => CourseSearchResultScreen(nameKey: keyWord)));
+                          }
+                        },
                       ),
                     ),
                   ),

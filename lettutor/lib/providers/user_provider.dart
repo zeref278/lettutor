@@ -24,7 +24,6 @@ class UserProvider with ChangeNotifier {
     try {
       bool result = await _userService.changePassword(password, newPassword);
       //notifyListeners();
-      if (result) print("OK");
       return result;
     } catch (e) {
       rethrow;

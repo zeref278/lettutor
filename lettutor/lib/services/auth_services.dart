@@ -28,55 +28,77 @@ class AuthServices {
         if (res.statusCode != null && res.statusCode == 200) {
           var jsonRes = jsonDecode(res.toString());
           final String accessToken = jsonRes['tokens']['access']['token'];
-          final String accessTokenExpire = jsonRes['tokens']['access']['expires'];
+          final String accessTokenExpire =
+              jsonRes['tokens']['access']['expires'];
           final String refreshToken = jsonRes['tokens']['refresh']['token'];
-          final String refreshTokenExpire = jsonRes['tokens']['refresh']['expires'];
+          final String refreshTokenExpire =
+              jsonRes['tokens']['refresh']['expires'];
 
           //Save tokens
           await sharedPreferenceHelper.saveAuthToken(accessToken);
           await sharedPreferenceHelper.saveAuthTokenExpire(accessTokenExpire);
           await sharedPreferenceHelper.saveRefreshAuthToken(refreshToken);
-          await sharedPreferenceHelper.saveRefreshAuthTokenExpire(refreshTokenExpire);
+          await sharedPreferenceHelper
+              .saveRefreshAuthTokenExpire(refreshTokenExpire);
 
           return true;
         }
       } else {
         return false;
       }
-    } catch (e) {}
+    } catch (e) {
+      return false;
+    }
 
     return false;
   }
-  // Future<bool> checkAlreadySignin() async {
-  //
-  //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  //   String? savedToken = sharedPreferences.getString(Preferences.auth_token);
-  //   String? savedRefreshToken = sharedPreferences.getString(Preferences.refresh_auth_token);
-  //   if(savedToken != null){
-  //     try{
-  //       var res = await _authApi.checkValidToken(savedToken);
-  //       if (res.statusCode != null && res.statusCode == 200) {
-  //         _showMyDialog(
-  //             'Success', "Log in Success", BasicDialogStatus.success);
-  //       } else {
-  //         try{
-  //           var res = await loginApi.checkValidToken(savedRefreshToken);
-  //           if (res.statusCode != null && res.statusCode == 200) {
-  //             _showMyDialog(
-  //                 'Success', "Log in Success", BasicDialogStatus.success);
-  //           }
-  //         }catch(e){
-  //           rethrow;
-  //         }
-  //
-  //       }
-  //     }catch(e){
-  //       rethrow;
-  //     }
-  //
-  //   }
-  //   return false;
-  // }
+
+  Future<bool> forgotPassword(String email) async {
+    try {
+      if (email != '') {
+        var res = await _authApi.forgotPassword(email);
+        if (res.statusCode != null && res.statusCode == 200) {
+          return true;
+        }
+        return false;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      return false;
+    }
+
+  }
+
+  Future<int> checkAlreadySignin() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    String? savedToken = sharedPreferences.getString(Preferences.auth_token);
+    String? savedTokenExpire =
+        sharedPreferences.getString(Preferences.auth_token_expire);
+    String? savedRefreshToken =
+        sharedPreferences.getString(Preferences.refresh_auth_token);
+    String? savedRefreshTokenExpire =
+        sharedPreferences.getString(Preferences.refresh_auth_token_expire);
+
+    if (savedToken != null) {
+      try {
+        if (DateTime.parse(savedTokenExpire!).isAfter(
+            DateTime.now().add(const Duration(minutes: 10)).toUtc())) {
+          return 1;
+        }
+        else if(DateTime.parse(savedRefreshTokenExpire!).isAfter(
+            DateTime.now().add(const Duration(minutes: 10)).toUtc())) {
+          return 0;
+        }
+        else {
+          return -1;
+        }
+      } catch (e) {
+        return -1;
+      }
+    }
+    return -1;
+  }
 
   Future<bool> signOut() async {
     try {
@@ -87,12 +109,13 @@ class AuthServices {
 
       //Save tokens
       await sharedPreferenceHelper.removeAuthToken();
+      await sharedPreferenceHelper.removeAuthTokenExpire();
       await sharedPreferenceHelper.removeRefreshAuthToken();
+      await sharedPreferenceHelper.removeRefreshAuthTokenExpire();
 
       return true;
     } catch (e) {
-      rethrow;
+      return false;
     }
-
   }
 }

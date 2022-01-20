@@ -9,7 +9,7 @@ class Schedule {
   String endTime;
   String date;
 
-}  Schedule(
+  Schedule(
       {required this.bookingId,
       required this.scheduleDetailId,
       required this.tutorId,
@@ -18,8 +18,7 @@ class Schedule {
       required this.startTime,
       required this.endTime,
       required this.tutorName,
-      required this.tutorAvatarLink
-      });
+      required this.tutorAvatarLink});
 
   factory Schedule.fromJson(Map<String, dynamic> json) {
     return Schedule(
@@ -30,8 +29,17 @@ class Schedule {
         date: json['scheduleDetailInfo']['scheduleInfo']['date'],
         startTime: json['scheduleDetailInfo']['scheduleInfo']['startTime'],
         endTime: json['scheduleDetailInfo']['scheduleInfo']['endTime'],
-        tutorAvatarLink: json['scheduleDetailInfo']['scheduleInfo']['tutorInfo']['avatar'],
-        tutorName: json['scheduleDetailInfo']['scheduleInfo']['tutorInfo']['name']
-    );
+        tutorAvatarLink: json['scheduleDetailInfo']['scheduleInfo']['tutorInfo']
+            ['avatar'],
+        tutorName: json['scheduleDetailInfo']['scheduleInfo']['tutorInfo']
+            ['name']);
+  }
+
+  Map<String, dynamic> iDtoJson() {
+    List<String> scheduleDetailIds = [];
+    scheduleDetailIds.add(scheduleDetailId);
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['scheduleDetailIds'] = scheduleDetailIds;
+    return data;
   }
 }
