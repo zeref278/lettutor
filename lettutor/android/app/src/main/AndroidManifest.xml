@@ -2,7 +2,7 @@
     package="com.example.lettutor"
     xmlns:tools="http://schemas.android.com/tools">
     <application
-        android:label="lettutor"
+        android:label="sTutoring"
         tools:replace="android:label"
         android:icon="@mipmap/ic_launcher">
         <activity
