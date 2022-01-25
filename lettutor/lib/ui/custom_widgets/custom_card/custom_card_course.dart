@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:lettutor/models/course.dart';
 import 'package:lettutor/services/parser_service.dart';
 import 'package:lettutor/ui/courses/course_detail_screen.dart';
+import 'package:lettutor/ultis/language_keys.dart';
+import 'package:lettutor/ultis/locale/app_localization.dart';
 
 class CustomCardCourse extends StatelessWidget {
   final double width;
@@ -15,7 +17,6 @@ class CustomCardCourse extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String level = course.level;
     int courseLength = course.courseLength;
     return GestureDetector(
       onTap: (){
@@ -63,7 +64,7 @@ class CustomCardCourse extends StatelessWidget {
                   ),
                   SizedBox(height: 15,),
                   Text(
-                    '${ParserService.parseLevel(course.level)} • $courseLength Lessons',
+                    '${ParserService.parseLevel(course.level)} • $courseLength ${AppLocalizations.of(context).translate(LanguageKey.lesson)}',
                     style: TextStyle(fontSize: 14, color: Colors.black),
                   ),
                 ],

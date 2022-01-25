@@ -48,6 +48,8 @@ class Tutor {
       });
     }
 
+    listFeedback.sort((first, seconde) => DateTime.parse(first.date).isAfter(DateTime.parse(seconde.date))? 0:1 );
+
     return Tutor(
       id: json['userId'],
       name: json['User']['name'],

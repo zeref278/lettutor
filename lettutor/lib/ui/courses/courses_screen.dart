@@ -5,6 +5,8 @@ import 'package:lettutor/constants/ui_constants.dart';
 import 'package:lettutor/providers/course_provider.dart';
 import 'package:lettutor/ui/courses/course_search_result_screen.dart';
 import 'package:lettutor/ui/courses/courses_horizontal.dart';
+import 'package:lettutor/ultis/language_keys.dart';
+import 'package:lettutor/ultis/locale/app_localization.dart';
 import 'package:provider/provider.dart';
 
 class CoursesScreen extends StatefulWidget {
@@ -60,7 +62,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                     child: SizedBox(
                       child: CupertinoSearchTextField(
                         controller: _searchController,
-                        placeholder: 'Search course',
+                        placeholder: AppLocalizations.of(context).translate(LanguageKey.search_course),
                         onSubmitted: (keyWord) {
                           if(keyWord != '') {
                             _searchController.clear();

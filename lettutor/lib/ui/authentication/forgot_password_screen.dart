@@ -6,6 +6,8 @@ import 'package:lettutor/themes/name_logo.dart';
 
 import 'package:lettutor/constants/ui_constants.dart';
 import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
+import 'package:lettutor/ultis/language_keys.dart';
+import 'package:lettutor/ultis/locale/app_localization.dart';
 
 import '../custom_widgets/custom_dialog/custom_alert_dialog.dart';
 import '../custom_widgets/custom_dialog/dialog_status.dart';
@@ -39,7 +41,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     return Scaffold(
       backgroundColor: defaultBackgroundColor,
       appBar: AppBar(
-        title: Text('Forgot Password'),
+        title: CustomText(LanguageKey.forgot_password, context),
         titleTextStyle: const TextStyle(
             color: Colors.black, fontSize: 20, fontWeight: FontWeight.w600),
         backgroundColor: defaultPrimaryColor,
@@ -58,8 +60,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             children: <Widget>[
               const NameLogo(),
               SizedBox(height: 50),
-              const Text(
-                "We'll send you a link to reset your password",
+              CustomText(
+                LanguageKey.long_text_forgot_password,
+                context,
                 style: TextStyle(
                   color: Colors.black,
                 ),
@@ -67,14 +70,14 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               SizedBox(height: size.height * 0.05),
               CustomInputField(
                 textEditingController: _emailController,
-                hintText: 'Enter your email',
+                hintText: AppLocalizations.of(context).translate(LanguageKey.login_et_user_email),
                 icon: Icons.email,
               ),
               SizedBox(height: size.height * 0.1),
               CustomRoundedButton(
                 width: size.width * 0.9,
                 textColor: Colors.black,
-                text: 'SEND',
+                text: AppLocalizations.of(context).translate(LanguageKey.send),
                 onPressed: () async {
                   bool flagEmail = ValidatorService.validateEmail(_emailController.text);
 
@@ -82,12 +85,14 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     bool result = await  AuthServices.instance.forgotPassword(
                         _emailController.text);
                     if (result) {
-                      _showDialogWidget(context, 'Success', 'Email sent !', BasicDialogStatus.success);
+                      _showDialogWidget(context, AppLocalizations.of(context).translate(LanguageKey.success), AppLocalizations.of(context).translate(LanguageKey.email_sent), BasicDialogStatus.success);
                     } else {
-                      _showDialogWidget(context, 'Error', 'Cant send email !', BasicDialogStatus.error);
+                      _showDialogWidget(context, AppLocalizations.of(context).translate(LanguageKey.error), AppLocalizations.of(context).translate(LanguageKey.cant_send_email), BasicDialogStatus.error);
+
                     }
                   } else {
-                    _showDialogWidget(context, 'Error', 'Email invalid', BasicDialogStatus.warning);
+                    _showDialogWidget(context, AppLocalizations.of(context).translate(LanguageKey.error), AppLocalizations.of(context).translate(LanguageKey.email_invalid), BasicDialogStatus.error);
+
                   }
                 },
               ),

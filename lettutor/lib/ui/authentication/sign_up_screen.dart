@@ -5,6 +5,8 @@ import 'package:lettutor/themes/name_logo.dart';
 
 import 'package:lettutor/constants/ui_constants.dart';
 import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
+import 'package:lettutor/ultis/language_keys.dart';
+import 'package:lettutor/ultis/locale/app_localization.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -15,7 +17,7 @@ class SignUpScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: defaultBackgroundColor,
       appBar: AppBar(
-        title: Text('Sign Up'),
+        title: CustomText(LanguageKey.sign_up, context),
         titleTextStyle: const TextStyle(
             color: Colors.black, fontSize: 20, fontWeight: FontWeight.w600),
         backgroundColor: defaultPrimaryColor,
@@ -36,36 +38,38 @@ class SignUpScreen extends StatelessWidget {
               const NameLogo(),
               SizedBox(height: size.height * 0.03),
               CustomInputField(
-                hintText: 'Enter your full name',
+                hintText: AppLocalizations.of(context).translate(LanguageKey.username),
               ),
               CustomInputField(
                 icon: Icons.email,
-                hintText: 'Enter your email',
+                hintText: AppLocalizations.of(context).translate(LanguageKey.login_et_user_email),
               ),
               CustomPasswordField(
-                hText: 'Enter your password',
+                hText: AppLocalizations.of(context).translate(LanguageKey.login_et_user_password),
               ),
               CustomPasswordField(
-                hText: 'Confirm your password',
+                hText: AppLocalizations.of(context).translate(LanguageKey.login_et_confirm_password),
               ),
               SizedBox(height: size.height * 0.03),
               CustomRoundedButton(
                 width: size.width * 0.9,
                 textColor: Colors.black,
-                text: 'SIGN UP',
+                text: AppLocalizations.of(context).translate(LanguageKey.login_btn_sign_up),
                 onPressed: () {},
               ),
               SizedBox(height: size.height * 0.05),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  const Text(
-                    "Already have an account ? ",
+                   CustomText(
+                    LanguageKey.already_have_an_account,
+                    context,
                     style: TextStyle(color: Colors.black),
                   ),
                   CustomTextButton(
-                    title: const Text(
-                      'Sign In',
+                    title:  CustomText(
+                      LanguageKey.login,
+                      context,
                       style: TextStyle(
                           color: darkYellow, fontWeight: FontWeight.bold),
                     ),

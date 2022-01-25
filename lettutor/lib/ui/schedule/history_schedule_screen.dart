@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor/providers/schedule_provider.dart';
+import 'package:lettutor/ui/custom_widgets/custom_dialog/dialog_status.dart';
 import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
 import 'package:lettutor/ui/tutors/feedbacks_screen.dart';
+import 'package:lettutor/ultis/language_keys.dart';
 import 'package:provider/provider.dart';
 
 class HistoryScheduleScreen extends StatefulWidget {
@@ -45,8 +47,9 @@ class _HistoryScheduleScreenState extends State<HistoryScheduleScreen> {
                             color: Colors.black, size: 30),
                         SizedBox(width: 10),
                         Container(
-                          child: Text(
-                            "You haven't studied yet",
+                          child: CustomText(
+                            LanguageKey.you_havent_studied_lesson_yet,
+                            context,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
@@ -125,5 +128,25 @@ class _HistoryScheduleScreenState extends State<HistoryScheduleScreen> {
                       });
             },
           );
+  }
+  Future<void> _showDialogWidget(
+      context, String title, String description, BasicDialogStatus status) {
+    return showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return CustomAlertDialog(
+          title: title,
+          description: description,
+          status: status,
+          onPressMainButton: () {
+            Navigator.pop(context);
+          },
+          onPressSecondaryButton: () {
+            Navigator.pop(context);
+          },
+        );
+      },
+    );
   }
 }

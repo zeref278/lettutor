@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:lettutor/models/tutor.dart';
 import 'package:lettutor/constants/ui_constants.dart';
 import 'package:lettutor/providers/tutor_provider.dart';
+import 'package:lettutor/ultis/language_keys.dart';
 import 'package:provider/provider.dart';
+
+import '../custom_text.dart';
 
 class CustomCardMeetingHistory extends StatefulWidget {
   final double width;
@@ -137,8 +140,8 @@ class _CustomCardMeetingHistoryState extends State<CustomCardMeetingHistory> {
               Expanded(
                 child: ElevatedButton(
                   onPressed: widget.onPressedRecordButton,
-                  child: Text(
-                    'Record',
+                  child: CustomText(
+                    LanguageKey.record, context,
                     style: TextStyle(
                         color: Colors.black, fontWeight: FontWeight.w600),
                   ),
@@ -158,8 +161,8 @@ class _CustomCardMeetingHistoryState extends State<CustomCardMeetingHistory> {
               Expanded(
                 child: ElevatedButton(
                   onPressed: widget.onPressedReviewButton,
-                  child: Text(
-                    'Review',
+                  child: CustomText(
+                    LanguageKey.review, context,
                     style: TextStyle(
                         color: Colors.black, fontWeight: FontWeight.w600),
                   ),

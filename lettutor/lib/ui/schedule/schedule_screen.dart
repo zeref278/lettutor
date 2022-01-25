@@ -5,6 +5,7 @@ import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
 import 'package:lettutor/models/hard_code.dart';
 import 'package:lettutor/ui/schedule/history_schedule_screen.dart';
 import 'package:lettutor/ui/schedule/upcoming_schedule_screen.dart';
+import 'package:lettutor/ultis/language_keys.dart';
 import 'package:provider/provider.dart';
 
 class ScheduleScreen extends StatefulWidget {
@@ -39,7 +40,7 @@ class _ScheduleScreenState extends State<ScheduleScreen>
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: Padding(
-          padding:  EdgeInsets.only(top: 10, left: 15, right: 15),
+          padding: EdgeInsets.only(top: 10, left: 15, right: 15),
           child: Container(
             height: 45,
             decoration: BoxDecoration(
@@ -59,11 +60,13 @@ class _ScheduleScreenState extends State<ScheduleScreen>
               unselectedLabelColor: Colors.black,
               controller: _tabController,
               tabs: [
-                Text(
-                  "Up Coming",
+                CustomText(
+                  LanguageKey.upcoming,
+                  context,
                   style: TextStyle(fontSize: 16),
                 ),
-                Text("History", style: TextStyle(fontSize: 16))
+                CustomText(LanguageKey.history, context,
+                    style: TextStyle(fontSize: 16))
               ],
             ),
           ),

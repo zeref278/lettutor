@@ -10,6 +10,7 @@ import 'package:lettutor/ui/courses/course_detail_screen.dart';
 import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
 import 'package:lettutor/ui/processing/processing_screen.dart';
 import 'package:lettutor/ui/tutors/feedbacks_screen.dart';
+import 'package:lettutor/ultis/language_keys.dart';
 import 'package:provider/provider.dart';
 
 import 'package:syncfusion_flutter_calendar/calendar.dart';
@@ -60,7 +61,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
     return Scaffold(
       backgroundColor: defaultBackgroundColor,
       appBar: AppBar(
-        title: Text('Tutor Detail'),
+        title: CustomText(LanguageKey.tutor_detail, context),
         titleTextStyle: const TextStyle(
             color: Colors.black, fontSize: 20, fontWeight: FontWeight.w600),
         backgroundColor: defaultPrimaryColor,
@@ -148,7 +149,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                                   },
                                   icon: Icon(CupertinoIcons.bubble_left,
                                       color: Colors.green[700], size: 30)),
-                              Text('Message',
+                              CustomText(LanguageKey.message, context,
                                   style: TextStyle(
                                       fontSize: 16, color: Colors.green[700]))
                             ],
@@ -170,7 +171,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                                           size: 30));
                                 },
                               ),
-                              Text('Favorite',
+                              CustomText(LanguageKey.favorite, context,
                                   style: TextStyle(
                                       fontSize: 16, color: Colors.red[700]))
                             ],
@@ -183,7 +184,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                                   },
                                   icon: Icon(CupertinoIcons.info_circle,
                                       color: Colors.black, size: 30)),
-                              Text('Report',
+                              CustomText(LanguageKey.report, context,
                                   style: TextStyle(
                                       fontSize: 16, color: Colors.black))
                             ],
@@ -201,7 +202,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                                   },
                                   icon: Icon(CupertinoIcons.star,
                                       color: Colors.yellow[700], size: 30)),
-                              Text('Review',
+                              CustomText(LanguageKey.review, context,
                                   style: TextStyle(
                                       fontSize: 16, color: Colors.yellow[700]))
                             ],
@@ -211,8 +212,8 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                       SizedBox(
                         height: 10,
                       ),
-                      const CustomDividerText(
-                        child: Text('Introduce',
+                      CustomDividerText(
+                        child: CustomText(LanguageKey.introduce, context,
                             style: TextStyle(
                                 fontSize: 18,
                                 color: Colors.black,
@@ -324,8 +325,8 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                         ],
                       ),
                       SizedBox(height: mediumSpacer),
-                      const CustomDividerText(
-                        child: Text('Language',
+                      CustomDividerText(
+                        child: CustomText(LanguageKey.home_tv_choose_language, context,
                             style: TextStyle(
                                 fontSize: 18,
                                 color: Colors.black,
@@ -340,8 +341,8 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                             .toList(),
                       ),
                       SizedBox(height: mediumSpacer),
-                      const CustomDividerText(
-                        child: Text('Specialties',
+                      CustomDividerText(
+                        child: CustomText(LanguageKey.specialties, context,
                             style: TextStyle(
                                 fontSize: 18,
                                 color: Colors.black,
@@ -356,8 +357,8 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                             .toList(),
                       ),
                       SizedBox(height: mediumSpacer),
-                      const CustomDividerText(
-                        child: Text('Teaching experience',
+                      CustomDividerText(
+                        child: CustomText(LanguageKey.teaching_experience, context,
                             style: TextStyle(
                                 fontSize: 18,
                                 color: Colors.black,
@@ -369,8 +370,8 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                         ),
                       ),
                       SizedBox(height: mediumSpacer),
-                      const CustomDividerText(
-                        child: Text('Interests',
+                      CustomDividerText(
+                        child: CustomText(LanguageKey.interests, context,
                             style: TextStyle(
                                 fontSize: 18,
                                 color: Colors.black,
@@ -383,7 +384,7 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                       ),
                       SizedBox(height: mediumSpacer),
                       CustomDividerText(
-                        child: const Text('Suggested courses',
+                        child: CustomText(LanguageKey.suggested_course, context,
                             style: TextStyle(
                                 fontSize: 18,
                                 color: Colors.black,
@@ -431,8 +432,8 @@ class _TutorDetailScreenState extends State<TutorDetailScreen> {
                                       .toList()),
                             ),
                       SizedBox(height: mediumSpacer),
-                      const CustomDividerText(
-                        child: Text('Booking',
+                     CustomDividerText(
+                        child: CustomText(LanguageKey.booking, context,
                             style: TextStyle(
                                 fontSize: 18,
                                 color: Colors.black,

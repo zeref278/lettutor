@@ -8,6 +8,8 @@ import 'package:lettutor/ui/account_management/edit_profile_screen.dart';
 import 'package:lettutor/ui/authentication/sign_in_screen.dart';
 import 'package:lettutor/ui/custom_widgets/custom_button/custom_signout_button.dart';
 import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
+import 'package:lettutor/ultis/language_keys.dart';
+import 'package:lettutor/ultis/locale/app_localization.dart';
 import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -35,7 +37,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
         backgroundColor: defaultBackgroundColor,
         appBar: AppBar(
-          title: Text('Profile'),
+          title: CustomText(LanguageKey.profile,context),
           titleTextStyle: const TextStyle(
               color: Colors.black, fontSize: 20, fontWeight: FontWeight.w600),
           backgroundColor: defaultPrimaryColor,
@@ -76,7 +78,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: 30,
               ),
               CustomSettingButton(
-                text: 'Your information',
+                text: AppLocalizations.of(context).translate(LanguageKey.your_information),
                 width: size.width * 0.9,
                 iconData: CupertinoIcons.info_circle,
                 onPressed: () {
@@ -94,7 +96,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: 15,
               ),
               CustomSettingButton(
-                text: 'Change password',
+                text: AppLocalizations.of(context).translate(LanguageKey.change_password),
                 width: size.width * 0.9,
                 iconData: CupertinoIcons.padlock_solid,
                 onPressed: () {
@@ -121,7 +123,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: 15,
               ),
               CustomSettingButton(
-                text: 'View feedback',
+                text: AppLocalizations.of(context).translate(LanguageKey.view_feedbacks),
                 width: size.width * 0.9,
                 iconData: CupertinoIcons.news,
                 onPressed: () {},
@@ -130,7 +132,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: 12,
               ),
               CustomSettingButton(
-                text: 'Your Review',
+                text: AppLocalizations.of(context).translate(LanguageKey.your_review),
                 width: size.width * 0.9,
                 iconData: CupertinoIcons.pencil_ellipsis_rectangle,
                 onPressed: () {},
@@ -139,7 +141,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: 12,
               ),
               CustomSettingButton(
-                text: 'Booking History',
+                text: AppLocalizations.of(context).translate(LanguageKey.booked_history),
                 width: size.width * 0.9,
                 iconData: CupertinoIcons.square_list,
                 onPressed: () {},
@@ -150,7 +152,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               CustomRoundedButton(
                 width: size.width * 0.9,
                 textColor: Colors.black,
-                text: 'SIGN OUT',
+                text: AppLocalizations.of(context).translate(LanguageKey.login_btn_sign_out),
                 onPressed: () {
                   AuthServices authService = AuthServices.instance;
                   authService.signOut();

@@ -57,13 +57,21 @@ class SharedPreferenceHelper {
   Future<bool> removeAuthKey() async {
     return _sharedPreference.remove(Preferences.authen_key);
   }
-  //-MARK:Added by Hieu Minh Dec 25 2021
-  // Language:---------------------------------------------------
-  // String? get currentLanguage {
-  //   return _sharedPreference.getString(Preferences.current_language);
-  // }
-  //
-  // Future<void> changeLanguage(String language) {
-  //   return _sharedPreference.setString(Preferences.current_language, language);
-  // }
+
+
+  String? get currentLanguage {
+    return _sharedPreference.getString(Preferences.current_language);
+  }
+
+  Future<void> changeLanguage(String language) {
+    return _sharedPreference.setString(Preferences.current_language, language);
+  }
+
+  Future<void> changeTheme(String theme) {
+    return _sharedPreference.setString(Preferences.theme_mode, theme);
+  }
+
+  String? get currentTheme {
+    return _sharedPreference.getString(Preferences.theme_mode);
+  }
 }

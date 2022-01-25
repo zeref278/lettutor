@@ -44,7 +44,7 @@ class ScheduleApi {
   Future<dynamic> cancelBookedClasses(scheduleDetailId) async {
     try {
       final res = await _dioClient
-          .delete("/booking", data: ParserService.listStringToJson('scheduleDetailIds', scheduleDetailId));
+          .delete("/booking", data: {"scheduleDetailIds" : [scheduleDetailId]});
       return res;
     } catch (e) {
       rethrow;

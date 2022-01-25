@@ -6,6 +6,8 @@ import 'package:lettutor/constants/ui_constants.dart';
 import 'package:lettutor/providers/schedule_provider.dart';
 import 'package:lettutor/providers/tutor_provider.dart';
 import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
+import 'package:lettutor/ultis/language_keys.dart';
+import 'package:lettutor/ultis/locale/app_localization.dart';
 import 'package:provider/provider.dart';
 
 class FeedbacksScreen extends StatefulWidget {
@@ -48,7 +50,8 @@ class _FeedbacksScreenState extends State<FeedbacksScreen> {
       appBar: AppBar(
         title: Consumer<TutorProvider>(
           builder: (context, tutorData, _) {
-            return Text('Feedbacks for ${tutorData.tutor.name}');
+            return Text(
+                '${AppLocalizations.of(context).translate(LanguageKey.feedbacks_for)} ${tutorData.tutor.name}');
           },
         ),
         titleTextStyle: const TextStyle(
@@ -75,7 +78,7 @@ class _FeedbacksScreenState extends State<FeedbacksScreen> {
                           borderRadius: BorderRadius.circular(15)),
                       elevation: 10,
                       title: Text(
-                        "Review ${tutorData.tutor.name}",
+                        "${AppLocalizations.of(context).translate(LanguageKey.review)} ${tutorData.tutor.name}",
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -119,8 +122,11 @@ class _FeedbacksScreenState extends State<FeedbacksScreen> {
                                         gapPadding: 2,
                                         borderRadius:
                                             BorderRadius.circular(10)),
-                                    labelText: 'Content',
-                                    hintText: 'Review tutor here'),
+                                    labelText: AppLocalizations.of(context)
+                                        .translate(LanguageKey.content),
+                                    hintText: AppLocalizations.of(context)
+                                        .translate(
+                                            LanguageKey.reivew_tutor_here)),
                               )),
                         ],
                       ),
@@ -136,8 +142,9 @@ class _FeedbacksScreenState extends State<FeedbacksScreen> {
                             color: Colors.red,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10)),
-                            child: Text(
-                              "CANCEL",
+                            child: CustomText(
+                              LanguageKey.cancel,
+                              context,
                               style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w600,
@@ -158,8 +165,9 @@ class _FeedbacksScreenState extends State<FeedbacksScreen> {
                                 color: defaultPrimaryColor,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10)),
-                                child: Text(
-                                  "SEND",
+                                child: CustomText(
+                                  LanguageKey.send,
+                                  context,
                                   style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w600,
@@ -182,60 +190,62 @@ class _FeedbacksScreenState extends State<FeedbacksScreen> {
           );
         },
       ),
-      body: _isLoading ? Center(child: CircularProgressIndicator()) :
-      SingleChildScrollView(
-        padding: EdgeInsets.only(left: 15, right: 15),
-        child: Consumer<TutorProvider>(
-          builder: (context, tutorData, _) {
-            return tutorData.tutor.feedbacks!.isEmpty
-                ? Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: 50,
-                      ),
-                      Icon(CupertinoIcons.text_quote,
-                          color: Colors.red, size: 40),
-                      SizedBox(width: 10),
-                      Text(
-                        'Empty',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black,
-                            fontSize: 20),
-                      ),
-                    ],
-                  )
-                : ListView.builder(
-                    shrinkWrap: true,
-                    physics: ClampingScrollPhysics(),
-                    itemCount: tutorData.tutor.feedbacks!.length,
-                    itemBuilder: (context, int index) {
-                      return Column(
-                        children: [
-                          index == 0
-                              ? Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: Text(
-                                    '${tutorData.tutor.feedbacks!.length} reviews',
-                                    style: TextStyle(
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.w600),
-                                  ),
+      body: _isLoading
+          ? Center(child: CircularProgressIndicator())
+          : SingleChildScrollView(
+              padding: EdgeInsets.only(left: 15, right: 15),
+              child: Consumer<TutorProvider>(
+                builder: (context, tutorData, _) {
+                  return tutorData.tutor.feedbacks!.isEmpty
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              height: 50,
+                            ),
+                            Icon(CupertinoIcons.text_quote,
+                                color: Colors.red, size: 40),
+                            SizedBox(width: 10),
+                            Text(
+                              'Empty',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black,
+                                  fontSize: 20),
+                            ),
+                          ],
+                        )
+                      : ListView.builder(
+                          shrinkWrap: true,
+                          physics: ClampingScrollPhysics(),
+                          itemCount: tutorData.tutor.feedbacks!.length,
+                          itemBuilder: (context, int index) {
+                            return Column(
+                              children: [
+                                index == 0
+                                    ? Padding(
+                                        padding: const EdgeInsets.all(10),
+                                        child: Text(
+                                          '${tutorData.tutor.feedbacks!.length} ${AppLocalizations.of(context).translate(LanguageKey.review)}',
+                                          style: TextStyle(
+                                              fontSize: 24,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                      )
+                                    : Container(),
+                                CustomCardFeedback(
+                                    feedback:
+                                        tutorData.tutor.feedbacks![index]),
+                                SizedBox(
+                                  height: 15,
                                 )
-                              : Container(),
-                          CustomCardFeedback(
-                              feedback: tutorData.tutor.feedbacks![index]),
-                          SizedBox(
-                            height: 15,
-                          )
-                        ],
-                      );
-                    },
-                  );
-          },
-        ),
-      ),
+                              ],
+                            );
+                          },
+                        );
+                },
+              ),
+            ),
     );
   }
 }

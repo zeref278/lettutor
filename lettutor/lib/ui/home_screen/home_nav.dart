@@ -12,6 +12,8 @@ import 'package:lettutor/ui/custom_widgets/custom_tabbar/tab_navigator.dart';
 import 'package:lettutor/ui/account_management/profile_screen.dart';
 import 'package:lettutor/ui/account_management/setting_screen.dart';
 import 'package:lettutor/constants/ui_constants.dart';
+import 'package:lettutor/ui/custom_widgets/custom_text.dart';
+import 'package:lettutor/ultis/language_keys.dart';
 import 'package:provider/provider.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -113,8 +115,9 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               // body: ScheduleScreen(),
               appBar: AppBar(
-                title: Text(
-                  _currentPage,
+                title: CustomText(
+                  _currentPage.toLowerCase(),
+                  context
                 ),
                 titleTextStyle: const TextStyle(
                     color: Colors.black,
@@ -176,7 +179,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 items: <BottomNavyBarItem>[
                   BottomNavyBarItem(
                     icon: const Icon(CupertinoIcons.app, size: 30),
-                    title: const Text('Home', style: TextStyle(fontSize: 16)),
+                    title: CustomText(LanguageKey.home, context, style: TextStyle(fontSize: 16)),
                     activeColor: defaultPrimaryColor,
                     textAlign: TextAlign.center,
                   ),
@@ -184,27 +187,27 @@ class _MyHomePageState extends State<MyHomePage> {
                     icon: const Icon(CupertinoIcons.bubble_left_bubble_right,
                         size: 30),
                     title:
-                        const Text('Messages', style: TextStyle(fontSize: 16)),
+                    CustomText(LanguageKey.messages, context, style: TextStyle(fontSize: 16)),
                     activeColor: defaultPrimaryColor,
                     textAlign: TextAlign.center,
                   ),
                   BottomNavyBarItem(
                     icon: const Icon(CupertinoIcons.calendar, size: 30),
                     title:
-                        const Text('Schedule', style: TextStyle(fontSize: 16)),
+                    CustomText(LanguageKey.schedule, context, style: TextStyle(fontSize: 16)),
                     activeColor: defaultPrimaryColor,
                     textAlign: TextAlign.center,
                   ),
                   BottomNavyBarItem(
                     icon: const Icon(CupertinoIcons.person_2, size: 30),
-                    title: const Text('Tutors', style: TextStyle(fontSize: 16)),
+                    title: CustomText(LanguageKey.tutors, context, style: TextStyle(fontSize: 16)),
                     activeColor: defaultPrimaryColor,
                     textAlign: TextAlign.center,
                   ),
                   BottomNavyBarItem(
                     icon: const Icon(CupertinoIcons.bookmark, size: 30),
                     title:
-                        const Text('Courses', style: TextStyle(fontSize: 16)),
+                    CustomText(LanguageKey.courses, context, style: TextStyle(fontSize: 16)),
                     activeColor: defaultPrimaryColor,
                     textAlign: TextAlign.center,
                     titleColor: Colors.black,

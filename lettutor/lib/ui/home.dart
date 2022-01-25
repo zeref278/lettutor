@@ -4,11 +4,14 @@ import 'package:lettutor/constants/ui_constants.dart';
 import 'package:lettutor/providers/schedule_provider.dart';
 import 'package:lettutor/providers/tutor_provider.dart';
 import 'package:lettutor/services/schedule_service.dart';
+import 'package:lettutor/ultis/language_keys.dart';
+import 'package:lettutor/ultis/locale/app_localization.dart';
 import 'package:provider/provider.dart';
 
 import 'custom_widgets/custom_button/custom_rounded_button.dart';
 import 'custom_widgets/custom_button/custom_text_button.dart';
 import 'custom_widgets/custom_card/custom_card_tutor.dart';
+import 'custom_widgets/custom_text.dart';
 import 'meeting/meeting_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -40,8 +43,9 @@ class HomeScreen extends StatelessWidget {
                     children: <Widget>[
                       Text(
                         flag2
-                            ? 'Total lesson time is ${(scheduleData.getTotalTimeStudied()/60).floor()} hours and ${scheduleData.getTotalTimeStudied()%60} minutes'
-                            : "You haven't studied lesson yet",
+                            ? '${AppLocalizations.of(context).translate(LanguageKey.total_lesson_time_is)} ${(scheduleData.getTotalTimeStudied() / 60).floor()} ${AppLocalizations.of(context).translate(LanguageKey.hours)} and ${scheduleData.getTotalTimeStudied() % 60} ${AppLocalizations.of(context).translate(LanguageKey.minutes)}'
+                            : AppLocalizations.of(context).translate(
+                                LanguageKey.you_havent_studied_lesson_yet),
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.black,
@@ -53,7 +57,11 @@ class HomeScreen extends StatelessWidget {
                         height: 10,
                       ),
                       Text(
-                        flag ? 'Up coming Lesson' : 'You have no upcoming lesson',
+                        flag
+                            ? AppLocalizations.of(context)
+                                .translate(LanguageKey.upcoming_lesson)
+                            : AppLocalizations.of(context).translate(
+                                LanguageKey.you_have_no_upcomming_lesson),
                         style: TextStyle(
                             color: Colors.black, fontWeight: FontWeight.bold),
                       ),
@@ -63,7 +71,8 @@ class HomeScreen extends StatelessWidget {
                       Text(
                           flag
                               ? '${DateFormat('EEE, dd MMM yy').format(DateTime.parse(scheduleData.schedules[0].date))}, ${scheduleData.schedules[0].startTime} - ${scheduleData.schedules[0].endTime}'
-                              : 'Click below to book',
+                              : AppLocalizations.of(context)
+                                  .translate(LanguageKey.click_below_to_book),
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.w600)),
@@ -71,21 +80,26 @@ class HomeScreen extends StatelessWidget {
                         height: 15,
                       ),
                       CustomRoundedButton(
-                        onPressed: flag ?
-                            () async {
-                          ScheduleService.instance.joinMeeting(scheduleData.schedules[0].meetingLink);
-
-                        } : () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return MeetingScreen();
+                        onPressed: flag
+                            ? () async {
+                                ScheduleService.instance.joinMeeting(
+                                    scheduleData.schedules[0].meetingLink);
+                              }
+                            : () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return MeetingScreen();
+                                    },
+                                  ),
+                                );
                               },
-                            ),
-                          );
-                        },
-                        text: flag ? 'Enter lesson room' : 'Book a lesson',
+                        text: flag
+                            ? AppLocalizations.of(context)
+                                .translate(LanguageKey.enter_lesson_room)
+                            : AppLocalizations.of(context)
+                                .translate(LanguageKey.book_a_lesson),
                         color: Colors.white,
                         textColor: Colors.black,
                         width: size.width * 0.7,
@@ -101,8 +115,9 @@ class HomeScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                const Text(
-                  'Recommended Tutors',
+                CustomText(
+                  LanguageKey.recommended_tutors,
+                  context,
                   style: TextStyle(
                     shadows: [
                       Shadow(color: Colors.black, offset: Offset(0, -5))
@@ -118,8 +133,8 @@ class HomeScreen extends StatelessWidget {
                 mediumHorizontalSpacer,
                 CustomTextButton(
                   onPressed: () {},
-                  title: const Text(
-                    'See all',
+                  title: CustomText(
+                    LanguageKey.see_all, context,
                     style: TextStyle(color: Colors.blueAccent, fontSize: 16),
                   ),
                 ),

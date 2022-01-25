@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor/constants/ui_constants.dart';
+import 'package:lettutor/ui/custom_widgets/custom_text.dart';
+import 'package:lettutor/ultis/language_keys.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class EbookViewScreen extends StatefulWidget {
@@ -31,7 +33,7 @@ class _EbookViewScreenState extends State<EbookViewScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            title: Text('Ebook'),
+            title: CustomText(LanguageKey.ebook, context),
             titleTextStyle: const TextStyle(
                 color: Colors.black, fontSize: 20, fontWeight: FontWeight.w600),
             backgroundColor: defaultPrimaryColor,

@@ -33,3 +33,7 @@ export 'package:lettutor/ui/custom_widgets/header_account/header_account_setting
 export 'package:lettutor/ui/custom_widgets/custom_rating_bar/custom_rating_bar.dart';
 
 export 'package:lettutor/ui/custom_widgets/custom_stack_avatar/custom_avatar_active.dart';
+
+export 'package:lettutor/ui/custom_widgets/custom_dialog/language_dialog.dart';
+export 'package:lettutor/ui/custom_widgets/custom_dialog/custom_alert_dialog.dart';
+export 'custom_text.dart';

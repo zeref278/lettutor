@@ -6,4 +6,5 @@ class Preferences {
   static const String current_language = "current_language";
   static const String auth_token_expire = "auth_token_expire";
   static const String refresh_auth_token_expire = "refresh_auth_token_expire";
+  static const String theme_mode = "theme_mode";
 }

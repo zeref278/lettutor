@@ -12,8 +12,13 @@ class Ultis {
   Ultis(this._sharedPrefsHelper);
 
   // Language: -----------------------------------------------------------------
-  // Future<void> changeLanguage(String value) =>
-  //     _sharedPrefsHelper.changeLanguage(value);
-  //
-  // String? get currentLanguage => _sharedPrefsHelper.currentLanguage;
+  Future<void> changeLanguage(String value) =>
+      _sharedPrefsHelper.changeLanguage(value);
+
+  String? get currentLanguage => _sharedPrefsHelper.currentLanguage;
+
+  Future<void> changeTheme(String value) =>
+      _sharedPrefsHelper.changeTheme(value);
+
+  String? get currentTheme => _sharedPrefsHelper.currentTheme;
 }

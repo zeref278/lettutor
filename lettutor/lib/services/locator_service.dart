@@ -9,6 +9,8 @@ import 'package:lettutor/module/network_module.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'language_service.dart';
+
 final getIt = GetIt.instance;
 
 Future<void> setupLocator() async {
@@ -28,5 +30,5 @@ Future<void> setupLocator() async {
   ));
 
   // stores:--------------------------------------------------------------------
-  //getIt.registerSingleton(LanguageStore(getIt<Ultis>()));
+  getIt.registerSingleton(LanguageStore(getIt<Ultis>()));
 }

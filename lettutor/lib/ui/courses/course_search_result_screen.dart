@@ -5,6 +5,9 @@ import 'package:lettutor/constants/ui_constants.dart';
 import 'package:lettutor/models/course.dart';
 import 'package:lettutor/providers/course_provider.dart';
 import 'package:lettutor/ui/custom_widgets/custom_card/custom_card_course.dart';
+import 'package:lettutor/ui/custom_widgets/custom_text.dart';
+import 'package:lettutor/ultis/language_keys.dart';
+import 'package:lettutor/ultis/locale/app_localization.dart';
 import 'package:provider/provider.dart';
 
 class CourseSearchResultScreen extends StatefulWidget {
@@ -62,7 +65,7 @@ class _CourseSearchResultScreenState extends State<CourseSearchResultScreen> {
                   ),
                   CupertinoSearchTextField(
                     controller: _searchController,
-                    placeholder: 'Search course',
+                    placeholder: AppLocalizations.of(context).translate(LanguageKey.search_course),
                     onSubmitted: (keyWord) {
                       _searchController.clear();
                       Navigator.push(context, MaterialPageRoute(builder: (context) => CourseSearchResultScreen(nameKey: keyWord)));
@@ -86,8 +89,8 @@ class _CourseSearchResultScreenState extends State<CourseSearchResultScreen> {
                           Icon(CupertinoIcons.book,
                               color: Colors.red, size: 40),
                           SizedBox(width: 10),
-                          Text(
-                            'Cannot found course ',
+                          CustomText(
+                            LanguageKey.cannot_found_course, context,
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 color: Colors.black,
@@ -107,13 +110,13 @@ class _CourseSearchResultScreenState extends State<CourseSearchResultScreen> {
                           Wrap(
                             alignment: WrapAlignment.center,
                             children: [
-                              Text('Found ', style: TextStyle(fontSize: 16)),
+                              CustomText(LanguageKey.found_, context, style: TextStyle(fontSize: 16)),
                               Text(
                                 '${_listCourse.length} ',
                                 style:
                                 TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
                               ),
-                              Text('courses for keyword ',
+                              CustomText(LanguageKey.courses_by_keyword_, context,
                                   style: TextStyle(fontSize: 16)),
                               Text(
                                 "'${widget.nameKey}'",

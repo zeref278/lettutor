@@ -6,6 +6,8 @@ import 'package:lettutor/providers/course_provider.dart';
 import 'package:lettutor/services/parser_service.dart';
 import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
 import 'package:lettutor/ui/tutors/tutor_detail_screen.dart';
+import 'package:lettutor/ultis/language_keys.dart';
+import 'package:lettutor/ultis/locale/app_localization.dart';
 import 'package:provider/provider.dart';
 
 import 'ebook_view_screen.dart';
@@ -38,28 +40,25 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-            backgroundColor: defaultBackgroundColor,
-            appBar: AppBar(
-              title: Text('Course Detail'),
-              titleTextStyle: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600),
-              backgroundColor: defaultPrimaryColor,
-              elevation: 0,
-              leading: IconButton(
-                icon: Icon(CupertinoIcons.chevron_back, color: Colors.black),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ),
-            body: _isLoading
-                ? Center(
+      backgroundColor: defaultBackgroundColor,
+      appBar: AppBar(
+        title: CustomText(LanguageKey.course_detail, context),
+        titleTextStyle: const TextStyle(
+            color: Colors.black, fontSize: 20, fontWeight: FontWeight.w600),
+        backgroundColor: defaultPrimaryColor,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(CupertinoIcons.chevron_back, color: Colors.black),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: _isLoading
+          ? Center(
               child: CircularProgressIndicator(),
             )
-                :
-            SingleChildScrollView(
+          : SingleChildScrollView(
               padding: const EdgeInsets.only(left: 15, right: 15),
               child: Consumer<CourseProvider>(
                 builder: (context, courseData, _) {
@@ -84,7 +83,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                         maxLines: 2,
                       ),
                       CustomDividerText(
-                        child: Text('Overview',
+                        child: CustomText(LanguageKey.overview, context,
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.black,
@@ -99,8 +98,9 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                           SizedBox(
                             width: 10,
                           ),
-                          Text(
-                            'Why take this course',
+                          CustomText(
+                            LanguageKey.why_take_this_course,
+                            context,
                             style: TextStyle(
                                 fontSize: 17, fontWeight: FontWeight.w500),
                           )
@@ -124,8 +124,9 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                           SizedBox(
                             width: 10,
                           ),
-                          Text(
-                            'What will you be able to do',
+                          CustomText(
+                            LanguageKey.what_will_you_be_able_to_do,
+                            context,
                             style: TextStyle(
                                 fontSize: 17, fontWeight: FontWeight.w500),
                           )
@@ -138,7 +139,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                         courseData.course.purpose,
                       ),
                       CustomDividerText(
-                        child: Text('Experience Level',
+                        child: CustomText(LanguageKey.experience_level, context,
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.black,
@@ -161,7 +162,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                         ],
                       ),
                       CustomDividerText(
-                        child: Text('Course Length',
+                        child: CustomText(LanguageKey.course_length, context,
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.black,
@@ -177,14 +178,15 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                             width: 10,
                           ),
                           Text(
-                            '${courseData.course.listTopic!.length} topics',
+                            '${courseData.course.listTopic!.length} ${AppLocalizations.of(context).translate(LanguageKey.topics)}',
                             style: TextStyle(
                                 fontSize: 17, fontWeight: FontWeight.w500),
                           )
                         ],
                       ),
                       CustomDividerText(
-                        child: Text('List Topics',
+                        child: CustomText(LanguageKey.list_topics,
+                            context,
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.black,
@@ -199,26 +201,31 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 CustomTextButton(
-                                    onPressed: () {
-                                      Navigator.of(context, rootNavigator: true).push(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  EbookViewScreen(pdfUrl: courseData.course.listTopic![index].linkFile,
-                                                      )));
-                                    },
-                                    title: Text(
-                                      '${index + 1}. ${courseData.course.listTopic![index].name}',
-                                      style: TextStyle(
-                                        fontSize: 17,
-                                      ),
-                                    ),),
-
+                                  onPressed: () {
+                                    Navigator.of(context, rootNavigator: true)
+                                        .push(MaterialPageRoute(
+                                            builder: (context) =>
+                                                EbookViewScreen(
+                                                  pdfUrl: courseData
+                                                      .course
+                                                      .listTopic![index]
+                                                      .linkFile,
+                                                )));
+                                  },
+                                  title: Text(
+                                    '${index + 1}. ${courseData.course.listTopic![index].name}',
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                    ),
+                                  ),
+                                ),
                                 SizedBox(height: 8),
                               ],
                             );
                           }),
-                      const CustomDividerText(
-                        child: Text('Tutors',
+                       CustomDividerText(
+                        child: CustomText(LanguageKey.tutors,
+                            context,
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.black,
@@ -251,8 +258,9 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                                         ),
                                       ),
                                       onPressed: () {
-                                        Navigator.of(context, rootNavigator: true).push(
-                                            MaterialPageRoute(
+                                        Navigator.of(context,
+                                                rootNavigator: true)
+                                            .push(MaterialPageRoute(
                                                 builder: (context) =>
                                                     TutorDetailScreen(
                                                         tutorId: courseData
@@ -275,6 +283,6 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                 },
               ),
             ),
-          );
+    );
   }
 }

@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:lettutor/models/tutor.dart';
 import 'package:lettutor/constants/ui_constants.dart';
 import 'package:lettutor/providers/tutor_provider.dart';
+import 'package:lettutor/ultis/language_keys.dart';
 import 'package:provider/provider.dart';
+
+import '../custom_text.dart';
 
 class CustomCardMeeting extends StatefulWidget {
   final double width;
@@ -135,8 +138,8 @@ class _CustomCardMeetingState extends State<CustomCardMeeting> {
                     Expanded(
                       child: ElevatedButton(
                         onPressed: widget.onPressedCancelButton,
-                        child: Text(
-                          'Cancel',
+                        child: CustomText(
+                          LanguageKey.cancel, context,
                           style: TextStyle(
                               color: Colors.white, fontWeight: FontWeight.w600),
                         ),
@@ -156,8 +159,8 @@ class _CustomCardMeetingState extends State<CustomCardMeeting> {
                     Expanded(
                       child: ElevatedButton(
                         onPressed: widget.onPressedJoinButton,
-                        child: Text(
-                          'Join',
+                        child: CustomText(
+                          LanguageKey.join, context,
                           style: TextStyle(
                               color: Colors.white, fontWeight: FontWeight.w600),
                         ),

@@ -12,6 +12,8 @@ import 'package:lettutor/constants/ui_constants.dart';
 import 'package:lettutor/ui/custom_widgets/custom_dialog/custom_alert_dialog.dart';
 import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
 import 'package:lettutor/ui/home_screen/home_nav.dart';
+import 'package:lettutor/ultis/language_keys.dart';
+import 'package:lettutor/ultis/locale/app_localization.dart';
 
 import '../custom_widgets/custom_dialog/dialog_status.dart';
 
@@ -29,7 +31,6 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   void initState() {
-
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
     AuthServices.instance.checkAlreadySignin().then((result) {
@@ -69,12 +70,14 @@ class _SignInScreenState extends State<SignInScreen> {
               SizedBox(height: size.height * 0.05),
               CustomInputField(
                 textEditingController: _emailController,
-                hintText: 'Enter your email',
+                hintText: AppLocalizations.of(context)
+                    .translate(LanguageKey.login_et_user_email),
                 icon: Icons.email,
               ),
               CustomPasswordField(
                 textEditingController: _passwordController,
-                hText: 'Enter your password',
+                hText: AppLocalizations.of(context)
+                    .translate(LanguageKey.login_et_user_password),
               ),
               Container(
                 alignment: Alignment.centerRight,
@@ -90,8 +93,9 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                     );
                   },
-                  child: const Text(
-                    "Forgot password ?",
+                  child: CustomText(
+                    LanguageKey.forgot_password,
+                    context,
                     textAlign: TextAlign.right,
                     style: TextStyle(
                       color: Colors.grey,
@@ -103,13 +107,16 @@ class _SignInScreenState extends State<SignInScreen> {
               CustomRoundedButton(
                 width: size.width * 0.9,
                 textColor: Colors.black,
-                text: 'SIGN IN',
+                text: AppLocalizations.of(context)
+                    .translate(LanguageKey.login_btn_sign_in),
                 onPressed: () async {
-                  bool flagEmail = ValidatorService.validateEmail(_emailController.text);
-                  bool flagPass = ValidatorService.validatePassword(_passwordController.text);
+                  bool flagEmail =
+                      ValidatorService.validateEmail(_emailController.text);
+                  bool flagPass = ValidatorService.validatePassword(
+                      _passwordController.text);
 
-                  if(flagEmail&&flagPass) {
-                    bool result = await  AuthServices.instance.signInService(
+                  if (flagEmail && flagPass) {
+                    bool result = await AuthServices.instance.signInService(
                         _emailController.text, _passwordController.text);
                     if (result) {
                       Navigator.pushReplacement(
@@ -121,12 +128,23 @@ class _SignInScreenState extends State<SignInScreen> {
                         ),
                       );
                     } else {
-                      _showDialogWidget(context, 'Error', 'Login unsuccessful', BasicDialogStatus.error);
+                      _showDialogWidget(
+                          context,
+                          AppLocalizations.of(context)
+                              .translate(LanguageKey.error),
+                          AppLocalizations.of(context)
+                              .translate(LanguageKey.login_unsuccessful),
+                          BasicDialogStatus.error);
                     }
                   } else {
-                    _showDialogWidget(context, 'Error', 'Email or Password is invalid', BasicDialogStatus.warning);
+                    _showDialogWidget(
+                        context,
+                        AppLocalizations.of(context)
+                            .translate(LanguageKey.error),
+                        AppLocalizations.of(context).translate(
+                            LanguageKey.email_or_password_is_invalid),
+                        BasicDialogStatus.warning);
                   }
-
                 },
               ),
               const SocialLoginOptions(),
@@ -152,8 +170,9 @@ class _SignInScreenState extends State<SignInScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  const Text(
-                    "Don't have an account ? ",
+                  CustomText(
+                    LanguageKey.dont_have_an_account,
+                    context,
                     style: TextStyle(color: Colors.black),
                   ),
                   CustomTextButton(
@@ -167,8 +186,9 @@ class _SignInScreenState extends State<SignInScreen> {
                         ),
                       );
                     },
-                    title: const Text(
-                      'Sign Up',
+                    title: CustomText(
+                      LanguageKey.sign_up,
+                      context,
                       style: TextStyle(
                           color: darkYellow, fontWeight: FontWeight.bold),
                     ),
@@ -180,9 +200,8 @@ class _SignInScreenState extends State<SignInScreen> {
         ),
       ),
     );
-
-
   }
+
   Future<void> _showDialogWidget(
       context, String title, String description, BasicDialogStatus status) {
     return showDialog(

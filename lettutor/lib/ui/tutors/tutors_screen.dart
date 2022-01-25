@@ -4,6 +4,8 @@ import 'package:lettutor/constants/ui_constants.dart';
 import 'package:lettutor/providers/tutor_provider.dart';
 import 'package:lettutor/ui/custom_widgets/custom_widgets.dart';
 import 'package:lettutor/ui/tutors/tutor_search_result_screen.dart';
+import 'package:lettutor/ultis/language_keys.dart';
+import 'package:lettutor/ultis/locale/app_localization.dart';
 import 'package:provider/provider.dart';
 
 class TutorsScreen extends StatefulWidget {
@@ -51,7 +53,7 @@ class _TutorsScreenState extends State<TutorsScreen> {
             ),
             CupertinoSearchTextField(
               controller: _searchController,
-              placeholder: 'Search tutor',
+              placeholder: AppLocalizations.of(context).translate(LanguageKey.search_tutor),
               onSubmitted: (keyWord) {
                 setState(() {
                   _keyword = keyWord;
